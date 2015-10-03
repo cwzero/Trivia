@@ -1,3 +1,8 @@
+To find the url to enter in the git clone dialog, log into github and navigate to the repository
+(on bottom left) cwzero/Trivia, then find the box labelled "HTTPS clone URL" and click the clipboard
+button on the right, then you can paste it in where needed
+
+
 First Time:
 
 Step 1. Select workspace
