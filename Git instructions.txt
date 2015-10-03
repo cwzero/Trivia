@@ -1,0 +1,31 @@
+First Time:
+
+Step 1. Select workspace
+	1.1 File -> Select workspace -> Other... -> Select a folder on flash drive
+
+Step 2. Open git perspective
+	2.1 Menu - Window menu -> perspective -> open perspective -> other... -> Git
+
+Step 3. Clone
+	2.3 Under the git repositories view at left, select clone (blue curved arrow)
+	2.4 Enter the repository path and your github username/password
+	2.5 Hit next, next
+	2.6 Select the import eclipse projects checkbox
+	
+Step 4. Switch back to java perspective
+	4.1 Click java in the top right corner
+
+
+Normal workflow:
+Step 1. Pull
+	1.1 Right click project, team -> pull
+
+Step 2. Do work
+
+Step 3. Commit
+	3.1 Right click project, team -> commit
+	3.2 Enter a message (describe your changes)
+	3.3 Select changed files at bottom
+	3.4 Hit next, next, then commit and push
+	3.5 Hit ok
+
