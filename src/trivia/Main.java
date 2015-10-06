@@ -1,4 +1,4 @@
-package com.nwtc.java.trivia;
+package trivia;
 
 import java.awt.EventQueue;
 import  java.awt.Dialog;
