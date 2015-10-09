@@ -12,9 +12,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MainMenuFrame {
-
-	private JFrame frame;
+@SuppressWarnings("serial")
+public class MainMenuFrame extends JFrame {
 
 	/**
 	 * Launch the application.
@@ -24,7 +23,7 @@ public class MainMenuFrame {
 			public void run() {
 				try {
 					MainMenuFrame window = new MainMenuFrame();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,16 +42,16 @@ public class MainMenuFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		this.setTitle("Main Menu");
+		this.setBounds(100, 100, 450, 300);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getContentPane().setLayout(null);
 
 		JLabel lblTriviaGame = new JLabel("TRIVIA GAME");
 		lblTriviaGame.setBackground(new Color(240, 240, 240));
 		lblTriviaGame.setFont(new Font("Tahoma", Font.BOLD, 38));
 		lblTriviaGame.setBounds(78, 11, 274, 75);
-		frame.getContentPane().add(lblTriviaGame);
+		this.getContentPane().add(lblTriviaGame);
 
 		JButton newGameButton = new JButton("New Game");
 		newGameButton.addActionListener(new ActionListener() {
@@ -62,7 +61,7 @@ public class MainMenuFrame {
 		});
 		newGameButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		newGameButton.setBounds(149, 97, 123, 52);
-		frame.getContentPane().add(newGameButton);
+		this.getContentPane().add(newGameButton);
 
 		JButton quitButton = new JButton("Quit");
 		quitButton.addActionListener(new ActionListener() {
@@ -72,11 +71,12 @@ public class MainMenuFrame {
 		});
 		quitButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		quitButton.setBounds(149, 160, 123, 52);
-		frame.getContentPane().add(quitButton);
+		this.getContentPane().add(quitButton);
 	}
 
 	public void newGameButtonClick() {
-		JOptionPane.showMessageDialog(frame, "This is just a test.");
+		// Here we will close the main menu, then show a new game setup frame
+		JOptionPane.showMessageDialog(this, "This is just a test.");
 	}
 
 	public void quitButtonClick() {
