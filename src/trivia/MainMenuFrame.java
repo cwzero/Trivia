@@ -1,7 +1,6 @@
 package trivia;
 
 import java.awt.EventQueue;
-import  java.awt.Dialog;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,7 +12,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Main {
+public class MainMenuFrame {
 
 	private JFrame frame;
 
@@ -24,7 +23,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Main window = new Main();
+					MainMenuFrame window = new MainMenuFrame();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +35,7 @@ public class Main {
 	/**
 	 * Create the application.
 	 */
-	public Main() {
+	public MainMenuFrame() {
 		initialize();
 	}
 
@@ -48,22 +47,39 @@ public class Main {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		JLabel lblTriviaGame = new JLabel("TRIVIA GAME");
 		lblTriviaGame.setBackground(new Color(240, 240, 240));
 		lblTriviaGame.setFont(new Font("Tahoma", Font.BOLD, 38));
 		lblTriviaGame.setBounds(78, 11, 274, 75);
 		frame.getContentPane().add(lblTriviaGame);
-		
-		JButton btnNewGame = new JButton("New Game");
-		btnNewGame.addActionListener(new ActionListener() {
+
+		JButton newGameButton = new JButton("New Game");
+		newGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(frame,
-					    "This is just a test.");
+				MainMenuFrame.this.newGameButtonClick();
 			}
 		});
-		btnNewGame.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewGame.setBounds(148, 170, 123, 52);
-		frame.getContentPane().add(btnNewGame);
+		newGameButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		newGameButton.setBounds(149, 97, 123, 52);
+		frame.getContentPane().add(newGameButton);
+
+		JButton quitButton = new JButton("Quit");
+		quitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainMenuFrame.this.quitButtonClick();
+			}
+		});
+		quitButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		quitButton.setBounds(149, 160, 123, 52);
+		frame.getContentPane().add(quitButton);
+	}
+
+	public void newGameButtonClick() {
+		JOptionPane.showMessageDialog(frame, "This is just a test.");
+	}
+
+	public void quitButtonClick() {
+		System.exit(0);
 	}
 }
