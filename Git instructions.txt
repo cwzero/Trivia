@@ -22,8 +22,10 @@ Step 4. Switch back to java perspective
 
 
 Normal workflow:
-Step 1. Pull
-	1.1 Right click project, team -> pull
+Step 1. Check github
+	1.1 Go to https://github.com/cwzero/Trivia
+Step 2. Pull
+	2.1 Right click project, team -> pull
 
 Step 2. Do work
 
