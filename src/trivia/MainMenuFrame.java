@@ -1,10 +1,7 @@
 package trivia;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.Color;
@@ -14,23 +11,6 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class MainMenuFrame extends JFrame {
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainMenuFrame window = new MainMenuFrame();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the application.
 	 */
@@ -76,7 +56,10 @@ public class MainMenuFrame extends JFrame {
 
 	public void newGameButtonClick() {
 		// Here we will close the main menu, then show a new game setup frame
-		JOptionPane.showMessageDialog(this, "This is just a test.");
+
+		this.dispose();
+
+		new GameSetupFrame().setVisible(true);
 	}
 
 	public void quitButtonClick() {
