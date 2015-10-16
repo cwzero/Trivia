@@ -71,6 +71,6 @@ public class GameSetupFrame extends JFrame {
 
 		Game game = new Game(roundCount, playerCount);
 
-		new PlayerJoinFrame(game, 0).setVisible(true);
+		new PlayerJoinFrame(game).setVisible(true);
 	}
 }
