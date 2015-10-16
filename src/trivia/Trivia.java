@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import trivia.gui.MainMenuFrame;
+
 public class Trivia {
 	public static void main(String[] args) {
 		try {

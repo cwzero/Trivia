@@ -1,8 +1,11 @@
-package trivia;
+package trivia.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import trivia.Game;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;

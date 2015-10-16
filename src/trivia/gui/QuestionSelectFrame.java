@@ -1,12 +1,13 @@
-package trivia;
+package trivia.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextArea;
+
+import trivia.Game;
 
 @SuppressWarnings("serial")
-public class SetupSummaryFrame extends JFrame {
+public class QuestionSelectFrame extends JFrame {
 
 	private JPanel contentPane;
 	private Game game;
@@ -14,15 +15,14 @@ public class SetupSummaryFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SetupSummaryFrame(Game game) {
+	public QuestionSelectFrame(Game game) {
 		this.game = game;
-
-		setTitle("Game Setup Summary");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 499, 338);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 	}
+
 }
