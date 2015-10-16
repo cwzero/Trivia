@@ -23,9 +23,9 @@ public class PlayerJoinFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PlayerJoinFrame(Game game, int currentPlayer) {
+	public PlayerJoinFrame(Game game) {
 		this.game = game;
-		this.currentPlayer = currentPlayer;
+		this.currentPlayer = game.getCurrentPlayer();
 
 		setTitle("Enter Player Name");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,10 +64,11 @@ public class PlayerJoinFrame extends JFrame {
 		game.setPlayerName(currentPlayer, playerName);
 
 		currentPlayer++;
+		game.setCurrentPlayer(currentPlayer);
 		this.dispose();
 
 		if (currentPlayer < game.getPlayerCount()) {
-			new PlayerJoinFrame(game, currentPlayer).setVisible(true);
+			new PlayerJoinFrame(game).setVisible(true);
 		} else {
 			new SetupSummaryFrame(game).setVisible(true);
 		}
