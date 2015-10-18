@@ -35,12 +35,17 @@ public class Game {
 		this.roundCount = roundCount;
 		this.playerCount = playerCount;
 		playerNames = new String[playerCount];
+		playerAnswers = new String[playerCount];
 	}
 
 	public void setPlayerName(int player, String name) {
 		playerNames[player] = name;
 	}
-
+	
+	public void setPlayerAnswer(int player, String answer) {
+		playerAnswers[player] = answer;
+	}
+	
 	public int getCurrentPlayer() {
 		return currentPlayer;
 	}
