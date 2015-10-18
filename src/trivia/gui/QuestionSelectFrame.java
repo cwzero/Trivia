@@ -28,9 +28,6 @@ public class QuestionSelectFrame extends JFrame {
 						//where the txt file is located
 	File path = new File("Questions.txt");
 	
-	//InputStream input = getClass().getResourceAsStream("ListStopWords.txt");
-	//String path = "https://github.com/cwzero/Trivia/Questions.txt";
-	
 					//counts how many lines are in the .txt file//
 		int readLines() throws IOException {
 			FileReader file_to_read = new FileReader(path);
