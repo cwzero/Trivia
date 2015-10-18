@@ -1,5 +1,6 @@
 package trivia.gui;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
@@ -25,7 +26,10 @@ public class QuestionSelectFrame extends JFrame {
 	//I know this is messy, I just wanted to get code added and play around with it
 	//---------------------------------------------------------------------//
 						//where the txt file is located
-	String path = "C:/Users/brianschwartz/git/Trivia/Questions.txt";
+	File path = new File("Questions.txt");
+	
+	//InputStream input = getClass().getResourceAsStream("ListStopWords.txt");
+	//String path = "https://github.com/cwzero/Trivia/Questions.txt";
 	
 					//counts how many lines are in the .txt file//
 		int readLines() throws IOException {
