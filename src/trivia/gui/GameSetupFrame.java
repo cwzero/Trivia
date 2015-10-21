@@ -51,6 +51,7 @@ public class GameSetupFrame extends JFrame {
 
 		JButton continueButton = new JButton("Continue");
 		continueButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				GameSetupFrame.this.continueButtonClick();
 			}

@@ -117,17 +117,17 @@ public class SetupSummaryFrame extends JFrame {
 		this.dispose();
 
 		// Select leader and start game
-		
-		//---------------------------------------------------------------------//
-		//added by Brian to test question select frame
-		 
-		 try {
+
+		// ---------------------------------------------------------------------//
+		// added by Brian to test question select frame
+
+		try {
 			new QuestionSelectFrame(game).setVisible(true);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//---------------------------------------------------------------------// 
+		// ---------------------------------------------------------------------//
 	}
 
 	private void buttonBack_click() {

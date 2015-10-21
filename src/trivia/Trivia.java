@@ -16,8 +16,9 @@ public class Trivia {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					MainMenuFrame window = new MainMenuFrame();
