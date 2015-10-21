@@ -1,7 +1,9 @@
 package trivia.gui;
+import javax.swing.JOptionPane;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.ListModel;
 import javax.swing.border.EmptyBorder;
 
 import trivia.Game;
@@ -12,12 +14,16 @@ import java.awt.Component;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class WinnerSelectFrame extends JFrame {
 
 	private JPanel contentPane;
 	private Game game;
+	protected int[] playerScore;
 
 	/**
 	 * Create the frame.
@@ -35,17 +41,13 @@ public class WinnerSelectFrame extends JFrame {
 		lblNewLabel.setBounds(36, 11, 178, 38);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnSelectWinner = new JButton("Select Winner");
-		btnSelectWinner.setBounds(24, 218, 203, 28);
-		contentPane.add(btnSelectWinner);
+		
 		
 		JLabel lblSelectedQuestion = new JLabel("New label");
-		lblSelectedQuestion.setBounds(24, 51, 203, 28);
+		lblSelectedQuestion.setBounds(46, 51, 157, 38);
 		contentPane.add(lblSelectedQuestion);
 		String CurrentQuestion = game.getCurrentQuestion().toString();
 		lblSelectedQuestion.setText(CurrentQuestion);
-		
-		
 
 		DefaultListModel<String> listModel = new DefaultListModel<>();
 		for (int i=0; i<game.getPlayerCount(); i++)
@@ -55,10 +57,42 @@ public class WinnerSelectFrame extends JFrame {
 		}
         
         JList lstAnswers = new JList<>(listModel);
-		lstAnswers.setBounds(24, 92, 203, 115);
+		lstAnswers.setBounds(24, 101, 203, 106);
 		contentPane.add(lstAnswers);
+		
         
-        add(lstAnswers);
+        getContentPane().add(lstAnswers);
+        
+        JButton btnSelectWinner = new JButton("Select Winner");
+		btnSelectWinner.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (!lstAnswers.isSelectedIndex(-1))
+				{
+					int Index;
+					 Index = lstAnswers.getSelectedIndex();
+					 game.setPlayerScore(playerScore);
+					 
+					 try {
+						new QuestionSelectFrame(game).setVisible(true);
+						
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					 
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Please Select One Answer");
+				}
+				 
+				 
+			}
+
+			
+		})
+		;
+		btnSelectWinner.setBounds(24, 218, 203, 28);
+		contentPane.add(btnSelectWinner);
 		
 	}
 }
