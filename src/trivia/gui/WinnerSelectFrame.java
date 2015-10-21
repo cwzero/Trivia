@@ -42,13 +42,16 @@ public class WinnerSelectFrame extends JFrame {
 		JLabel lblSelectedQuestion = new JLabel("New label");
 		lblSelectedQuestion.setBounds(24, 51, 203, 28);
 		contentPane.add(lblSelectedQuestion);
-		lblSelectedQuestion.setText("Question");
+		String CurrentQuestion = game.getCurrentQuestion().toString();
+		lblSelectedQuestion.setText(CurrentQuestion);
+		
 		
 
 		DefaultListModel<String> listModel = new DefaultListModel<>();
 		for (int i=0; i<game.getPlayerCount(); i++)
 		{
-		listModel.addElement(game.setPlayerAnswer(i, playerAnswer));
+		String[] answers = game.getPlayerAnswers();
+		listModel.addElement(answers[i]);
 		}
         
         JList lstAnswers = new JList<>(listModel);
