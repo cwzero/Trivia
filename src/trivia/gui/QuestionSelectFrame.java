@@ -97,6 +97,8 @@ public class QuestionSelectFrame extends JFrame {
 		
 		JButton btnQuestion1 = new JButton(questions[0]);
 		btnQuestion1.addActionListener(new ActionListener() {
+			private String currentQuestion = btnQuestion1.getText();
+
 			public void actionPerformed(ActionEvent arg0) {
 				
 				/* the following code will eventually need to pass the question being chosen
@@ -107,6 +109,7 @@ public class QuestionSelectFrame extends JFrame {
 				//--------------------------------------------------------------------------//
 				game.setCurrentPlayer(0); //just before
 				new AnswerEntryFrame(game).setVisible(true);
+				game.setCurrentQuestion(currentQuestion );
 				QuestionSelectFrame.this.dispose();
 				//--------------------------------------------------------------------------//
 			}
@@ -118,6 +121,8 @@ public class QuestionSelectFrame extends JFrame {
 		
 		JButton btnQuestion2 = new JButton(questions[1]);
 		btnQuestion2.addActionListener(new ActionListener() {
+			private String currentQuestion = btnQuestion2.getText();
+
 			public void actionPerformed(ActionEvent arg0) {
 				
 				/* the following code will eventually need to pass the question being chosen
@@ -128,6 +133,7 @@ public class QuestionSelectFrame extends JFrame {
 				//--------------------------------------------------------------------------//
 				game.setCurrentPlayer(0); //just before
 				new AnswerEntryFrame(game).setVisible(true);
+				game.setCurrentQuestion(currentQuestion  );
 				QuestionSelectFrame.this.dispose();
 				//--------------------------------------------------------------------------//
 			}
@@ -137,6 +143,8 @@ public class QuestionSelectFrame extends JFrame {
 		
 		JButton btnQuestion3 = new JButton(questions[2]);
 		btnQuestion3.addActionListener(new ActionListener() {
+			private String currentQuestion = btnQuestion3.getText();
+
 			public void actionPerformed(ActionEvent e) {
 				
 				/* the following code will eventually need to pass the question being chosen
@@ -147,6 +155,7 @@ public class QuestionSelectFrame extends JFrame {
 				//--------------------------------------------------------------------------//
 				game.setCurrentPlayer(0); //just before
 				new AnswerEntryFrame(game).setVisible(true);
+				game.setCurrentQuestion(currentQuestion  );
 				QuestionSelectFrame.this.dispose();
 				//--------------------------------------------------------------------------//
 			}
