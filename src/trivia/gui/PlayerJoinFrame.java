@@ -47,6 +47,7 @@ public class PlayerJoinFrame extends JFrame {
 
 		JButton btnContinue = new JButton("Continue");
 		btnContinue.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				PlayerJoinFrame.this.continueButtonClick();
 			}

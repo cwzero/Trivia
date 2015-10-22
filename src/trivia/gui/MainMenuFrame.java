@@ -35,6 +35,7 @@ public class MainMenuFrame extends JFrame {
 
 		JButton newGameButton = new JButton("New Game");
 		newGameButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainMenuFrame.this.newGameButtonClick();
 			}
@@ -45,6 +46,7 @@ public class MainMenuFrame extends JFrame {
 
 		JButton quitButton = new JButton("Quit");
 		quitButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainMenuFrame.this.quitButtonClick();
 			}

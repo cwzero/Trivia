@@ -3,31 +3,31 @@ package trivia;
 public class Game {
 	// The number of players in the game //
 	private int playerCount = 0;
-	
+
 	// The number of rounds the game will run for //
 	private int roundCount = 0;
-	
+
 	// The current round number //
 	private int currentRound = 0;
-	
+
 	// The current leader - index into the playerNames array //
 	private int currentLeader = 0;
-	
+
 	// The player currently taking their turn - index into playerNames //
 	private int currentPlayer = 0;
-	
+
 	// The currently selected question //
 	private String currentQuestion = "";
-	
+
 	// The possible questions //
 	private String[] questionPool = null;
-	
+
 	// The names of the players //
 	private String[] playerNames = null;
-	
+
 	// Players' scores //
 	private int[] playerScore = null;
-	
+
 	// The answers entered by the players this round //
 	private String[] playerAnswers = null;
 
@@ -41,11 +41,11 @@ public class Game {
 	public void setPlayerName(int player, String name) {
 		playerNames[player] = name;
 	}
-	
+
 	public void setPlayerAnswer(int player, String answer) {
 		playerAnswers[player] = answer;
 	}
-	
+
 	public int getCurrentPlayer() {
 		return currentPlayer;
 	}
@@ -125,7 +125,7 @@ public class Game {
 	public void setQuestionPool(String[] questionPool) {
 		this.questionPool = questionPool;
 	}
-	
+
 	public String getQuestion(int questionIndex) {
 		return this.questionPool[questionIndex];
 	}
