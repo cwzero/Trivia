@@ -30,7 +30,7 @@ public class WinnerSelectFrame extends JFrame {
 	public WinnerSelectFrame(Game game) {
 		this.game = game;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 371, 296);
+		setBounds(100, 100, 275, 443);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -54,17 +54,20 @@ public class WinnerSelectFrame extends JFrame {
 		}
 		ButtonGroup group = new ButtonGroup();
 		
-		for (int i = 0; i < 4; i++) {
+		/*for (int i = 0; i < 4; i++) {
 			
             final JRadioButton button1 = new JRadioButton("test" + i);
             button1.setBounds(233 + move, 82, 109, 23);
             contentPane.add(button1);
             group.add(button1);
            
-            }
+            }*/
+		
+		
+		
 
 		JList lstAnswers = new JList<>(listModel);
-		lstAnswers.setBounds(24, 101, 203, 106);
+		lstAnswers.setBounds(24, 101, 203, 38);
 		contentPane.add(lstAnswers);
 
 		getContentPane().add(lstAnswers);
@@ -84,13 +87,7 @@ public class WinnerSelectFrame extends JFrame {
 					Index = lstAnswers.getSelectedIndex();
 					game.setPlayerScore(playerScore);
 
-					try {
-						new QuestionSelectFrame(game).setVisible(true);
-
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					new GameStatusFrame(game).setVisible(true);
 
 				} else {
 					JOptionPane.showMessageDialog(null,
@@ -99,8 +96,41 @@ public class WinnerSelectFrame extends JFrame {
 			}
 
 		});
-		btnSelectWinner.setBounds(24, 218, 203, 28);
+		btnSelectWinner.setBounds(24, 348, 203, 28);
 		contentPane.add(btnSelectWinner);
+		
+		JRadioButton rdotbnAnswer1 = new JRadioButton("New radio button");
+		rdotbnAnswer1.setBounds(63, 157, 109, 23);
+		contentPane.add(rdotbnAnswer1);
+		
+		JRadioButton rdobtnAnswer2 = new JRadioButton("New radio button");
+		rdobtnAnswer2.setBounds(63, 189, 109, 23);
+		contentPane.add(rdobtnAnswer2);
+		
+		JRadioButton rdobtnAnswer3 = new JRadioButton("New radio button");
+		rdobtnAnswer3.setBounds(63, 222, 109, 23);
+		contentPane.add(rdobtnAnswer3);
+		
+		JRadioButton rdobtnAnswer4 = new JRadioButton("New radio button");
+		rdobtnAnswer4.setBounds(63, 257, 109, 23);
+		contentPane.add(rdobtnAnswer4);
+		
+		JRadioButton rdobtnAnswer5 = new JRadioButton("New radio button");
+		rdobtnAnswer5.setBounds(63, 288, 109, 23);
+		contentPane.add(rdobtnAnswer5);
+		
+		if (game.getPlayerCount() < 4)
+		{
+			rdobtnAnswer3.setVisible(false);
+		}
+		if (game.getPlayerCount() < 5)
+		{
+			rdobtnAnswer4.setVisible(false);
+		}
+		if (game.getPlayerCount() < 6)
+		{
+			rdobtnAnswer5.setVisible(false);
+		}
 
 	}
 }
