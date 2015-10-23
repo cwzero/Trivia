@@ -18,21 +18,7 @@ public class QuestionSelectFrame extends JFrame {
 
 	private JPanel contentPane;
 	private Game game;
-
-	// randomly select leader
-	public String chooseLeader() {
-		String leader;
-		String[] Players = game.getPlayerNames();
-		Random rand = new Random();
-		int Low = 0;
-		int High = game.getPlayerCount();
-
-		int randomNum = rand.nextInt(High - Low) + Low;
-		leader = Players[randomNum];
-		return leader;
-	}
-	// ---------------------------------------------------------------------//
-
+	
 	/**
 	 * Create the frame.
 	 * 
@@ -71,9 +57,9 @@ public class QuestionSelectFrame extends JFrame {
 				// added for ruth
 				// --------------------------------------------------------------------------//
 				game.setCurrentPlayer(0); // just before
-				new AnswerEntryFrame(game).setVisible(true);
 				game.setCurrentQuestion(currentQuestion);
 				QuestionSelectFrame.this.dispose();
+				new AnswerEntryFrame(game).setVisible(true);
 				// --------------------------------------------------------------------------//
 			}
 		});
@@ -96,9 +82,9 @@ public class QuestionSelectFrame extends JFrame {
 				// added for ruth
 				// --------------------------------------------------------------------------//
 				game.setCurrentPlayer(0); // just before
-				new AnswerEntryFrame(game).setVisible(true);
 				game.setCurrentQuestion(currentQuestion);
 				QuestionSelectFrame.this.dispose();
+				new AnswerEntryFrame(game).setVisible(true);
 				// --------------------------------------------------------------------------//
 			}
 		});
@@ -120,9 +106,9 @@ public class QuestionSelectFrame extends JFrame {
 				// added for ruth
 				// --------------------------------------------------------------------------//
 				game.setCurrentPlayer(0); // just before
-				new AnswerEntryFrame(game).setVisible(true);
 				game.setCurrentQuestion(currentQuestion);
 				QuestionSelectFrame.this.dispose();
+				new AnswerEntryFrame(game).setVisible(true);
 				// --------------------------------------------------------------------------//
 			}
 		});
@@ -130,7 +116,7 @@ public class QuestionSelectFrame extends JFrame {
 		contentPane.add(btnQuestion3);
 
 		JLabel lblPlayerPleaseSelect = new JLabel(
-				chooseLeader() + ", please select question:");
+				game.getPlayerNames()[game.getCurrentLeader()] + ", please select question:");
 		lblPlayerPleaseSelect.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblPlayerPleaseSelect.setBounds(17, 24, 344, 49);
 		contentPane.add(lblPlayerPleaseSelect);

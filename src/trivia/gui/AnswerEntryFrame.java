@@ -48,7 +48,7 @@ public class AnswerEntryFrame extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel currentQuestionLabel = new JLabel(game.getCurrentQuestion());
-		currentQuestionLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		currentQuestionLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		currentQuestionLabel.setBounds(26, 11, 265, 14);
 		contentPane.add(currentQuestionLabel);
 

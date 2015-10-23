@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -43,6 +44,7 @@ public class Game {
 		playerNames = new String[playerCount];
 		playerAnswers = new String[playerCount];
 		loadQuestions();
+		chooseLeader();
 	}
 	
 	private void loadQuestions() {
@@ -58,6 +60,16 @@ public class Game {
 			questions.add(input.nextLine());
 		this.questionPool = new String[questions.size()];
 		this.questionPool = questions.toArray(questionPool);
+	}
+	
+	private void chooseLeader() {
+		int prevLeader = currentLeader;
+		Random rand = new Random();
+		int nextLeader = rand.nextInt(playerCount);
+		while(nextLeader == prevLeader) {
+			nextLeader = rand.nextInt(playerCount);
+		}
+		currentLeader = nextLeader;
 	}
 
 	public void setPlayerName(int player, String name) {
