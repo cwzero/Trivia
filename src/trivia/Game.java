@@ -47,17 +47,19 @@ public class Game {
 		loadQuestions();
 		chooseLeader();
 	}
-	
+
+	public boolean isOver() {
+		return currentRound < roundCount;
+	}
+
 	public void nextRound() {
 		currentRound++;
 		currentQuestion = "";
-		if (currentRound < roundCount) {
-			playerAnswers = new String[playerCount];
-		}
+		playerAnswers = new String[playerCount];
 		chooseLeader();
 		currentPlayer = 0;
 	}
-	
+
 	private void loadQuestions() {
 		Scanner input = null;
 		try {
@@ -69,13 +71,14 @@ public class Game {
 		questionPool = new ArrayList<String>();
 		while (input.hasNext())
 			questionPool.add(input.nextLine());
+		input.close();
 	}
-	
+
 	private void chooseLeader() {
 		int prevLeader = currentLeader;
 		Random rand = new Random();
 		int nextLeader = rand.nextInt(playerCount);
-		while(nextLeader == prevLeader) {
+		while (nextLeader == prevLeader) {
 			nextLeader = rand.nextInt(playerCount);
 		}
 		currentLeader = nextLeader;
@@ -164,11 +167,12 @@ public class Game {
 	public void setPlayerAnswers(String[] playerAnswers) {
 		this.playerAnswers = playerAnswers;
 	}
-	
+
 	public String[] getQuestionPool(int count) {
 		String[] questions = new String[count];
 		for (int index = 0; index < count; index++) {
-			questions[index] = questionPool.get(new Random().nextInt(questionPool.size()));
+			questions[index] = questionPool
+					.get(new Random().nextInt(questionPool.size()));
 		}
 		return questions;
 	}
