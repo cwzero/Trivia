@@ -1,5 +1,11 @@
 package trivia;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class Game {
 	// The number of players in the game //
 	private int playerCount = 0;
@@ -36,6 +42,22 @@ public class Game {
 		this.playerCount = playerCount;
 		playerNames = new String[playerCount];
 		playerAnswers = new String[playerCount];
+		loadQuestions();
+	}
+	
+	private void loadQuestions() {
+		Scanner input = null;
+		try {
+			input = new Scanner(new File("Questions.txt"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<String> questions = new ArrayList<String>();
+		while (input.hasNext())
+			questions.add(input.nextLine());
+		this.questionPool = new String[questions.size()];
+		this.questionPool = questions.toArray(questionPool);
 	}
 
 	public void setPlayerName(int player, String name) {

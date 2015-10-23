@@ -1,7 +1,4 @@
 package trivia.gui;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
 
@@ -21,43 +18,6 @@ public class QuestionSelectFrame extends JFrame {
 
 	private JPanel contentPane;
 	private Game game;
-	// --------------------------------------------------------------------//
-	// I know this is messy, I just wanted to get code added and play around
-	// with it
-	// ---------------------------------------------------------------------//
-	// where the txt file is located
-	File path = new File("Questions.txt");
-
-	// counts how many lines are in the .txt file//
-	int readLines() throws IOException {
-		FileReader file_to_read = new FileReader(path);
-		BufferedReader bf = new BufferedReader(file_to_read);
-
-		String aLine;
-		int numberOfLines = 0;
-		while ((aLine = bf.readLine()) != null) {
-			numberOfLines++;
-		}
-		bf.close();
-		return numberOfLines;
-	}
-
-	// open file and return a string array of the questions
-	public String[] OpenFile() throws IOException {
-		FileReader fr = new FileReader(path);
-		BufferedReader textReader = new BufferedReader(fr);
-
-		int numberOfLines = readLines();
-		String[] textData = new String[numberOfLines];
-
-		int i;
-
-		for (i = 0; i < numberOfLines; i++) {
-			textData[i] = textReader.readLine();
-		}
-		textReader.close();
-		return textData;
-	}
 
 	// randomly select leader
 	public String chooseLeader() {
@@ -87,24 +47,10 @@ public class QuestionSelectFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		/*
-		 * The easier way to do this would be (I was thinking we could move this
-		 * into a method in the class trivia.Game) It won't work exactly as
-		 * written, but close Maybe do a private method that gets called from
-		 * the constructor rather than calling it here
-		 * 
-		 * import java.util.Scanner; // Goes at top of file //
-		 * 
-		 * public void loadQuestions() { Scanner input = new
-		 * Scanner("Questions.txt"); while (input.hasNext()) { String question =
-		 * input.nextLine(); this.addQuestion(question); // Create this method
-		 * // } }
-		 * 
-		 */
-
 		// called the new method openfile
 		// returns an array into questions
-		String[] questions = OpenFile();
+		String[] questions = game.getQuestionPool();
+		
 		// switched button labels to items in the questions array
 
 		// Rather than using separate buttons for each question, maybe a label

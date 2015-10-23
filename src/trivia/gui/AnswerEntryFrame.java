@@ -17,8 +17,6 @@ public class AnswerEntryFrame extends JFrame {
 
 	private JPanel contentPane;
 	private Game game;
-	private int currentPlayer;
-	private String[] playerNames;
 	private JTextField answerField;
 
 	/**
@@ -26,44 +24,16 @@ public class AnswerEntryFrame extends JFrame {
 	 */
 	public AnswerEntryFrame(Game game) {
 		this.game = game;
-		this.currentPlayer = game.getCurrentPlayer();
-		this.playerNames = game.getPlayerNames();
-
-		/*
-		 * To make this logic more straightforward: Two places for logic, in the
-		 * constructor and in the click method In constructor: - check if
-		 * current player is leader, if so just increment currentplayer
-		 * (game.setCurrentPlayer) and create a new answer entry frame - create
-		 * gui
-		 * 
-		 * In click method: - Check if we just did the last player, if so move
-		 * to next part of the game - If not, increment
-		 * player(game.setcurrentplayer) and then create a new answer entry
-		 * frame
-		 * 
-		 * 
-		 */
 
 		// To create the GUI for a the player who is not the current leader.
-		if (currentPlayer != game.getCurrentLeader()) {
-			createGUI();
+		if (game.getCurrentPlayer() == game.getCurrentLeader()) {
+			game.setCurrentPlayer(game.getCurrentPlayer() + 1);
 		}
-
-		// To ship creating the GUI for the current leader.
-		else if (currentPlayer < game.getPlayerCount() - 1) {
-			game.setPlayerAnswer(currentPlayer, "");
-
-			// Then create the window for the next player after the current
-			// leader
-			currentPlayer++;
-			createGUI();
-
-			// When the current leader is the last player pass to
-			// WinnerSelectFrame
-		} else {
-			game.setPlayerAnswer(currentPlayer, "");
+		if (game.getCurrentPlayer() > game.getPlayerCount()) {
 			this.dispose();
 			new WinnerSelectFrame(game).setVisible(true);
+		} else {
+			createGUI();
 		}
 	}
 
@@ -83,7 +53,8 @@ public class AnswerEntryFrame extends JFrame {
 		contentPane.add(currentQuestionLabel);
 
 		JLabel playerLabel = new JLabel(
-				playerNames[currentPlayer] + " enter your answer.");
+				game.getPlayerNames()[game.getCurrentPlayer()]
+						+ " enter your answer.");
 		playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		playerLabel.setBounds(26, 54, 265, 14);
 		contentPane.add(playerLabel);
@@ -107,15 +78,17 @@ public class AnswerEntryFrame extends JFrame {
 	public void nextPlayerButton_Click() {
 		String playerAnswer = answerField.getText();
 		if (!playerAnswer.equals("")) {
-			game.setPlayerAnswer(currentPlayer, playerAnswer);
-			currentPlayer++;
-			game.setCurrentPlayer(currentPlayer);
+			game.setPlayerAnswer(game.getCurrentPlayer(), playerAnswer);
+			game.setCurrentPlayer(game.getCurrentPlayer() + 1);
+			if (game.getCurrentPlayer() == game.getCurrentLeader())
+				game.setCurrentPlayer(game.getCurrentPlayer() + 1);
 		}
 		this.dispose();
 
-		if (currentPlayer < game.getPlayerCount()) {
+		if (game.getCurrentPlayer() < game.getPlayerCount()) {
 			new AnswerEntryFrame(game).setVisible(true);
 		} else {
+			game.setCurrentPlayer(0);
 			new WinnerSelectFrame(game).setVisible(true);
 		}
 	}
