@@ -3,6 +3,7 @@ package trivia;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -27,7 +28,7 @@ public class Game {
 	private String currentQuestion = "";
 
 	// The possible questions //
-	private String[] questionPool = null;
+	private List<String> questionPool = null;
 
 	// The names of the players //
 	private String[] playerNames = null;
@@ -47,6 +48,16 @@ public class Game {
 		chooseLeader();
 	}
 	
+	public void nextRound() {
+		currentRound++;
+		currentQuestion = "";
+		if (currentRound < roundCount) {
+			playerAnswers = new String[playerCount];
+		}
+		chooseLeader();
+		currentPlayer = 0;
+	}
+	
 	private void loadQuestions() {
 		Scanner input = null;
 		try {
@@ -55,11 +66,9 @@ public class Game {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		List<String> questions = new ArrayList<String>();
+		questionPool = new ArrayList<String>();
 		while (input.hasNext())
-			questions.add(input.nextLine());
-		this.questionPool = new String[questions.size()];
-		this.questionPool = questions.toArray(questionPool);
+			questionPool.add(input.nextLine());
 	}
 	
 	private void chooseLeader() {
@@ -126,6 +135,10 @@ public class Game {
 
 	public void setCurrentQuestion(String currentQuestion) {
 		this.currentQuestion = currentQuestion;
+		questionPool.remove(currentQuestion);
+		if (questionPool.isEmpty()) {
+			loadQuestions();
+		}
 	}
 
 	public String[] getPlayerNames() {
@@ -151,16 +164,24 @@ public class Game {
 	public void setPlayerAnswers(String[] playerAnswers) {
 		this.playerAnswers = playerAnswers;
 	}
+	
+	public String[] getQuestionPool(int count) {
+		String[] questions = new String[count];
+		for (int index = 0; index < count; index++) {
+			questions[index] = questionPool.get(new Random().nextInt(questionPool.size()));
+		}
+		return questions;
+	}
 
 	public String[] getQuestionPool() {
-		return questionPool;
+		return questionPool.toArray(new String[questionPool.size()]);
 	}
 
 	public void setQuestionPool(String[] questionPool) {
-		this.questionPool = questionPool;
+		this.questionPool = new ArrayList<String>(Arrays.asList(questionPool));
 	}
 
 	public String getQuestion(int questionIndex) {
-		return this.questionPool[questionIndex];
+		return this.questionPool.get(questionIndex);
 	}
 }
