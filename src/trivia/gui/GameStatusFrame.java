@@ -38,12 +38,20 @@ public class GameStatusFrame extends JFrame {
 		lblScoreboard.setBounds(153, 11, 127, 28);
 		contentPane.add(lblScoreboard);
 		
+		
 		// This is just to hold rows and columns for now but will need to read from
 		// a file or a list before displaying the player and scores
 		
-		Object rowData[][] = {{"Row1-Column1", "Row1-Column2", "Row1-Column3"},
-				{"Row2-Column1", "Row2-Column2", "Row2-Column3"}};
-		Object columnNames[] = {"Players", "Scores", "Right Answers"};
+		String[][] rowData = new String[game.getPlayerCount()][3];
+		Object columnNames[] = {"Player Name", "Score", "Answer"};
+		
+		for (int i = 0; i < game.getPlayerCount(); i++) {
+			rowData[i][0] = game.getPlayerNames()[i];
+			rowData[i][1] = game.getPlayerScore()[i] + "";
+			rowData[i][2] = game.getPlayerAnswers()[i];
+		}
+		
+		
 		JTable table = new JTable(rowData, columnNames);
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setLocation(10, 50);
