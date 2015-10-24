@@ -38,9 +38,6 @@ public class Game {
 
 	// The answers entered by the players this round //
 	private String[] playerAnswers = null;
-	
-	// The winner of the round //
-	private int winner = -1;
 
 	public Game(int roundCount, int playerCount) {
 		this.roundCount = roundCount;
@@ -190,6 +187,17 @@ public class Game {
 		return question;
 	}
 
+	private String getRandomQuestion(String[] currentQuestions) {
+		String question = questionPool
+				.get(new Random().nextInt(questionPool.size()));
+		for (String prev: currentQuestions) {
+			if (question.equals(prev)) {
+				return getRandomQuestion(currentQuestions);
+			}
+		}
+		return question;
+	}
+
 	public String[] getQuestionPool() {
 		return questionPool.toArray(new String[questionPool.size()]);
 	}
@@ -200,13 +208,5 @@ public class Game {
 
 	public String getQuestion(int questionIndex) {
 		return this.questionPool.get(questionIndex);
-	}
-
-	public int getWinner() {
-		return winner;
-	}
-
-	public void setWinner(int winner) {
-		this.winner = winner;
 	}
 }
