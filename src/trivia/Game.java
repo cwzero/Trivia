@@ -38,6 +38,9 @@ public class Game {
 
 	// The answers entered by the players this round //
 	private String[] playerAnswers = null;
+	
+	// The winner of the round //
+		private int winner = -1;
 
 	public Game(int roundCount, int playerCount) {
 		this.roundCount = roundCount;
@@ -197,5 +200,13 @@ public class Game {
 
 	public String getQuestion(int questionIndex) {
 		return this.questionPool.get(questionIndex);
+	}
+	
+	public int getWinner() {
+		return winner;
+	}
+
+	public void setWinner(int winner) {
+		this.winner = winner;
 	}
 }
