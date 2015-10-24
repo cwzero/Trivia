@@ -171,10 +171,20 @@ public class Game {
 	public String[] getQuestionPool(int count) {
 		String[] questions = new String[count];
 		for (int index = 0; index < count; index++) {
-			questions[index] = questionPool
-					.get(new Random().nextInt(questionPool.size()));
+			questions[index] = getRandomQuestion(questions);
 		}
 		return questions;
+	}
+
+	private String getRandomQuestion(String[] currentQuestions) {
+		String question = questionPool
+				.get(new Random().nextInt(questionPool.size()));
+		for (String prev: currentQuestions) {
+			if (question.equals(prev)) {
+				return getRandomQuestion(currentQuestions);
+			}
+		}
+		return question;
 	}
 
 	public String[] getQuestionPool() {
