@@ -133,12 +133,16 @@ public class WinnerSelectFrame extends JFrame {
 				}
 				game.setWinner(winner);
 				
+				
 				if (winner == -1)
 				{
 					JOptionPane.showMessageDialog(null, "Select one answer");
 				}
 				else
 				{
+				// We need to add scores to the winner before moving to next screen, don't we?
+				//game.setPlayerScore(); 
+					
 				WinnerSelectFrame.this.dispose();
 				new GameStatusFrame(game).setVisible(true);
 				}
