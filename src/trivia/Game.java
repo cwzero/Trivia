@@ -187,17 +187,6 @@ public class Game {
 		return question;
 	}
 
-	private String getRandomQuestion(String[] currentQuestions) {
-		String question = questionPool
-				.get(new Random().nextInt(questionPool.size()));
-		for (String prev: currentQuestions) {
-			if (question.equals(prev)) {
-				return getRandomQuestion(currentQuestions);
-			}
-		}
-		return question;
-	}
-
 	public String[] getQuestionPool() {
 		return questionPool.toArray(new String[questionPool.size()]);
 	}
