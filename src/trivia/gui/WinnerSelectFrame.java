@@ -14,6 +14,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -30,7 +31,7 @@ public class WinnerSelectFrame extends JFrame {
 	public WinnerSelectFrame(Game game) {
 		this.game = game;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 275, 443);
+		setBounds(100, 100, 275, 366);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -47,21 +48,21 @@ public class WinnerSelectFrame extends JFrame {
 		String CurrentQuestion = game.getCurrentQuestion().toString();
 		lblSelectedQuestion.setText(CurrentQuestion);
 
-		DefaultListModel<String> listModel = new DefaultListModel<>();
+		/*DefaultListModel<String> listModel = new DefaultListModel<>();
 		for (int i = 0; i < game.getPlayerCount(); i++) {
 			String[] answers = game.getPlayerAnswers();
 			listModel.addElement(answers[i]);
 		}
-		ButtonGroup group = new ButtonGroup();
 		
-		/*for (int i = 0; i < 4; i++) {
+		
+		for (int i = 0; i < 4; i++) {
 			
             final JRadioButton button1 = new JRadioButton("test" + i);
             button1.setBounds(233 + move, 82, 109, 23);
             contentPane.add(button1);
             group.add(button1);
            
-            }*/
+            }
 		
 		
 		
@@ -71,33 +72,10 @@ public class WinnerSelectFrame extends JFrame {
 		contentPane.add(lstAnswers);
 
 		getContentPane().add(lstAnswers);
+		
+		*/
 
-		JButton btnSelectWinner = new JButton("Select Winner");
-		btnSelectWinner.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				selectAnswer(game, lstAnswers);
-
-			}
-
-			private void selectAnswer(Game game, JList lstAnswers) {
-				if (!lstAnswers.isSelectedIndex(-1)) {
-					int Index;
-					Index = lstAnswers.getSelectedIndex();
-					game.setPlayerScore(playerScore);
-
-					new GameStatusFrame(game).setVisible(true);
-
-				} else {
-					JOptionPane.showMessageDialog(null,
-							"Please Select One Answer");
-				}
-			}
-
-		});
-		btnSelectWinner.setBounds(24, 348, 203, 28);
-		contentPane.add(btnSelectWinner);
+		
 		
 		JRadioButton rdotbnAnswer1 = new JRadioButton("New radio button");
 		rdotbnAnswer1.setBounds(63, 157, 109, 23);
@@ -115,22 +93,64 @@ public class WinnerSelectFrame extends JFrame {
 		rdobtnAnswer4.setBounds(63, 257, 109, 23);
 		contentPane.add(rdobtnAnswer4);
 		
-		JRadioButton rdobtnAnswer5 = new JRadioButton("New radio button");
-		rdobtnAnswer5.setBounds(63, 288, 109, 23);
-		contentPane.add(rdobtnAnswer5);
+		String[] answers = game.getPlayerAnswers();
+		int[] playerIndex = new int[game.getPlayerCount()];
+		JRadioButton[] buttons = {rdotbnAnswer1, rdobtnAnswer2, rdobtnAnswer3, rdobtnAnswer4};
+		int answerIndex = 0;
+		int buttonIndex = 0;
 		
-		if (game.getPlayerCount() < 4)
+		while (answerIndex < answers.length) {
+			String currentAnswer = answers[answerIndex];
+			if (currentAnswer != null && !currentAnswer.equals("")) {
+				buttons[buttonIndex].setText(currentAnswer);
+				buttonIndex++;
+				playerIndex[buttonIndex] = answerIndex;
+			}
+			answerIndex++;
+		}
+		
+		
+		if (game.getPlayerCount() == 3)
 		{
 			rdobtnAnswer3.setVisible(false);
+			
+			
 		}
-		if (game.getPlayerCount() < 5)
+		if (game.getPlayerCount() == 4)
 		{
 			rdobtnAnswer4.setVisible(false);
-		}
-		if (game.getPlayerCount() < 6)
-		{
-			rdobtnAnswer5.setVisible(false);
+		
 		}
 
+		JButton btnSelectWinner = new JButton("Select Winner");
+		btnSelectWinner.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+				int winner = -1;
+				for (int buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++) {
+					if (buttons[buttonIndex].isSelected()) {
+						winner = playerIndex[buttonIndex];
+					}
+				}
+				game.setWinner(winner);
+				
+				if (winner == -1)
+				{
+					JOptionPane.showMessageDialog(null, "Select one answer");
+				}
+				else
+				{
+				WinnerSelectFrame.this.dispose();
+				new GameStatusFrame(game).setVisible(true);
+				}
+				
+				
+			}
+		});
+		btnSelectWinner.setBounds(20, 287, 203, 28);
+		contentPane.add(btnSelectWinner);
 	}
-}
+
+	}
+
