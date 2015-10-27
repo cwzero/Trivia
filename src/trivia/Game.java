@@ -47,6 +47,7 @@ public class Game {
 		this.playerCount = playerCount;
 		playerNames = new String[playerCount];
 		playerAnswers = new String[playerCount];
+		playerScore = new int[playerCount];
 		loadQuestions();
 		chooseLeader();
 	}
@@ -159,8 +160,8 @@ public class Game {
 		return playerScore;
 	}
 
-	public void setPlayerScore(int[] playerScore) {
-		this.playerScore = playerScore;
+	public void setPlayerScore(int index, int playerScore) {
+		this.playerScore[index] = playerScore;
 	}
 
 	public String[] getPlayerAnswers() {
