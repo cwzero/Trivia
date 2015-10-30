@@ -15,11 +15,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.GridLayout;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -43,43 +39,42 @@ public class WinnerSelectFrame extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
-				JButton btnSelectWinner = new JButton("Select Winner");
-				btnSelectWinner.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						WinnerSelectFrame.this.btnSelectWinner_click();
-					}
-				});
-										contentPane.setLayout(new GridLayout(0, 1, 0, 0));
-								
-										JLabel lblNewLabel = new JLabel("Select one answer for the question:");
-										lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-										contentPane.add(lblNewLabel);
-						
-								JLabel lblSelectedQuestion = new JLabel("New label");
-								lblSelectedQuestion.setFont(new Font("Tahoma", Font.BOLD, 14));
-								lblSelectedQuestion.setHorizontalAlignment(SwingConstants.CENTER);
-								contentPane.add(lblSelectedQuestion);
-								lblSelectedQuestion.setText(game.getCurrentQuestion());
-				
-						JRadioButton rdotbnAnswer1 = new JRadioButton("New radio button");
-						rdotbnAnswer1.setHorizontalAlignment(SwingConstants.CENTER);
-						contentPane.add(rdotbnAnswer1);
-						
-								JRadioButton rdobtnAnswer2 = new JRadioButton("New radio button");
-								rdobtnAnswer2.setHorizontalAlignment(SwingConstants.CENTER);
-								contentPane.add(rdobtnAnswer2);
-						
-								JRadioButton rdobtnAnswer3 = new JRadioButton("New radio button");
-								rdobtnAnswer3.setHorizontalAlignment(SwingConstants.CENTER);
-								contentPane.add(rdobtnAnswer3);
-				
-						JRadioButton rdobtnAnswer4 = new JRadioButton("New radio button");
-						rdobtnAnswer4.setHorizontalAlignment(SwingConstants.CENTER);
-						contentPane.add(rdobtnAnswer4);
-				contentPane.add(btnSelectWinner);
-		String CurrentQuestion = game.getCurrentQuestion().toString();
+
+		JButton btnSelectWinner = new JButton("Select Winner");
+		btnSelectWinner.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				WinnerSelectFrame.this.btnSelectWinner_click();
+			}
+		});
+		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
+
+		JLabel lblNewLabel = new JLabel("Select one answer for the question:");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(lblNewLabel);
+
+		JLabel lblSelectedQuestion = new JLabel("New label");
+		lblSelectedQuestion.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblSelectedQuestion.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(lblSelectedQuestion);
+		lblSelectedQuestion.setText(game.getCurrentQuestion());
+
+		JRadioButton rdotbnAnswer1 = new JRadioButton("New radio button");
+		rdotbnAnswer1.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(rdotbnAnswer1);
+
+		JRadioButton rdobtnAnswer2 = new JRadioButton("New radio button");
+		rdobtnAnswer2.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(rdobtnAnswer2);
+
+		JRadioButton rdobtnAnswer3 = new JRadioButton("New radio button");
+		rdobtnAnswer3.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(rdobtnAnswer3);
+
+		JRadioButton rdobtnAnswer4 = new JRadioButton("New radio button");
+		rdobtnAnswer4.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(rdobtnAnswer4);
+		contentPane.add(btnSelectWinner);
 
 		String[] answers = game.getPlayerAnswers();
 		playerIndex = new int[game.getPlayerCount()];
@@ -110,13 +105,12 @@ public class WinnerSelectFrame extends JFrame {
 			}
 			answerIndex++;
 		}
-		
+
 		ButtonGroup buttonGroup = new ButtonGroup();
 		buttonGroup.add(rdotbnAnswer1);
 		buttonGroup.add(rdobtnAnswer2);
 		buttonGroup.add(rdobtnAnswer3);
 		buttonGroup.add(rdobtnAnswer4);
-
 
 		if (game.getPlayerCount() <= 3) {
 			rdobtnAnswer3.setVisible(false);
