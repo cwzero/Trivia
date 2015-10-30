@@ -89,12 +89,7 @@ public class WinnerSelectFrame extends JFrame {
 			temp.add(i);
 		}
 
-		Random ran = new Random();
-		int playerNum = 0;
-		while (!temp.isEmpty()) {
-			playerOrder[playerNum] = temp.remove(ran.nextInt(temp.size()));
-			playerNum++;
-		}
+		generateRandom(playerOrder, temp);
 
 		while (answerIndex < answers.length) {
 			String currentAnswer = answers[playerOrder[answerIndex]];
@@ -118,6 +113,15 @@ public class WinnerSelectFrame extends JFrame {
 		}
 		if (game.getPlayerCount() <= 4) {
 			rdobtnAnswer4.setVisible(false);
+		}
+	}
+
+	private void generateRandom(int[] playerOrder, List<Integer> temp) {
+		Random ran = new Random();
+		int playerNum = 0;
+		while (!temp.isEmpty()) {
+			playerOrder[playerNum] = temp.remove(ran.nextInt(temp.size()));
+			playerNum++;
 		}
 	}
 
