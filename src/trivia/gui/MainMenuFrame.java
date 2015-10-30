@@ -8,7 +8,6 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -39,6 +38,7 @@ public class MainMenuFrame extends JFrame {
 		lblTriviaGame.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTriviaGame.setBackground(new Color(240, 240, 240));
 		lblTriviaGame.setFont(new Font("Tahoma", Font.BOLD, 38));
+		
 		GridBagConstraints gbc_lblTriviaGame = new GridBagConstraints();
 		gbc_lblTriviaGame.fill = GridBagConstraints.BOTH;
 		gbc_lblTriviaGame.insets = new Insets(0, 0, 5, 0);
