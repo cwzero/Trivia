@@ -37,7 +37,7 @@ public class PlayerJoinFrame extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel playerLabel = new JLabel("Player " + (currentPlayer + 1) + " Enter Name");
-		playerLabel.setBounds(10, 11, 98, 14);
+		playerLabel.setBounds(143, 134, 136, 20);
 		contentPane.add(playerLabel);
 
 		playerNameField = new JTextField();
@@ -47,7 +47,7 @@ public class PlayerJoinFrame extends JFrame {
 			}
 		});
 
-		playerNameField.setBounds(118, 8, 86, 20);
+		playerNameField.setBounds(284, 134, 158, 20);
 		contentPane.add(playerNameField);
 		playerNameField.setColumns(10);
 
@@ -58,11 +58,11 @@ public class PlayerJoinFrame extends JFrame {
 				PlayerJoinFrame.this.continueButtonClick();
 			}
 		});
-		btnContinue.setBounds(10, 36, 89, 23);
+		btnContinue.setBounds(190, 166, 89, 23);
 		contentPane.add(btnContinue);
 
 		btnBack = new JButton("Back");
-		btnBack.setBounds(115, 36, 89, 23);
+		btnBack.setBounds(288, 166, 89, 23);
 		contentPane.add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			@Override
