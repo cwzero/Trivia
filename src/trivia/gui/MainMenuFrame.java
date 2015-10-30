@@ -23,7 +23,7 @@ public class MainMenuFrame extends JFrame {
 	 */
 	private void initialize() {
 		this.setTitle("Main Menu");
-		this.setBounds(100, 100, 450, 300);
+		this.setBounds(100, 100, 600, 400);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
 

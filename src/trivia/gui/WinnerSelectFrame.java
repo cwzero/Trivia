@@ -27,7 +27,7 @@ public class WinnerSelectFrame extends JFrame {
 	public WinnerSelectFrame(Game game) {
 		this.game = game;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 275, 366);
+		setBounds(100, 100, 600, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -38,7 +38,7 @@ public class WinnerSelectFrame extends JFrame {
 		contentPane.add(lblNewLabel);
 
 		JLabel lblSelectedQuestion = new JLabel("New label");
-		lblSelectedQuestion.setBounds(46, 51, 157, 38);
+		lblSelectedQuestion.setBounds(46, 51, 157, 66);
 		contentPane.add(lblSelectedQuestion);
 		String CurrentQuestion = game.getCurrentQuestion().toString();
 		lblSelectedQuestion.setText(CurrentQuestion);

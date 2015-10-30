@@ -40,7 +40,7 @@ public class AnswerEntryFrame extends JFrame {
 	public void createGUI() {
 		setTitle("Enter Answer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 317, 217);
+		setBounds(100, 100, 600, 400);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

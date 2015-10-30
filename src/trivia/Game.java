@@ -49,13 +49,10 @@ public class Game {
 	public Game(int roundCount, int playerCount) {
 		this.roundCount = roundCount;
 		this.playerCount = playerCount;
-		playerNames = new String[playerCount];
-		playerAnswers = new String[playerCount];
-		playerScore = new int[playerCount];
 	}
 
 	public boolean isOver() {
-		return currentRound < roundCount;
+		return currentRound > roundCount;
 	}
 
 	public void nextRound() {
@@ -67,6 +64,8 @@ public class Game {
 	}
 	
 	public void start() {
+		playerScore = new int[playerCount];
+		playerAnswers = new String[playerCount];
 		loadQuestions();
 		chooseLeader();
 	}
@@ -118,7 +117,6 @@ public class Game {
 	public void setPlayerCount(int playerCount) {
 		this.playerCount = playerCount;
 		playerNames = new String[playerCount];
-		playerAnswers = new String[playerCount];
 	}
 
 	public int getRoundCount() {
