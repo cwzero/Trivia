@@ -1,4 +1,5 @@
 package trivia.gui;
+
 import javax.swing.JOptionPane;
 
 import javax.swing.JFrame;
@@ -11,6 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 @SuppressWarnings("serial")
 public class WinnerSelectFrame extends JFrame {
@@ -64,14 +68,27 @@ public class WinnerSelectFrame extends JFrame {
 		int answerIndex = 0;
 		int buttonIndex = 0;
 
-		buttons = new JRadioButton[]{rdotbnAnswer1, rdobtnAnswer2,
-				rdobtnAnswer3, rdobtnAnswer4};
+		buttons = new JRadioButton[] { rdotbnAnswer1, rdobtnAnswer2, rdobtnAnswer3, rdobtnAnswer4 };
+
+		int[] playerOrder = new int[game.getPlayerCount()];
+		List<Integer> temp = new ArrayList<Integer>();
+		for (int i = 0; i < game.getPlayerCount(); i++) {
+			temp.add(i);
+		}
+
+		Random ran = new Random();
+		int playerNum = 0;
+		while (!temp.isEmpty()) {
+			playerOrder[playerNum] = temp.remove(ran.nextInt(temp.size()));
+			playerNum++;
+		}
+
 		while (answerIndex < answers.length) {
-			String currentAnswer = answers[answerIndex];
+			String currentAnswer = answers[playerOrder[answerIndex]];
 			if (currentAnswer != null && !currentAnswer.equals("")) {
 				buttons[buttonIndex].setText(currentAnswer);
 				buttonIndex++;
-				playerIndex[buttonIndex] = answerIndex;
+				playerIndex[buttonIndex] = playerOrder[answerIndex];
 			}
 			answerIndex++;
 		}
