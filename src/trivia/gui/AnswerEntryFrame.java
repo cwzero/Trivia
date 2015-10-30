@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -64,12 +65,13 @@ public class AnswerEntryFrame extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 
 		JLabel currentQuestionLabel = new JLabel("Question");
+		currentQuestionLabel.setMaximumSize(new Dimension(600, 400));
 		if (game.getCurrentQuestion() != null && !game.getCurrentQuestion().equals("")) {
-			currentQuestionLabel.setText(game.getCurrentQuestion());
+			currentQuestionLabel.setText("<html>" + game.getCurrentQuestion() + "</html>");
 		}
 		currentQuestionLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		GridBagConstraints gbc_currentQuestionLabel = new GridBagConstraints();
-		gbc_currentQuestionLabel.fill = GridBagConstraints.VERTICAL;
+		gbc_currentQuestionLabel.fill = GridBagConstraints.BOTH;
 		gbc_currentQuestionLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_currentQuestionLabel.gridx = 0;
 		gbc_currentQuestionLabel.gridy = 0;
