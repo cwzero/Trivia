@@ -52,7 +52,10 @@ public class AnswerEntryFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel currentQuestionLabel = new JLabel(game.getCurrentQuestion());
+		JLabel currentQuestionLabel = new JLabel("Question");
+		if (game.getCurrentQuestion() != null && !game.getCurrentQuestion().equals("")) {
+			currentQuestionLabel.setText(game.getCurrentQuestion());
+		}
 		currentQuestionLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		currentQuestionLabel.setBounds(26, 11, 265, 14);
 		contentPane.add(currentQuestionLabel);
