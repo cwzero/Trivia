@@ -49,7 +49,11 @@ public class GameStatusFrame extends JFrame {
 		for (int i = 0; i < game.getPlayerCount(); i++) {
 			rowData[i][0] = game.getPlayerNames()[i];
 			rowData[i][1] = game.getPlayerScore()[i] + "";
-			rowData[i][2] = game.getPlayerAnswers()[i];
+			String answer = game.getPlayerAnswers()[i];
+			if (answer == null || answer.equals("")) {
+				answer = "Leader";
+			}
+			rowData[i][2] = answer;
 		}
 		
 		
