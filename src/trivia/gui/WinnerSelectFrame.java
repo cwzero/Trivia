@@ -22,6 +22,7 @@ import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class WinnerSelectFrame extends JFrame {
@@ -57,6 +58,7 @@ public class WinnerSelectFrame extends JFrame {
 										contentPane.add(lblNewLabel);
 						
 								JLabel lblSelectedQuestion = new JLabel("New label");
+								lblSelectedQuestion.setFont(new Font("Tahoma", Font.BOLD, 14));
 								lblSelectedQuestion.setHorizontalAlignment(SwingConstants.CENTER);
 								contentPane.add(lblSelectedQuestion);
 								lblSelectedQuestion.setText(game.getCurrentQuestion());
