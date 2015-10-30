@@ -18,6 +18,11 @@ public class AnswerEntryFrame extends JFrame {
 	private JPanel contentPane;
 	private Game game;
 	private JTextField answerField;
+	
+	public AnswerEntryFrame() {
+		this.game = new Game(0, 0);
+		createGUI();
+	}
 
 	/**
 	 * Create the frame.
