@@ -42,19 +42,19 @@ public class GameSetupFrame extends JFrame {
 
 		contentPane.setLayout(null);
 		roundCountSpinner.setModel(new SpinnerNumberModel(3, 3, 10, 1));
-		roundCountSpinner.setBounds(109, 11, 39, 31);
+		roundCountSpinner.setBounds(324, 95, 39, 31);
 		contentPane.add(roundCountSpinner);
 
 		playerCountSpinner.setModel(new SpinnerNumberModel(3, 3, 5, 1));
-		playerCountSpinner.setBounds(109, 55, 39, 31);
+		playerCountSpinner.setBounds(324, 139, 39, 31);
 		contentPane.add(playerCountSpinner);
 
 		JLabel lblNewLabel = new JLabel("Number of Rounds");
-		lblNewLabel.setBounds(10, 19, 89, 14);
+		lblNewLabel.setBounds(194, 99, 124, 23);
 		contentPane.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Number of Players");
-		lblNewLabel_1.setBounds(10, 63, 89, 14);
+		lblNewLabel_1.setBounds(194, 142, 124, 24);
 		contentPane.add(lblNewLabel_1);
 
 		JButton continueButton = new JButton("Continue");
@@ -64,11 +64,11 @@ public class GameSetupFrame extends JFrame {
 				GameSetupFrame.this.continueButtonClick();
 			}
 		});
-		continueButton.setBounds(10, 101, 89, 23);
+		continueButton.setBounds(181, 184, 95, 23);
 		contentPane.add(continueButton);
 
 		JButton backButton = new JButton("Back");
-		backButton.setBounds(109, 101, 89, 23);
+		backButton.setBounds(288, 184, 95, 23);
 		contentPane.add(backButton);
 		
 		backButton.addActionListener(new ActionListener() {
