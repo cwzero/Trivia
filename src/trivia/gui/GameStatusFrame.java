@@ -36,7 +36,7 @@ public class GameStatusFrame extends JFrame {
 		
 		JLabel lblScoreboard = new JLabel("Scoreboard");
 		lblScoreboard.setFont(new Font("Lithos Pro Regular", Font.ITALIC, 16));
-		lblScoreboard.setBounds(150, 72, 127, 28);
+		lblScoreboard.setBounds(250, 72, 127, 28);
 		contentPane.add(lblScoreboard);
 		
 		
@@ -59,7 +59,7 @@ public class GameStatusFrame extends JFrame {
 		
 		JTable table = new JTable(rowData, columnNames);
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setLocation(10, 111);
+		scrollPane.setLocation(98, 111);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		scrollPane.setSize(414, 150);
 		
@@ -74,7 +74,7 @@ public class GameStatusFrame extends JFrame {
 		if (!game.isOver()) {
 			btnStartNewGame.setText("Next round");
 		}
-		btnStartNewGame.setBounds(164, 268, 113, 23);
+		btnStartNewGame.setBounds(250, 268, 113, 23);
 		contentPane.add(btnStartNewGame);
 		
 		JLabel lblGameStatus = new JLabel("Game Status");
