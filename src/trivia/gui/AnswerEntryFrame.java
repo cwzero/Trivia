@@ -11,6 +11,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class AnswerEntryFrame extends JFrame {
@@ -18,7 +22,7 @@ public class AnswerEntryFrame extends JFrame {
 	private JPanel contentPane;
 	private Game game;
 	private JTextField answerField;
-	
+
 	public AnswerEntryFrame() {
 		this.game = new Game(0, 0);
 		createGUI();
@@ -48,30 +52,54 @@ public class AnswerEntryFrame extends JFrame {
 		setBounds(100, 100, 600, 400);
 
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(25, 25, 25, 25));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		GridBagLayout gbl_contentPane = new GridBagLayout();
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0};
+		gbl_contentPane.columnWeights = new double[]{1.0};
+		//gbl_contentPane.columnWidths = new int[] { 265, 0 };
+		//gbl_contentPane.rowHeights = new int[] { 14, 14, 20, 23, 0 };
+		//gbl_contentPane.columnWeights = new double[] { 0.0 };
+		//gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0 };
+		contentPane.setLayout(gbl_contentPane);
 
 		JLabel currentQuestionLabel = new JLabel("Question");
 		if (game.getCurrentQuestion() != null && !game.getCurrentQuestion().equals("")) {
 			currentQuestionLabel.setText(game.getCurrentQuestion());
 		}
 		currentQuestionLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		currentQuestionLabel.setBounds(26, 11, 265, 14);
-		contentPane.add(currentQuestionLabel);
+		GridBagConstraints gbc_currentQuestionLabel = new GridBagConstraints();
+		gbc_currentQuestionLabel.fill = GridBagConstraints.VERTICAL;
+		gbc_currentQuestionLabel.insets = new Insets(0, 0, 5, 0);
+		gbc_currentQuestionLabel.gridx = 0;
+		gbc_currentQuestionLabel.gridy = 0;
+		gbc_currentQuestionLabel.gridheight = 1;
+		gbc_currentQuestionLabel.gridwidth = 1;
+		contentPane.add(currentQuestionLabel, gbc_currentQuestionLabel);
 
-		JLabel playerLabel = new JLabel(
-				game.getPlayerNames()[game.getCurrentPlayer()]
-						+ " enter your answer.");
+		JLabel playerLabel = new JLabel(game.getPlayerNames()[game.getCurrentPlayer()] + " enter your answer.");
+		playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		playerLabel.setBounds(26, 54, 265, 14);
-		contentPane.add(playerLabel);
+		GridBagConstraints gbc_playerLabel = new GridBagConstraints();
+		gbc_playerLabel.fill = GridBagConstraints.VERTICAL;
+		gbc_playerLabel.insets = new Insets(0, 0, 5, 0);
+		gbc_playerLabel.gridx = 0;
+		gbc_playerLabel.gridy = 1;
+		gbc_playerLabel.gridheight = 1;
+		gbc_playerLabel.gridwidth = 1;
+		contentPane.add(playerLabel, gbc_playerLabel);
 
 		answerField = new JTextField();
-		answerField.setBounds(26, 79, 265, 20);
-		contentPane.add(answerField);
+		GridBagConstraints gbc_answerField = new GridBagConstraints();
+		gbc_answerField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_answerField.insets = new Insets(0, 0, 5, 0);
+		gbc_answerField.gridx = 0;
+		gbc_answerField.gridy = 2;
+		gbc_answerField.gridheight = 1;
+		gbc_answerField.gridwidth = 1;
+		contentPane.add(answerField, gbc_answerField);
 		answerField.setColumns(10);
-		
+
 		answerField.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -86,8 +114,13 @@ public class AnswerEntryFrame extends JFrame {
 				AnswerEntryFrame.this.nextPlayerButton_Click();
 			}
 		});
-		btnNextPlayer.setBounds(26, 110, 89, 23);
-		contentPane.add(btnNextPlayer);
+		GridBagConstraints gbc_btnNextPlayer = new GridBagConstraints();
+		gbc_btnNextPlayer.anchor = GridBagConstraints.NORTH;
+		gbc_btnNextPlayer.gridx = 0;
+		gbc_btnNextPlayer.gridy = 3;
+		gbc_btnNextPlayer.gridheight = 1;
+		gbc_btnNextPlayer.gridwidth = 1;
+		contentPane.add(btnNextPlayer, gbc_btnNextPlayer);
 	}
 
 	public void nextPlayerButton_Click() {
