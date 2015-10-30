@@ -116,6 +116,8 @@ public class SetupSummaryFrame extends JFrame {
 	private void buttonNext_click() {
 		this.dispose();
 
+		game.start();
+		
 		// Select leader and start game
 
 		// ---------------------------------------------------------------------//

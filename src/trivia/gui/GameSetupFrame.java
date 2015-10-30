@@ -19,6 +19,14 @@ public class GameSetupFrame extends JFrame {
 	private JPanel contentPane;
 	private final JSpinner roundCountSpinner = new JSpinner();
 	private JSpinner playerCountSpinner = new JSpinner();
+	private Game game = new Game();
+	
+	public GameSetupFrame(Game game) {
+		this();
+		this.game = game;
+		roundCountSpinner.setValue(game.getRoundCount());
+		playerCountSpinner.setValue(game.getPlayerCount());
+	}
 
 	/**
 	 * Create the frame.
@@ -62,16 +70,23 @@ public class GameSetupFrame extends JFrame {
 		JButton backButton = new JButton("Back");
 		backButton.setBounds(109, 101, 89, 23);
 		contentPane.add(backButton);
+		
+		backButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GameSetupFrame.this.dispose();
+				new MainMenuFrame().setVisible(true);
+			}
+		});
 	}
 
 	public void continueButtonClick() {
 		int roundCount = (int) roundCountSpinner.getValue();
+		game.setRoundCount(roundCount);
 		int playerCount = (int) playerCountSpinner.getValue();
+		game.setPlayerCount(playerCount);
 
 		this.dispose();
-
-		Game game = new Game(roundCount, playerCount);
-
 		new PlayerJoinFrame(game).setVisible(true);
 	}
 }

@@ -16,10 +16,8 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class GameStatusFrame extends JFrame {
-
 	private JPanel contentPane;
 	private Game game;
-	private JTable table;
 
 	/**
 	 * Create the frame.

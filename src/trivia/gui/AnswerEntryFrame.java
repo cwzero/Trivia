@@ -63,6 +63,13 @@ public class AnswerEntryFrame extends JFrame {
 		answerField.setBounds(26, 79, 265, 20);
 		contentPane.add(answerField);
 		answerField.setColumns(10);
+		
+		answerField.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AnswerEntryFrame.this.nextPlayerButton_Click();
+			}
+		});
 
 		JButton btnNextPlayer = new JButton("Next Player");
 		btnNextPlayer.addActionListener(new ActionListener() {

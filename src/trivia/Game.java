@@ -42,8 +42,9 @@ public class Game {
 	// The winner of the round //
 	private int winner = -1;
 	
-	// The winner of the game //
-	private int gameWinner = -1;
+	public Game() {
+		this(0, 0);
+	}
 
 	public Game(int roundCount, int playerCount) {
 		this.roundCount = roundCount;
@@ -51,8 +52,6 @@ public class Game {
 		playerNames = new String[playerCount];
 		playerAnswers = new String[playerCount];
 		playerScore = new int[playerCount];
-		loadQuestions();
-		chooseLeader();
 	}
 
 	public boolean isOver() {
@@ -65,6 +64,11 @@ public class Game {
 		playerAnswers = new String[playerCount];
 		chooseLeader();
 		currentPlayer = 0;
+	}
+	
+	public void start() {
+		loadQuestions();
+		chooseLeader();
 	}
 
 	private void loadQuestions() {
@@ -113,6 +117,8 @@ public class Game {
 
 	public void setPlayerCount(int playerCount) {
 		this.playerCount = playerCount;
+		playerNames = new String[playerCount];
+		playerAnswers = new String[playerCount];
 	}
 
 	public int getRoundCount() {
