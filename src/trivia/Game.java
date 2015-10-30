@@ -52,7 +52,7 @@ public class Game {
 	}
 
 	public boolean isOver() {
-		return currentRound > roundCount;
+		return currentRound >= roundCount - 1;
 	}
 
 	public void nextRound() {
