@@ -81,7 +81,7 @@ public class GameStatusFrame extends JFrame {
 		if (game.isOver()) {
 			lblGameStatus.setText(game.getPlayerNames()[game.getGameWinner()] + " has won the game.");
 		} else {
-			lblGameStatus.setText(game.getPlayerNames()[game.getWinner()] + " has won the round.");
+			lblGameStatus.setText(game.getPlayerNames()[game.getRoundWinner()] + " has won the round.");
 		}
 		lblGameStatus.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblGameStatus.setBounds(10, 11, 414, 14);

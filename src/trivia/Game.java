@@ -40,7 +40,7 @@ public class Game {
 	private String[] playerAnswers = null;
 	
 	// The winner of the round //
-	private int winner = -1;
+	private int roundWinner = -1;
 	
 	public Game() {
 		this(0, 0);
@@ -210,12 +210,12 @@ public class Game {
 		return this.questionPool.get(questionIndex);
 	}
 	
-	public int getWinner() {
-		return winner;
+	public int getRoundWinner() {
+		return roundWinner;
 	}
 
-	public void setWinner(int winner) {
-		this.winner = winner;
+	public void setRoundWinner(int roundWinner) {
+		this.roundWinner = roundWinner;
 	}
 	
 	public int getGameWinner() {

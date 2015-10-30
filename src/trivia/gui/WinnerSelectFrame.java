@@ -128,7 +128,7 @@ public class WinnerSelectFrame extends JFrame {
 				winner = playerIndex[buttonIndex];
 			}
 		}
-		game.setWinner(winner);
+		game.setRoundWinner(winner);
 
 		if (winner == -1) {
 			JOptionPane.showMessageDialog(null, "Select one answer");
