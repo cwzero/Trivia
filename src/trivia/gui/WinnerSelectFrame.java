@@ -20,6 +20,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
@@ -107,6 +108,13 @@ public class WinnerSelectFrame extends JFrame {
 			}
 			answerIndex++;
 		}
+		
+		ButtonGroup buttonGroup = new ButtonGroup();
+		buttonGroup.add(rdotbnAnswer1);
+		buttonGroup.add(rdobtnAnswer2);
+		buttonGroup.add(rdobtnAnswer3);
+		buttonGroup.add(rdobtnAnswer4);
+
 
 		if (game.getPlayerCount() <= 3) {
 			rdobtnAnswer3.setVisible(false);
