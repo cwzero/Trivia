@@ -65,6 +65,7 @@ public class AnswerEntryFrame extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 
 		JLabel currentQuestionLabel = new JLabel("Question");
+		currentQuestionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		currentQuestionLabel.setMaximumSize(new Dimension(600, 400));
 		if (game.getCurrentQuestion() != null && !game.getCurrentQuestion().equals("")) {
 			currentQuestionLabel.setText("<html>" + game.getCurrentQuestion() + "</html>");
@@ -92,6 +93,7 @@ public class AnswerEntryFrame extends JFrame {
 		contentPane.add(playerLabel, gbc_playerLabel);
 
 		answerField = new JTextField();
+		answerField.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_answerField = new GridBagConstraints();
 		gbc_answerField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_answerField.insets = new Insets(0, 0, 5, 0);
