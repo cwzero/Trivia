@@ -30,7 +30,7 @@ public class MainMenuFrame extends JFrame {
 		JLabel lblTriviaGame = new JLabel("TRIVIA GAME");
 		lblTriviaGame.setBackground(new Color(240, 240, 240));
 		lblTriviaGame.setFont(new Font("Tahoma", Font.BOLD, 38));
-		lblTriviaGame.setBounds(78, 11, 274, 75);
+		lblTriviaGame.setBounds(175, 55, 274, 75);
 		this.getContentPane().add(lblTriviaGame);
 
 		JButton newGameButton = new JButton("New Game");
@@ -41,7 +41,7 @@ public class MainMenuFrame extends JFrame {
 			}
 		});
 		newGameButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		newGameButton.setBounds(149, 97, 123, 52);
+		newGameButton.setBounds(246, 141, 123, 52);
 		this.getContentPane().add(newGameButton);
 
 		JButton quitButton = new JButton("Quit");
@@ -52,7 +52,7 @@ public class MainMenuFrame extends JFrame {
 			}
 		});
 		quitButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		quitButton.setBounds(149, 160, 123, 52);
+		quitButton.setBounds(246, 204, 123, 52);
 		this.getContentPane().add(quitButton);
 	}
 
