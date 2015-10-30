@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import trivia.Game;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -35,8 +36,7 @@ public class PlayerJoinFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel playerLabel = new JLabel(
-				"Player " + (currentPlayer + 1) + " Enter Name");
+		JLabel playerLabel = new JLabel("Player " + (currentPlayer + 1) + " Enter Name");
 		playerLabel.setBounds(10, 11, 98, 14);
 		contentPane.add(playerLabel);
 
@@ -46,6 +46,7 @@ public class PlayerJoinFrame extends JFrame {
 				PlayerJoinFrame.this.continueButtonClick();
 			}
 		});
+
 		playerNameField.setBounds(118, 8, 86, 20);
 		contentPane.add(playerNameField);
 		playerNameField.setColumns(10);
@@ -74,16 +75,21 @@ public class PlayerJoinFrame extends JFrame {
 
 	public void continueButtonClick() {
 		String playerName = playerNameField.getText();
-		game.setPlayerName(currentPlayer, playerName);
-
-		currentPlayer++;
-		game.setCurrentPlayer(currentPlayer);
-		this.dispose();
-
-		if (currentPlayer < game.getPlayerCount()) {
-			new PlayerJoinFrame(game).setVisible(true);
+		if (playerName == null || playerName.trim().equals("")) {
+			JOptionPane.showMessageDialog(this, "Please, Enter a Name");
 		} else {
-			new SetupSummaryFrame(game).setVisible(true);
+
+			game.setPlayerName(currentPlayer, playerName);
+
+			currentPlayer++;
+			game.setCurrentPlayer(currentPlayer);
+			this.dispose();
+
+			if (currentPlayer < game.getPlayerCount()) {
+				new PlayerJoinFrame(game).setVisible(true);
+			} else {
+				new SetupSummaryFrame(game).setVisible(true);
+			}
 		}
 	}
 }

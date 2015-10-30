@@ -53,7 +53,7 @@ public class QuestionSelectFrame extends JFrame {
 			}
 		});
 
-		btnQuestion1.setBounds(86, 92, 369, 31);
+		btnQuestion1.setBounds(115, 92, 369, 31);
 		contentPane.add(btnQuestion1);
 
 		btnQuestion2 = new JButton(questions[1]);
@@ -63,7 +63,7 @@ public class QuestionSelectFrame extends JFrame {
 				QuestionSelectFrame.this.selectQuestion(1);
 			}
 		});
-		btnQuestion2.setBounds(86, 142, 369, 31);
+		btnQuestion2.setBounds(115, 142, 369, 31);
 		contentPane.add(btnQuestion2);
 
 		btnQuestion3 = new JButton(questions[2]);
@@ -73,7 +73,7 @@ public class QuestionSelectFrame extends JFrame {
 				QuestionSelectFrame.this.selectQuestion(2);
 			}
 		});
-		btnQuestion3.setBounds(86, 192, 369, 31);
+		btnQuestion3.setBounds(115, 192, 369, 31);
 		contentPane.add(btnQuestion3);
 
 		JLabel lblPlayerPleaseSelect = new JLabel(
