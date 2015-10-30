@@ -40,7 +40,10 @@ public class Game {
 	private String[] playerAnswers = null;
 	
 	// The winner of the round //
-		private int winner = -1;
+	private int winner = -1;
+	
+	// The winner of the game //
+	private int gameWinner = -1;
 
 	public Game(int roundCount, int playerCount) {
 		this.roundCount = roundCount;
@@ -209,5 +212,17 @@ public class Game {
 
 	public void setWinner(int winner) {
 		this.winner = winner;
+	}
+	
+	public int getGameWinner() {
+		int maxScore = -1;
+		int winner = -1;
+		for (int player = 0; player < playerCount; player++) {
+			if (playerScore[player] > maxScore) {
+				maxScore = playerScore[player];
+				winner = player;
+			}
+		}
+		return winner;
 	}
 }
