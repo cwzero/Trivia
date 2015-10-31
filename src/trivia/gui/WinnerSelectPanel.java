@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 
 @SuppressWarnings("serial")
-public class WinnerSelectFrame extends JPanel {
+public class WinnerSelectPanel extends JPanel {
 
 	private GameFrame gameFrame;
 	private Game game;
@@ -32,7 +32,7 @@ public class WinnerSelectFrame extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	public WinnerSelectFrame(Game game) {
+	public WinnerSelectPanel(Game game) {
 		this.gameFrame = gameFrame;
 		
 
@@ -40,7 +40,7 @@ public class WinnerSelectFrame extends JPanel {
 		btnSelectWinner.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				WinnerSelectFrame.this.btnSelectWinner_click();
+				WinnerSelectPanel.this.btnSelectWinner_click();
 			}
 		});
 		this.setLayout(new GridLayout(0, 1, 0, 0));
