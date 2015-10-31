@@ -35,6 +35,9 @@ public class MainMenuPanel extends JPanel {
 	 */
 	private void initialize() {
 		gameFrame.setTitle("Main Menu");
+		gameFrame.setContentPane(this);
+		gameFrame.repaint();
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 1.0 };
 

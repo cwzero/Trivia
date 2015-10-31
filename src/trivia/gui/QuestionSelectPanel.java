@@ -28,6 +28,7 @@ public class QuestionSelectPanel extends JPanel {
 		this.gameFrame = gameFrame;
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		gameFrame.setContentPane(this);
+		gameFrame.repaint();
 		this.setLayout(null);
 
 		// called the new method openfile

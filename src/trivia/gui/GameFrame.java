@@ -16,6 +16,7 @@ public class GameFrame extends JFrame {
 	public GameFrame(Game game) {
 		this();
 		this.game = game;
+		setBounds(100, 100, 600, 400);
 	}
 
 	/**
