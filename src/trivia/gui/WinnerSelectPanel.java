@@ -29,6 +29,9 @@ public class WinnerSelectPanel extends JPanel {
 	 */
 	public WinnerSelectPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
+		gameFrame.setTitle("Select Winner");
+		gameFrame.setContentPane(this);
+		gameFrame.repaint();
 
 		JButton btnSelectWinner = new JButton("Select Winner");
 		btnSelectWinner.addActionListener(new ActionListener() {
