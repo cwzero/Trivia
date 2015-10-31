@@ -116,12 +116,7 @@ public class GameStatusPanel extends JPanel {
 			new GameSetupPanel(gameFrame);
 		} else {
 			gameFrame.getGame().nextRound();
-			try {
-				new QuestionSelectPanel(gameFrame);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			new QuestionSelectPanel(gameFrame);
 		}
 	}
 }

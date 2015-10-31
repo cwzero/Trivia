@@ -39,13 +39,13 @@ public class AnswerEntryPanel extends JPanel {
 	}
 
 	public void createGUI() {
+		gameFrame.setContentPane(this);
+		gameFrame.repaint();
 		Game game = gameFrame.getGame();
 		gameFrame.setTitle("Enter Answer");
 		setBounds(100, 100, 600, 400);
 
 		setBorder(new EmptyBorder(25, 25, 25, 25));
-		gameFrame.setContentPane(this);
-		gameFrame.repaint();
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		// gbl_columnWidths = new int[] { 265, 0 };
 		// gbl_rowHeights = new int[] { 14, 14, 20, 23, 0 };

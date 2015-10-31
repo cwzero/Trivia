@@ -9,7 +9,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 @SuppressWarnings("serial")
 public class SetupSummaryPanel extends JPanel {
@@ -109,13 +108,7 @@ public class SetupSummaryPanel extends JPanel {
 
 		// ---------------------------------------------------------------------//
 		// added by Brian to test question select frame
-
-		try {
-			new QuestionSelectPanel(gameFrame);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		new QuestionSelectPanel(gameFrame);
 		// ---------------------------------------------------------------------//
 	}
 

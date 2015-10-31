@@ -24,11 +24,12 @@ public class QuestionSelectPanel extends JPanel {
 	 * 
 	 * @throws IOException
 	 */
-	public QuestionSelectPanel(GameFrame gameFrame) throws IOException {
+	public QuestionSelectPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		gameFrame.setTitle("Select a question");
 		gameFrame.setContentPane(this);
 		gameFrame.repaint();
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(null);
 
 		// called the new method openfile
