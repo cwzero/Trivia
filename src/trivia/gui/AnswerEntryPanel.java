@@ -41,6 +41,7 @@ public class AnswerEntryPanel extends JPanel {
 	public void createGUI() {
 		gameFrame.setContentPane(this);
 		gameFrame.repaint();
+		
 		Game game = gameFrame.getGame();
 		gameFrame.setTitle("Enter Answer");
 		setBounds(100, 100, 600, 400);

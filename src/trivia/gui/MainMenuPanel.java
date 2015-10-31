@@ -28,16 +28,9 @@ public class MainMenuPanel extends JPanel {
 	 */
 	public MainMenuPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		gameFrame.setTitle("Main Menu");
 		gameFrame.setContentPane(this);
 		gameFrame.repaint();
+		gameFrame.setTitle("Main Menu");
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 1.0 };
@@ -96,6 +89,7 @@ public class MainMenuPanel extends JPanel {
 		gbc_quitButton.weightx = 0;
 		gbc_quitButton.weighty = 0;
 		add(quitButton, gbc_quitButton);
+		gameFrame.setVisible(true);
 	}
 
 	public void newGameButtonClick() {
