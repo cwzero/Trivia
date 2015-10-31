@@ -1,7 +1,7 @@
 package trivia.gui;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import java.awt.Font;
 import java.awt.Color;
@@ -14,11 +14,17 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 @SuppressWarnings("serial")
-public class MainMenuFrame extends JFrame {
+public class MainMenuPanel extends JPanel {
+	private GameFrame gameFrame;
+	
+	public MainMenuPanel() {
+		this(new GameFrame());
+	}
 	/**
 	 * Create the application.
 	 */
-	public MainMenuFrame() {
+	public MainMenuPanel(GameFrame gameFrame) {
+		this.gameFrame = gameFrame;
 		initialize();
 	}
 
@@ -26,13 +32,11 @@ public class MainMenuFrame extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		this.setTitle("Main Menu");
-		this.setBounds(100, 100, 600, 400);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		gameFrame.setTitle("Main Menu");
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWeights = new double[] {1.0, 0.0, 1.0};
 
-		getContentPane().setLayout(gridBagLayout);
+		setLayout(gridBagLayout);
 
 		JLabel lblTriviaGame = new JLabel("TRIVIA GAME");
 		lblTriviaGame.setHorizontalAlignment(SwingConstants.CENTER);
@@ -48,13 +52,13 @@ public class MainMenuFrame extends JFrame {
 		gbc_lblTriviaGame.gridwidth = 3;
 		gbc_lblTriviaGame.weightx = 0;
 		gbc_lblTriviaGame.weighty = 0;
-		this.getContentPane().add(lblTriviaGame, gbc_lblTriviaGame);
+		add(lblTriviaGame, gbc_lblTriviaGame);
 
 		JButton newGameButton = new JButton("New Game");
 		newGameButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainMenuFrame.this.newGameButtonClick();
+				MainMenuPanel.this.newGameButtonClick();
 			}
 		});
 		newGameButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -67,13 +71,13 @@ public class MainMenuFrame extends JFrame {
 		gbc_newGameButton.gridwidth = 1;
 		gbc_newGameButton.weightx = 0;
 		gbc_newGameButton.weighty = 0;
-		this.getContentPane().add(newGameButton, gbc_newGameButton);
+		add(newGameButton, gbc_newGameButton);
 
 		JButton quitButton = new JButton("Quit");
 		quitButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainMenuFrame.this.quitButtonClick();
+				MainMenuPanel.this.quitButtonClick();
 			}
 		});
 		quitButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -85,15 +89,12 @@ public class MainMenuFrame extends JFrame {
 		gbc_quitButton.gridy = 2;
 		gbc_quitButton.weightx = 0;
 		gbc_quitButton.weighty = 0;
-		this.getContentPane().add(quitButton, gbc_quitButton);
+		add(quitButton, gbc_quitButton);
 	}
 
 	public void newGameButtonClick() {
 		// Here we will close the main menu, then show a new game setup frame
-
-		this.dispose();
-
-		new GameSetupPanel().setVisible(true);
+		new GameSetupPanel(gameFrame);
 	}
 
 	public void quitButtonClick() {

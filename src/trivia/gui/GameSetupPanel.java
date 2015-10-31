@@ -73,7 +73,7 @@ public class GameSetupPanel extends JPanel {
 		backButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new MainMenuFrame().setVisible(true);
+				new MainMenuPanel(gameFrame).setVisible(true);
 			}
 		});
 	}
