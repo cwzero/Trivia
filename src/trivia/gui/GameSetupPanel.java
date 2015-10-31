@@ -84,6 +84,6 @@ public class GameSetupPanel extends JPanel {
 		int playerCount = (int) playerCountSpinner.getValue();
 		game.setPlayerCount(playerCount);
 
-		new PlayerJoinFrame(gameFrame).setVisible(true);
+		new PlayerJoinPanel(gameFrame).setVisible(true);
 	}
 }

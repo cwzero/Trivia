@@ -32,7 +32,7 @@ public class AnswerEntryPanel extends JPanel {
 		if (game.getCurrentPlayer() > game.getPlayerCount()) {
 			// WinnerSelectPanel
 			
-			new WinnerSelectPanel(game).setVisible(true);
+			new WinnerSelectPanel(gameFrame);
 		} else {
 			createGUI();
 		}
@@ -129,7 +129,7 @@ public class AnswerEntryPanel extends JPanel {
 			new AnswerEntryPanel(gameFrame);
 		} else {
 			game.setCurrentPlayer(0);
-			new WinnerSelectPanel(game).setVisible(true);
+			new WinnerSelectPanel(gameFrame);
 		}
 	}
 }

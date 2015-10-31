@@ -2,10 +2,8 @@ package trivia.gui;
 
 import javax.swing.JOptionPane;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.border.EmptyBorder;
 
 import trivia.Game;
 import javax.swing.JLabel;
@@ -22,9 +20,7 @@ import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class WinnerSelectPanel extends JPanel {
-
 	private GameFrame gameFrame;
-	private Game game;
 	protected int[] playerScore;
 	protected JRadioButton[] buttons = null;
 	protected int[] playerIndex;
@@ -32,9 +28,8 @@ public class WinnerSelectPanel extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	public WinnerSelectPanel(Game game) {
+	public WinnerSelectPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
-		
 
 		JButton btnSelectWinner = new JButton("Select Winner");
 		btnSelectWinner.addActionListener(new ActionListener() {
@@ -53,7 +48,7 @@ public class WinnerSelectPanel extends JPanel {
 		lblSelectedQuestion.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblSelectedQuestion.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(lblSelectedQuestion);
-		lblSelectedQuestion.setText(game.getCurrentQuestion());
+		lblSelectedQuestion.setText(gameFrame.getGame().getCurrentQuestion());
 
 		JRadioButton rdotbnAnswer1 = new JRadioButton("New radio button");
 		rdotbnAnswer1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -72,16 +67,16 @@ public class WinnerSelectPanel extends JPanel {
 		this.add(rdobtnAnswer4);
 		this.add(btnSelectWinner);
 
-		String[] answers = game.getPlayerAnswers();
-		playerIndex = new int[game.getPlayerCount()];
+		String[] answers = gameFrame.getGame().getPlayerAnswers();
+		playerIndex = new int[gameFrame.getGame().getPlayerCount()];
 		int answerIndex = 0;
 		int buttonIndex = 0;
 
 		buttons = new JRadioButton[] { rdotbnAnswer1, rdobtnAnswer2, rdobtnAnswer3, rdobtnAnswer4 };
 
-		int[] playerOrder = new int[game.getPlayerCount()];
+		int[] playerOrder = new int[gameFrame.getGame().getPlayerCount()];
 		List<Integer> temp = new ArrayList<Integer>();
-		for (int i = 0; i < game.getPlayerCount(); i++) {
+		for (int i = 0; i < gameFrame.getGame().getPlayerCount(); i++) {
 			temp.add(i);
 		}
 
@@ -103,11 +98,11 @@ public class WinnerSelectPanel extends JPanel {
 		buttonGroup.add(rdobtnAnswer3);
 		buttonGroup.add(rdobtnAnswer4);
 
-		if (game.getPlayerCount() <= 3) {
+		if (gameFrame.getGame().getPlayerCount() <= 3) {
 			rdobtnAnswer3.setVisible(false);
 
 		}
-		if (game.getPlayerCount() <= 4) {
+		if (gameFrame.getGame().getPlayerCount() <= 4) {
 			rdobtnAnswer4.setVisible(false);
 		}
 	}
@@ -128,14 +123,14 @@ public class WinnerSelectPanel extends JPanel {
 				winner = playerIndex[buttonIndex];
 			}
 		}
-		game.setRoundWinner(winner);
+		gameFrame.getGame().setRoundWinner(winner);
 
 		if (winner == -1) {
 			JOptionPane.showMessageDialog(null, "Select one answer");
 		} else {
-			game.setPlayerScore(winner, game.getPlayerScore()[winner] + 1);
+			gameFrame.getGame().setPlayerScore(winner, gameFrame.getGame().getPlayerScore()[winner] + 1);
 
-			new GameStatusFrame(game).setVisible(true);
+			new GameStatusPanel(gameFrame);
 		}
 	}
 

@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class PlayerJoinFrame extends JPanel {
+public class PlayerJoinPanel extends JPanel {
 	private JTextField playerNameField;
 	private JButton btnBack;
 	private Game game = new Game();
@@ -24,7 +24,7 @@ public class PlayerJoinFrame extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	public PlayerJoinFrame(GameFrame gameFrame) {
+	public PlayerJoinPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
 		this.game = gameFrame.getGame();
 		this.currentPlayer = game.getCurrentPlayer();
@@ -41,7 +41,7 @@ public class PlayerJoinFrame extends JPanel {
 		playerNameField = new JTextField();
 		playerNameField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PlayerJoinFrame.this.continueButtonClick();
+				PlayerJoinPanel.this.continueButtonClick();
 			}
 		});
 
@@ -53,7 +53,7 @@ public class PlayerJoinFrame extends JPanel {
 		btnContinue.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PlayerJoinFrame.this.continueButtonClick();
+				PlayerJoinPanel.this.continueButtonClick();
 			}
 		});
 		btnContinue.setBounds(190, 166, 89, 23);
@@ -82,7 +82,7 @@ public class PlayerJoinFrame extends JPanel {
 			game.setCurrentPlayer(currentPlayer);
 
 			if (currentPlayer < game.getPlayerCount()) {
-				new PlayerJoinFrame(gameFrame).setVisible(true);
+				new PlayerJoinPanel(gameFrame).setVisible(true);
 			} else {
 				new SetupSummaryFrame(game).setVisible(true);
 			}
