@@ -21,9 +21,9 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 
 @SuppressWarnings("serial")
-public class WinnerSelectFrame extends JFrame {
+public class WinnerSelectFrame extends JPanel {
 
-	private JPanel contentPane;
+	private GameFrame gameFrame;
 	private Game game;
 	protected int[] playerScore;
 	protected JRadioButton[] buttons = null;
@@ -33,12 +33,8 @@ public class WinnerSelectFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public WinnerSelectFrame(Game game) {
-		this.game = game;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 683, 526);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		this.gameFrame = gameFrame;
+		
 
 		JButton btnSelectWinner = new JButton("Select Winner");
 		btnSelectWinner.addActionListener(new ActionListener() {
@@ -47,34 +43,34 @@ public class WinnerSelectFrame extends JFrame {
 				WinnerSelectFrame.this.btnSelectWinner_click();
 			}
 		});
-		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
+		this.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JLabel lblNewLabel = new JLabel("Select one answer for the question:");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lblNewLabel);
+		this.add(lblNewLabel);
 
 		JLabel lblSelectedQuestion = new JLabel("New label");
 		lblSelectedQuestion.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblSelectedQuestion.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lblSelectedQuestion);
+		this.add(lblSelectedQuestion);
 		lblSelectedQuestion.setText(game.getCurrentQuestion());
 
 		JRadioButton rdotbnAnswer1 = new JRadioButton("New radio button");
 		rdotbnAnswer1.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(rdotbnAnswer1);
+		this.add(rdotbnAnswer1);
 
 		JRadioButton rdobtnAnswer2 = new JRadioButton("New radio button");
 		rdobtnAnswer2.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(rdobtnAnswer2);
+		this.add(rdobtnAnswer2);
 
 		JRadioButton rdobtnAnswer3 = new JRadioButton("New radio button");
 		rdobtnAnswer3.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(rdobtnAnswer3);
+		this.add(rdobtnAnswer3);
 
 		JRadioButton rdobtnAnswer4 = new JRadioButton("New radio button");
 		rdobtnAnswer4.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(rdobtnAnswer4);
-		contentPane.add(btnSelectWinner);
+		this.add(rdobtnAnswer4);
+		this.add(btnSelectWinner);
 
 		String[] answers = game.getPlayerAnswers();
 		playerIndex = new int[game.getPlayerCount()];
@@ -139,7 +135,6 @@ public class WinnerSelectFrame extends JFrame {
 		} else {
 			game.setPlayerScore(winner, game.getPlayerScore()[winner] + 1);
 
-			WinnerSelectFrame.this.dispose();
 			new GameStatusFrame(game).setVisible(true);
 		}
 	}
