@@ -93,7 +93,7 @@ public class MainMenuFrame extends JFrame {
 
 		this.dispose();
 
-		new GameSetupFrame().setVisible(true);
+		new GameSetupPanel().setVisible(true);
 	}
 
 	public void quitButtonClick() {

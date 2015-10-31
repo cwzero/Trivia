@@ -88,6 +88,8 @@ public class QuestionSelectFrame extends JFrame {
 		game.setCurrentPlayer(0);
 		game.setCurrentQuestion(questions[question]);
 		this.dispose();
-		new AnswerEntryFrame(game).setVisible(true);
+		GameFrame gameFrame = new GameFrame(game);
+		new AnswerEntryPanel(gameFrame);
+		gameFrame.setVisible(true);
 	}
 }

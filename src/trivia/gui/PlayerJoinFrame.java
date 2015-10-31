@@ -1,6 +1,5 @@
 package trivia.gui;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -14,31 +13,29 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class PlayerJoinFrame extends JFrame {
-	private JPanel contentPane;
+public class PlayerJoinFrame extends JPanel {
 	private JTextField playerNameField;
 	private JButton btnBack;
 	private Game game;
+	private GameFrame gameFrame;
 	private int currentPlayer = 0;
 
 	/**
 	 * Create the frame.
 	 */
-	public PlayerJoinFrame(Game game) {
-		this.game = game;
+	public PlayerJoinFrame(GameFrame gameFrame) {
+		this.gameFrame = gameFrame;
+		this.game = gameFrame.getGame();
 		this.currentPlayer = game.getCurrentPlayer();
 
-		setTitle("Enter Player Name");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 400);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		gameFrame.setTitle("Enter Player Name");
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		gameFrame.setContentPane(this);
+		this.setLayout(null);
 
 		JLabel playerLabel = new JLabel("Player " + (currentPlayer + 1) + " Enter Name");
 		playerLabel.setBounds(143, 134, 136, 20);
-		contentPane.add(playerLabel);
+		this.add(playerLabel);
 
 		playerNameField = new JTextField();
 		playerNameField.addActionListener(new ActionListener() {
@@ -48,7 +45,7 @@ public class PlayerJoinFrame extends JFrame {
 		});
 
 		playerNameField.setBounds(284, 134, 158, 20);
-		contentPane.add(playerNameField);
+		this.add(playerNameField);
 		playerNameField.setColumns(10);
 
 		JButton btnContinue = new JButton("Continue");
@@ -59,16 +56,15 @@ public class PlayerJoinFrame extends JFrame {
 			}
 		});
 		btnContinue.setBounds(190, 166, 89, 23);
-		contentPane.add(btnContinue);
+		this.add(btnContinue);
 
 		btnBack = new JButton("Back");
 		btnBack.setBounds(288, 166, 89, 23);
-		contentPane.add(btnBack);
+		this.add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PlayerJoinFrame.this.dispose();
-				new GameSetupFrame(game).setVisible(true);
+				new GameSetupPanel(gameFrame);
 			}
 		});
 	}
@@ -83,10 +79,9 @@ public class PlayerJoinFrame extends JFrame {
 
 			currentPlayer++;
 			game.setCurrentPlayer(currentPlayer);
-			this.dispose();
 
 			if (currentPlayer < game.getPlayerCount()) {
-				new PlayerJoinFrame(game).setVisible(true);
+				new PlayerJoinFrame(gameFrame).setVisible(true);
 			} else {
 				new SetupSummaryFrame(game).setVisible(true);
 			}

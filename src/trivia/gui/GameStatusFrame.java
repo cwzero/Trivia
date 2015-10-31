@@ -91,7 +91,7 @@ public class GameStatusFrame extends JFrame {
 	private void btnStartNewGame_click() {
 		this.dispose();
 		if (game.isOver()) {
-			new GameSetupFrame().setVisible(true);
+			new GameSetupPanel().setVisible(true);
 		} else {
 			game.nextRound();
 			try {

@@ -14,16 +14,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class GameSetupFrame extends JFrame {
-
-	private JPanel contentPane;
-	private final JSpinner roundCountSpinner = new JSpinner();
+public class GameSetupPanel extends JPanel {
+	private JSpinner roundCountSpinner = new JSpinner();
 	private JSpinner playerCountSpinner = new JSpinner();
 	private Game game = new Game();
+	private GameFrame gameFrame = null;
 	
-	public GameSetupFrame(Game game) {
+	public GameSetupPanel(GameFrame gameFrame) {
 		this();
-		this.game = game;
+		this.gameFrame = gameFrame;
+		this.game = gameFrame.getGame();
 		roundCountSpinner.setValue(game.getRoundCount());
 		playerCountSpinner.setValue(game.getPlayerCount());
 	}
@@ -31,50 +31,48 @@ public class GameSetupFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GameSetupFrame() {
-		setTitle("Game Setup");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public GameSetupPanel() {
+		gameFrame.setTitle("Game Setup");
+		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 400);
 
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		setBorder(new EmptyBorder(5, 5, 5, 5));
+		gameFrame.setContentPane(this);
 
-		contentPane.setLayout(null);
+		this.setLayout(null);
 		roundCountSpinner.setModel(new SpinnerNumberModel(3, 3, 10, 1));
 		roundCountSpinner.setBounds(324, 95, 39, 31);
-		contentPane.add(roundCountSpinner);
+		this.add(roundCountSpinner);
 
 		playerCountSpinner.setModel(new SpinnerNumberModel(3, 3, 5, 1));
 		playerCountSpinner.setBounds(324, 139, 39, 31);
-		contentPane.add(playerCountSpinner);
+		this.add(playerCountSpinner);
 
 		JLabel lblNewLabel = new JLabel("Number of Rounds");
 		lblNewLabel.setBounds(194, 99, 124, 23);
-		contentPane.add(lblNewLabel);
+		this.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Number of Players");
 		lblNewLabel_1.setBounds(194, 142, 124, 24);
-		contentPane.add(lblNewLabel_1);
+		this.add(lblNewLabel_1);
 
 		JButton continueButton = new JButton("Continue");
 		continueButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GameSetupFrame.this.continueButtonClick();
+				GameSetupPanel.this.continueButtonClick();
 			}
 		});
 		continueButton.setBounds(181, 184, 95, 23);
-		contentPane.add(continueButton);
+		this.add(continueButton);
 
 		JButton backButton = new JButton("Back");
 		backButton.setBounds(288, 184, 95, 23);
-		contentPane.add(backButton);
+		this.add(backButton);
 		
 		backButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GameSetupFrame.this.dispose();
 				new MainMenuFrame().setVisible(true);
 			}
 		});
@@ -86,7 +84,6 @@ public class GameSetupFrame extends JFrame {
 		int playerCount = (int) playerCountSpinner.getValue();
 		game.setPlayerCount(playerCount);
 
-		this.dispose();
-		new PlayerJoinFrame(game).setVisible(true);
+		new PlayerJoinFrame(gameFrame).setVisible(true);
 	}
 }
