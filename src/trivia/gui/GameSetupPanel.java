@@ -1,6 +1,5 @@
 package trivia.gui;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -16,25 +15,19 @@ public class GameSetupPanel extends JPanel {
 	private JSpinner roundCountSpinner = new JSpinner();
 	private JSpinner playerCountSpinner = new JSpinner();
 	private GameFrame gameFrame = null;
-	
-	public GameSetupPanel(GameFrame gameFrame) {
-		this();
-		this.gameFrame = gameFrame;
-		roundCountSpinner.setValue(gameFrame.getGame().getRoundCount());
-		playerCountSpinner.setValue(gameFrame.getGame().getPlayerCount());
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public GameSetupPanel() {
+	public GameSetupPanel(GameFrame gameFrame) {
+		this.gameFrame = gameFrame;
+		roundCountSpinner.setValue(gameFrame.getGame().getRoundCount());
+		playerCountSpinner.setValue(gameFrame.getGame().getPlayerCount());
 		gameFrame.setTitle("Game Setup");
-		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 400);
 
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		gameFrame.setContentPane(this);
-
+		gameFrame.repaint();
 		this.setLayout(null);
 		roundCountSpinner.setModel(new SpinnerNumberModel(3, 3, 10, 1));
 		roundCountSpinner.setBounds(324, 95, 39, 31);
