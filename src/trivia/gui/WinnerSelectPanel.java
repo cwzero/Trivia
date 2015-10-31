@@ -30,6 +30,7 @@ public class WinnerSelectPanel extends JPanel {
 	public WinnerSelectPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
 		gameFrame.setTitle("Select Winner");
+		setBounds(100, 100, 600, 400);
 		gameFrame.setContentPane(this);
 		gameFrame.repaint();
 
