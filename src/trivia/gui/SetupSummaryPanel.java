@@ -116,7 +116,7 @@ public class SetupSummaryPanel extends JPanel {
 		// added by Brian to test question select frame
 
 		try {
-			new QuestionSelectFrame(gameFrame);
+			new QuestionSelectPanel(gameFrame);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -126,6 +126,6 @@ public class SetupSummaryPanel extends JPanel {
 
 	private void buttonBack_click() {
 		// Eventually this should go back to edit setup
-		new MainMenuFrame(gameFrame);
+		new MainMenuPanel(gameFrame);
 	}
 }
