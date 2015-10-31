@@ -36,6 +36,7 @@ public class PlayerJoinPanel extends JPanel {
 		this.add(playerLabel);
 
 		playerNameField = new JTextField();
+		playerNameField.setText(gameFrame.getGame().getPlayerNames()[currentPlayer]);
 		playerNameField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PlayerJoinPanel.this.continueButtonClick();
@@ -62,9 +63,19 @@ public class PlayerJoinPanel extends JPanel {
 		btnBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new GameSetupPanel(gameFrame);
+				PlayerJoinPanel.this.backButtonClick();
 			}
 		});
+	}
+	
+	public void backButtonClick() {
+		if (currentPlayer > 0) {
+			gameFrame.getGame().setCurrentPlayer(currentPlayer - 1);
+			new PlayerJoinPanel(gameFrame);
+		} else {
+			gameFrame.getGame().resetNames();
+			new MainMenuPanel(gameFrame);
+		}
 	}
 
 	public void continueButtonClick() {

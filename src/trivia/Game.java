@@ -50,6 +50,10 @@ public class Game {
 		this.roundCount = roundCount;
 		this.playerCount = playerCount;
 	}
+	
+	public void resetNames() {
+		playerNames = new String[playerCount];
+	}
 
 	public boolean isOver() {
 		return currentRound >= roundCount - 1;
