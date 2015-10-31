@@ -24,6 +24,7 @@ public class GameStatusPanel extends JPanel {
 	 */
 	public GameStatusPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
+		gameFrame.repaint();
 		gameFrame.setTitle("Current Game Status");
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		gameFrame.setContentPane(this);
