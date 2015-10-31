@@ -113,7 +113,7 @@ public class GameStatusPanel extends JPanel {
 
 	private void btnStartNewGame_click() {
 		if (gameFrame.getGame().isOver()) {
-			new GameSetupPanel().setVisible(true);
+			new GameSetupPanel(gameFrame);
 		} else {
 			gameFrame.getGame().nextRound();
 			try {
