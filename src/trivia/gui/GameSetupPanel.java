@@ -21,14 +21,15 @@ public class GameSetupPanel extends JPanel {
 	 */
 	public GameSetupPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
+		gameFrame.setContentPane(this);
+		gameFrame.repaint();
 		roundCountSpinner.setValue(gameFrame.getGame().getRoundCount());
 		playerCountSpinner.setValue(gameFrame.getGame().getPlayerCount());
 		gameFrame.setTitle("Game Setup");
-
 		setBorder(new EmptyBorder(5, 5, 5, 5));
-		gameFrame.setContentPane(this);
-		gameFrame.repaint();
+		
 		this.setLayout(null);
+		
 		roundCountSpinner.setModel(new SpinnerNumberModel(3, 3, 10, 1));
 		roundCountSpinner.setBounds(324, 95, 39, 31);
 		this.add(roundCountSpinner);

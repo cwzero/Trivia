@@ -1,35 +1,21 @@
 package trivia.gui;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import trivia.Game;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame {
-	private JPanel contentPane;
 	private Game game = new Game();
-
-	public GameFrame(Game game) {
-		this();
-		this.game = game;
-		setBounds(100, 100, 600, 400);
+	
+	public GameFrame() {
+		this(new Game());
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public GameFrame() {
+	public GameFrame(Game game) {
+		this.game = game;
+		setBounds(100, 100, 600, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
 	}
 
 	public Game getGame() {
