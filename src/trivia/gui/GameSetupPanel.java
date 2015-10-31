@@ -4,8 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import trivia.Game;
-
 import javax.swing.JSpinner;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -17,15 +15,13 @@ import java.awt.event.ActionEvent;
 public class GameSetupPanel extends JPanel {
 	private JSpinner roundCountSpinner = new JSpinner();
 	private JSpinner playerCountSpinner = new JSpinner();
-	private Game game = new Game();
 	private GameFrame gameFrame = null;
 	
 	public GameSetupPanel(GameFrame gameFrame) {
 		this();
 		this.gameFrame = gameFrame;
-		this.game = gameFrame.getGame();
-		roundCountSpinner.setValue(game.getRoundCount());
-		playerCountSpinner.setValue(game.getPlayerCount());
+		roundCountSpinner.setValue(gameFrame.getGame().getRoundCount());
+		playerCountSpinner.setValue(gameFrame.getGame().getPlayerCount());
 	}
 
 	/**
@@ -80,9 +76,9 @@ public class GameSetupPanel extends JPanel {
 
 	public void continueButtonClick() {
 		int roundCount = (int) roundCountSpinner.getValue();
-		game.setRoundCount(roundCount);
+		gameFrame.getGame().setRoundCount(roundCount);
 		int playerCount = (int) playerCountSpinner.getValue();
-		game.setPlayerCount(playerCount);
+		gameFrame.getGame().setPlayerCount(playerCount);
 
 		new PlayerJoinPanel(gameFrame).setVisible(true);
 	}

@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 @SuppressWarnings("serial")
 public class GameStatusPanel extends JPanel {
 	private GameFrame gameFrame;
+
 	/**
 	 * Create the frame.
 	 */
@@ -27,10 +28,10 @@ public class GameStatusPanel extends JPanel {
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		gameFrame.setContentPane(this);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0};
-		
+		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0 };
+
 		this.setLayout(gbl_contentPane);
-		
+
 		JLabel lblGameStatus = new JLabel("Game Status");
 		lblGameStatus.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGameStatus.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -41,9 +42,9 @@ public class GameStatusPanel extends JPanel {
 		gbc_lblGameStatus.gridx = 0;
 		gbc_lblGameStatus.gridy = 0;
 		this.add(lblGameStatus, gbc_lblGameStatus);
-		
+
 		// This create the label for the Scoreboard
-		
+
 		JLabel lblScoreboard = new JLabel("Scoreboard");
 		lblScoreboard.setFont(new Font("Lithos Pro Regular", Font.ITALIC, 16));
 		GridBagConstraints gbc_lblScoreboard = new GridBagConstraints();
@@ -54,17 +55,14 @@ public class GameStatusPanel extends JPanel {
 		gbc_lblScoreboard.gridx = 0;
 		gbc_lblScoreboard.gridy = 2;
 		this.add(lblScoreboard, gbc_lblScoreboard);
-		
-		
 
-		
-		
-		// This is just to hold rows and columns for now but will need to read from
+		// This is just to hold rows and columns for now but will need to read
+		// from
 		// a file or a list before displaying the player and scores
-		
+
 		String[][] rowData = new String[gameFrame.getGame().getPlayerCount()][3];
-		Object columnNames[] = {"Player Name", "Score", "Answer"};
-		
+		Object columnNames[] = { "Player Name", "Score", "Answer" };
+
 		for (int i = 0; i < gameFrame.getGame().getPlayerCount(); i++) {
 			rowData[i][0] = gameFrame.getGame().getPlayerNames()[i];
 			rowData[i][1] = gameFrame.getGame().getPlayerScore()[i] + "";
@@ -75,7 +73,6 @@ public class GameStatusPanel extends JPanel {
 			rowData[i][2] = answer;
 		}
 
-		
 		JTable table = new JTable(rowData, columnNames);
 		JScrollPane scrollPane = new JScrollPane(table);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -86,9 +83,9 @@ public class GameStatusPanel extends JPanel {
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 3;
 		this.add(scrollPane, gbc_scrollPane);
-		
-		// This button starts new game " Not valid yet" 
-		
+
+		// This button starts new game " Not valid yet"
+
 		JButton btnStartNewGame = new JButton("Start New Game");
 		btnStartNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -102,15 +99,17 @@ public class GameStatusPanel extends JPanel {
 		gbc_btnStartNewGame.gridy = 4;
 		this.add(btnStartNewGame, gbc_btnStartNewGame);
 		if (gameFrame.getGame().isOver()) {
-			lblGameStatus.setText(gameFrame.getGame().getPlayerNames()[gameFrame.getGame().getGameWinner()] + " has won the gameFrame.getGame().");
+			lblGameStatus.setText(gameFrame.getGame().getPlayerNames()[gameFrame.getGame().getGameWinner()]
+					+ " has won the gameFrame.getGame().");
 		} else {
-			lblGameStatus.setText(gameFrame.getGame().getPlayerNames()[gameFrame.getGame().getRoundWinner()] + " has won the round.");
+			lblGameStatus.setText(
+					gameFrame.getGame().getPlayerNames()[gameFrame.getGame().getRoundWinner()] + " has won the round.");
 		}
 		if (!gameFrame.getGame().isOver()) {
 			btnStartNewGame.setText("Next round");
 		}
 	}
-	
+
 	private void btnStartNewGame_click() {
 		if (gameFrame.getGame().isOver()) {
 			new GameSetupPanel().setVisible(true);

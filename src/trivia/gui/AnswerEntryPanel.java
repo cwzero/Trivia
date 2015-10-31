@@ -31,7 +31,7 @@ public class AnswerEntryPanel extends JPanel {
 		}
 		if (game.getCurrentPlayer() > game.getPlayerCount()) {
 			// WinnerSelectPanel
-			
+
 			new WinnerSelectPanel(gameFrame);
 		} else {
 			createGUI();
@@ -46,10 +46,10 @@ public class AnswerEntryPanel extends JPanel {
 		setBorder(new EmptyBorder(25, 25, 25, 25));
 		gameFrame.setContentPane(this);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		//gbl_columnWidths = new int[] { 265, 0 };
-		//gbl_rowHeights = new int[] { 14, 14, 20, 23, 0 };
-		//gbl_columnWeights = new double[] { 0.0 };
-		//gbl_rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0 };
+		// gbl_columnWidths = new int[] { 265, 0 };
+		// gbl_rowHeights = new int[] { 14, 14, 20, 23, 0 };
+		// gbl_columnWeights = new double[] { 0.0 };
+		// gbl_rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0 };
 		setLayout(gbl_contentPane);
 
 		JLabel currentQuestionLabel = new JLabel("Question");

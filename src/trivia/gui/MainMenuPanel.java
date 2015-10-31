@@ -16,10 +16,11 @@ import java.awt.Insets;
 @SuppressWarnings("serial")
 public class MainMenuPanel extends JPanel {
 	private GameFrame gameFrame;
-	
+
 	public MainMenuPanel() {
 		this(new GameFrame());
 	}
+
 	/**
 	 * Create the application.
 	 */
@@ -34,7 +35,7 @@ public class MainMenuPanel extends JPanel {
 	private void initialize() {
 		gameFrame.setTitle("Main Menu");
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWeights = new double[] {1.0, 0.0, 1.0};
+		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 1.0 };
 
 		setLayout(gridBagLayout);
 
@@ -42,7 +43,7 @@ public class MainMenuPanel extends JPanel {
 		lblTriviaGame.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTriviaGame.setBackground(new Color(240, 240, 240));
 		lblTriviaGame.setFont(new Font("Tahoma", Font.BOLD, 38));
-		
+
 		GridBagConstraints gbc_lblTriviaGame = new GridBagConstraints();
 		gbc_lblTriviaGame.fill = GridBagConstraints.BOTH;
 		gbc_lblTriviaGame.insets = new Insets(0, 0, 5, 0);

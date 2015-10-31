@@ -3,8 +3,6 @@ package trivia.gui;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import trivia.Game;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -16,7 +14,6 @@ import java.awt.event.ActionEvent;
 public class PlayerJoinPanel extends JPanel {
 	private JTextField playerNameField;
 	private JButton btnBack;
-	private Game game = new Game();
 	private GameFrame gameFrame = null;
 	private int currentPlayer = 0;
 	
@@ -26,8 +23,7 @@ public class PlayerJoinPanel extends JPanel {
 	 */
 	public PlayerJoinPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
-		this.game = gameFrame.getGame();
-		this.currentPlayer = game.getCurrentPlayer();
+		this.currentPlayer = gameFrame.getGame().getCurrentPlayer();
 
 		gameFrame.setTitle("Enter Player Name");
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -76,12 +72,12 @@ public class PlayerJoinPanel extends JPanel {
 			JOptionPane.showMessageDialog(this, "Please, Enter a Name");
 		} else {
 
-			game.setPlayerName(currentPlayer, playerName);
+			gameFrame.getGame().setPlayerName(currentPlayer, playerName);
 
 			currentPlayer++;
-			game.setCurrentPlayer(currentPlayer);
+			gameFrame.getGame().setCurrentPlayer(currentPlayer);
 
-			if (currentPlayer < game.getPlayerCount()) {
+			if (currentPlayer < gameFrame.getGame().getPlayerCount()) {
 				new PlayerJoinPanel(gameFrame);
 			} else {
 				new SetupSummaryPanel(gameFrame);

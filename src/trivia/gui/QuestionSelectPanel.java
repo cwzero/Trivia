@@ -13,7 +13,6 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class QuestionSelectPanel extends JPanel {
-
 	private GameFrame gameFrame;
 	private String[] questions = new String[3];
 	private JButton btnQuestion1;

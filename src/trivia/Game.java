@@ -38,10 +38,10 @@ public class Game {
 
 	// The answers entered by the players this round //
 	private String[] playerAnswers = null;
-	
+
 	// The winner of the round //
 	private int roundWinner = -1;
-	
+
 	public Game() {
 		this(0, 0);
 	}
@@ -62,7 +62,7 @@ public class Game {
 		chooseLeader();
 		currentPlayer = 0;
 	}
-	
+
 	public void start() {
 		playerScore = new int[playerCount];
 		playerAnswers = new String[playerCount];
@@ -188,9 +188,8 @@ public class Game {
 	}
 
 	private String getRandomQuestion(String[] currentQuestions) {
-		String question = questionPool
-				.get(new Random().nextInt(questionPool.size()));
-		for (String prev: currentQuestions) {
+		String question = questionPool.get(new Random().nextInt(questionPool.size()));
+		for (String prev : currentQuestions) {
 			if (question.equals(prev)) {
 				return getRandomQuestion(currentQuestions);
 			}
@@ -209,7 +208,7 @@ public class Game {
 	public String getQuestion(int questionIndex) {
 		return this.questionPool.get(questionIndex);
 	}
-	
+
 	public int getRoundWinner() {
 		return roundWinner;
 	}
@@ -217,7 +216,7 @@ public class Game {
 	public void setRoundWinner(int roundWinner) {
 		this.roundWinner = roundWinner;
 	}
-	
+
 	public int getGameWinner() {
 		int maxScore = -1;
 		int winner = -1;

@@ -1,11 +1,8 @@
 package trivia.gui;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import trivia.Game;
 import javax.swing.JLabel;
 
 import java.awt.GridBagConstraints;
@@ -31,8 +28,7 @@ public class SetupSummaryPanel extends JPanel {
 		gameFrame.setContentPane(this);
 		this.setLayout(new GridBagLayout());
 
-		JLabel lblNumberOfRounds = new JLabel(
-				"Number of Rounds: " + gameFrame.getGame().getRoundCount());
+		JLabel lblNumberOfRounds = new JLabel("Number of Rounds: " + gameFrame.getGame().getRoundCount());
 		GridBagConstraints gbc_lblNumberOfRounds = new GridBagConstraints();
 		gbc_lblNumberOfRounds.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblNumberOfRounds.gridx = 0;
@@ -54,10 +50,8 @@ public class SetupSummaryPanel extends JPanel {
 		gbc_lblPlayers.weighty = 1;
 		this.add(lblPlayers, gbc_lblPlayers);
 
-		for (int playerNumber = 0; playerNumber < gameFrame.getGame()
-				.getPlayerCount(); playerNumber++) {
-			JLabel playerLabel = new JLabel(
-					gameFrame.getGame().getPlayerNames()[playerNumber]);
+		for (int playerNumber = 0; playerNumber < gameFrame.getGame().getPlayerCount(); playerNumber++) {
+			JLabel playerLabel = new JLabel(gameFrame.getGame().getPlayerNames()[playerNumber]);
 			GridBagConstraints gbc_playerLabel = new GridBagConstraints();
 			gbc_playerLabel.fill = GridBagConstraints.HORIZONTAL;
 			gbc_playerLabel.gridx = 0;
@@ -109,7 +103,7 @@ public class SetupSummaryPanel extends JPanel {
 
 	private void buttonNext_click() {
 		gameFrame.getGame().start();
-		
+
 		// Select leader and start game
 
 		// ---------------------------------------------------------------------//
