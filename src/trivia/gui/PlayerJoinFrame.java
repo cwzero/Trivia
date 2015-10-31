@@ -16,9 +16,10 @@ import java.awt.event.ActionEvent;
 public class PlayerJoinFrame extends JPanel {
 	private JTextField playerNameField;
 	private JButton btnBack;
-	private Game game;
-	private GameFrame gameFrame;
+	private Game game = new Game();
+	private GameFrame gameFrame = null;
 	private int currentPlayer = 0;
+	
 
 	/**
 	 * Create the frame.
