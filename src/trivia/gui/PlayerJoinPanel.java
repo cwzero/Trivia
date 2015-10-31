@@ -23,12 +23,12 @@ public class PlayerJoinPanel extends JPanel {
 	 */
 	public PlayerJoinPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
+		gameFrame.setContentPane(this);
+		gameFrame.repaint();
 		this.currentPlayer = gameFrame.getGame().getCurrentPlayer();
 
 		gameFrame.setTitle("Enter Player Name");
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		gameFrame.setContentPane(this);
-		gameFrame.repaint();
 		this.setLayout(null);
 
 		JLabel playerLabel = new JLabel("Player " + (currentPlayer + 1) + " Enter Name");

@@ -22,10 +22,11 @@ public class SetupSummaryPanel extends JPanel {
 	 */
 	public SetupSummaryPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
+		gameFrame.setContentPane(this);
+		gameFrame.repaint();
 
 		gameFrame.setTitle("Game Setup Summary");
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		gameFrame.setContentPane(this);
 		this.setLayout(new GridBagLayout());
 
 		JLabel lblNumberOfRounds = new JLabel("Number of Rounds: " + gameFrame.getGame().getRoundCount());
