@@ -82,9 +82,9 @@ public class PlayerJoinPanel extends JPanel {
 			game.setCurrentPlayer(currentPlayer);
 
 			if (currentPlayer < game.getPlayerCount()) {
-				new PlayerJoinPanel(gameFrame).setVisible(true);
+				new PlayerJoinPanel(gameFrame);
 			} else {
-				new SetupSummaryPanel(game).setVisible(true);
+				new SetupSummaryPanel(gameFrame);
 			}
 		}
 	}

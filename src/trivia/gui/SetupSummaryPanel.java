@@ -16,7 +16,6 @@ import java.io.IOException;
 
 @SuppressWarnings("serial")
 public class SetupSummaryPanel extends JPanel {
-	
 	private GameFrame gameFrame;
 	private JButton buttonNext;
 	private JButton buttonBack;
@@ -24,7 +23,7 @@ public class SetupSummaryPanel extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	public SetupSummaryPanel(Game game) {
+	public SetupSummaryPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
 
 		gameFrame.setTitle("Game Setup Summary");
@@ -33,7 +32,7 @@ public class SetupSummaryPanel extends JPanel {
 		this.setLayout(new GridBagLayout());
 
 		JLabel lblNumberOfRounds = new JLabel(
-				"Number of Rounds: " + game.getRoundCount());
+				"Number of Rounds: " + gameFrame.getGame().getRoundCount());
 		GridBagConstraints gbc_lblNumberOfRounds = new GridBagConstraints();
 		gbc_lblNumberOfRounds.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblNumberOfRounds.gridx = 0;
@@ -55,10 +54,10 @@ public class SetupSummaryPanel extends JPanel {
 		gbc_lblPlayers.weighty = 1;
 		this.add(lblPlayers, gbc_lblPlayers);
 
-		for (int playerNumber = 0; playerNumber < game
+		for (int playerNumber = 0; playerNumber < gameFrame.getGame()
 				.getPlayerCount(); playerNumber++) {
 			JLabel playerLabel = new JLabel(
-					game.getPlayerNames()[playerNumber]);
+					gameFrame.getGame().getPlayerNames()[playerNumber]);
 			GridBagConstraints gbc_playerLabel = new GridBagConstraints();
 			gbc_playerLabel.fill = GridBagConstraints.HORIZONTAL;
 			gbc_playerLabel.gridx = 0;
@@ -76,7 +75,7 @@ public class SetupSummaryPanel extends JPanel {
 		GridBagConstraints gbc_buttonNext = new GridBagConstraints();
 		gbc_buttonNext.fill = GridBagConstraints.HORIZONTAL;
 		gbc_buttonNext.gridx = 0;
-		gbc_buttonNext.gridy = 3 + game.getPlayerCount();
+		gbc_buttonNext.gridy = 3 + gameFrame.getGame().getPlayerCount();
 		gbc_buttonNext.gridheight = 1;
 		gbc_buttonNext.gridwidth = 1;
 		gbc_buttonNext.weightx = 1;
@@ -86,7 +85,7 @@ public class SetupSummaryPanel extends JPanel {
 		GridBagConstraints gbc_buttonBack = new GridBagConstraints();
 		gbc_buttonBack.fill = GridBagConstraints.HORIZONTAL;
 		gbc_buttonBack.gridx = 1;
-		gbc_buttonBack.gridy = 3 + game.getPlayerCount();
+		gbc_buttonBack.gridy = 3 + gameFrame.getGame().getPlayerCount();
 		gbc_buttonBack.gridheight = 1;
 		gbc_buttonBack.gridwidth = 1;
 		gbc_buttonBack.weightx = 1;
@@ -109,9 +108,7 @@ public class SetupSummaryPanel extends JPanel {
 	}
 
 	private void buttonNext_click() {
-		this.dispose();
-
-		game.start();
+		gameFrame.getGame().start();
 		
 		// Select leader and start game
 
@@ -119,7 +116,7 @@ public class SetupSummaryPanel extends JPanel {
 		// added by Brian to test question select frame
 
 		try {
-			new QuestionSelectFrame(game).setVisible(true);
+			new QuestionSelectFrame(gameFrame);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -128,8 +125,7 @@ public class SetupSummaryPanel extends JPanel {
 	}
 
 	private void buttonBack_click() {
-		this.dispose();
 		// Eventually this should go back to edit setup
-		new MainMenuFrame().setVisible(true);
+		new MainMenuFrame(gameFrame);
 	}
 }

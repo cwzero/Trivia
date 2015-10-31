@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class QuestionSelectFrame extends JPanel {
+public class QuestionSelectPanel extends JPanel {
 
 	private GameFrame gameFrame;
 	private String[] questions = new String[3];
@@ -25,7 +25,7 @@ public class QuestionSelectFrame extends JPanel {
 	 * 
 	 * @throws IOException
 	 */
-	public QuestionSelectFrame(GameFrame gameFrame) throws IOException {
+	public QuestionSelectPanel(GameFrame gameFrame) throws IOException {
 		this.gameFrame = gameFrame;
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		gameFrame.setContentPane(this);
@@ -44,7 +44,7 @@ public class QuestionSelectFrame extends JPanel {
 		btnQuestion1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				QuestionSelectFrame.this.selectQuestion(0);
+				QuestionSelectPanel.this.selectQuestion(0);
 			}
 		});
 
@@ -55,7 +55,7 @@ public class QuestionSelectFrame extends JPanel {
 		btnQuestion2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				QuestionSelectFrame.this.selectQuestion(1);
+				QuestionSelectPanel.this.selectQuestion(1);
 			}
 		});
 		btnQuestion2.setBounds(115, 142, 369, 31);
@@ -65,7 +65,7 @@ public class QuestionSelectFrame extends JPanel {
 		btnQuestion3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				QuestionSelectFrame.this.selectQuestion(2);
+				QuestionSelectPanel.this.selectQuestion(2);
 			}
 		});
 		btnQuestion3.setBounds(115, 192, 369, 31);
