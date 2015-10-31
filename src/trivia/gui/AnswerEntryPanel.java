@@ -92,6 +92,7 @@ public class AnswerEntryPanel extends JPanel {
 		gbc_answerField.gridheight = 1;
 		gbc_answerField.gridwidth = 1;
 		add(answerField, gbc_answerField);
+		answerField.requestFocus();
 		answerField.setColumns(10);
 
 		answerField.addActionListener(new ActionListener() {

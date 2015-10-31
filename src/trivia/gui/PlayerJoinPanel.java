@@ -46,6 +46,7 @@ public class PlayerJoinPanel extends JPanel {
 		playerNameField.setBounds(284, 134, 158, 20);
 		this.add(playerNameField);
 		playerNameField.setColumns(10);
+		playerNameField.requestFocus();
 
 		JButton btnContinue = new JButton("Continue");
 		btnContinue.addActionListener(new ActionListener() {
