@@ -19,6 +19,7 @@ public class MainMenuPanel extends JPanel {
 
 	public MainMenuPanel() {
 		this(new GameFrame());
+		gameFrame.setVisible(true);
 	}
 
 	/**
