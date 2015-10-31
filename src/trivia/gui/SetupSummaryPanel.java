@@ -15,27 +15,22 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 @SuppressWarnings("serial")
-public class SetupSummaryFrame extends JFrame {
-
-	private JPanel contentPane;
-	private Game game;
-
+public class SetupSummaryPanel extends JPanel {
+	
+	private GameFrame gameFrame;
 	private JButton buttonNext;
 	private JButton buttonBack;
 
 	/**
 	 * Create the frame.
 	 */
-	public SetupSummaryFrame(Game game) {
-		this.game = game;
+	public SetupSummaryPanel(Game game) {
+		this.gameFrame = gameFrame;
 
-		setTitle("Game Setup Summary");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 400);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new GridBagLayout());
+		gameFrame.setTitle("Game Setup Summary");
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		gameFrame.setContentPane(this);
+		this.setLayout(new GridBagLayout());
 
 		JLabel lblNumberOfRounds = new JLabel(
 				"Number of Rounds: " + game.getRoundCount());
@@ -47,7 +42,7 @@ public class SetupSummaryFrame extends JFrame {
 		gbc_lblNumberOfRounds.gridwidth = 2;
 		gbc_lblNumberOfRounds.weightx = 1;
 		gbc_lblNumberOfRounds.weighty = 1;
-		contentPane.add(lblNumberOfRounds, gbc_lblNumberOfRounds);
+		this.add(lblNumberOfRounds, gbc_lblNumberOfRounds);
 
 		JLabel lblPlayers = new JLabel("Players:");
 		GridBagConstraints gbc_lblPlayers = new GridBagConstraints();
@@ -58,7 +53,7 @@ public class SetupSummaryFrame extends JFrame {
 		gbc_lblPlayers.gridwidth = 2;
 		gbc_lblPlayers.weightx = 1;
 		gbc_lblPlayers.weighty = 1;
-		contentPane.add(lblPlayers, gbc_lblPlayers);
+		this.add(lblPlayers, gbc_lblPlayers);
 
 		for (int playerNumber = 0; playerNumber < game
 				.getPlayerCount(); playerNumber++) {
@@ -72,7 +67,7 @@ public class SetupSummaryFrame extends JFrame {
 			gbc_playerLabel.gridwidth = 2;
 			gbc_playerLabel.weightx = 1;
 			gbc_playerLabel.weighty = 1;
-			contentPane.add(playerLabel, gbc_playerLabel);
+			this.add(playerLabel, gbc_playerLabel);
 		}
 
 		buttonNext = new JButton("Start Game");
@@ -86,7 +81,7 @@ public class SetupSummaryFrame extends JFrame {
 		gbc_buttonNext.gridwidth = 1;
 		gbc_buttonNext.weightx = 1;
 		gbc_buttonNext.weighty = 1;
-		contentPane.add(buttonNext, gbc_buttonNext);
+		this.add(buttonNext, gbc_buttonNext);
 
 		GridBagConstraints gbc_buttonBack = new GridBagConstraints();
 		gbc_buttonBack.fill = GridBagConstraints.HORIZONTAL;
@@ -96,19 +91,19 @@ public class SetupSummaryFrame extends JFrame {
 		gbc_buttonBack.gridwidth = 1;
 		gbc_buttonBack.weightx = 1;
 		gbc_buttonBack.weighty = 1;
-		contentPane.add(buttonBack, gbc_buttonBack);
+		this.add(buttonBack, gbc_buttonBack);
 
 		buttonNext.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SetupSummaryFrame.this.buttonNext_click();
+				SetupSummaryPanel.this.buttonNext_click();
 			}
 		});
 
 		buttonBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SetupSummaryFrame.this.buttonBack_click();
+				SetupSummaryPanel.this.buttonBack_click();
 			}
 		});
 	}
