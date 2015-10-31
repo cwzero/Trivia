@@ -1,11 +1,10 @@
 package trivia.gui;
 import java.io.IOException;
 
-import javax.swing.JFrame;
+
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import trivia.Game;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -13,10 +12,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class QuestionSelectFrame extends JFrame {
+public class QuestionSelectFrame extends JPanel {
 
-	private JPanel contentPane;
-	private Game game;
+	private GameFrame gameFrame;
 	private String[] questions = new String[3];
 	private JButton btnQuestion1;
 	private JButton btnQuestion2;
@@ -27,18 +25,15 @@ public class QuestionSelectFrame extends JFrame {
 	 * 
 	 * @throws IOException
 	 */
-	public QuestionSelectFrame(Game game) throws IOException {
-		this.game = game;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 400);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+	public QuestionSelectFrame(GameFrame gameFrame) throws IOException {
+		this.gameFrame = gameFrame;
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		gameFrame.setContentPane(this);
+		this.setLayout(null);
 
 		// called the new method openfile
 		// returns an array into questions
-		questions = game.getQuestionPool(3);
+		questions = gameFrame.getGame().getQuestionPool(3);
 
 		// switched button labels to items in the questions array
 
@@ -54,7 +49,7 @@ public class QuestionSelectFrame extends JFrame {
 		});
 
 		btnQuestion1.setBounds(115, 92, 369, 31);
-		contentPane.add(btnQuestion1);
+		this.add(btnQuestion1);
 
 		btnQuestion2 = new JButton(questions[1]);
 		btnQuestion2.addActionListener(new ActionListener() {
@@ -64,7 +59,7 @@ public class QuestionSelectFrame extends JFrame {
 			}
 		});
 		btnQuestion2.setBounds(115, 142, 369, 31);
-		contentPane.add(btnQuestion2);
+		this.add(btnQuestion2);
 
 		btnQuestion3 = new JButton(questions[2]);
 		btnQuestion3.addActionListener(new ActionListener() {
@@ -74,22 +69,19 @@ public class QuestionSelectFrame extends JFrame {
 			}
 		});
 		btnQuestion3.setBounds(115, 192, 369, 31);
-		contentPane.add(btnQuestion3);
+		this.add(btnQuestion3);
 
 		JLabel lblPlayerPleaseSelect = new JLabel(
-				game.getPlayerNames()[game.getCurrentLeader()]
+				gameFrame.getGame().getPlayerNames()[gameFrame.getGame().getCurrentLeader()]
 						+ ", please select question:");
 		lblPlayerPleaseSelect.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblPlayerPleaseSelect.setBounds(17, 24, 344, 49);
-		contentPane.add(lblPlayerPleaseSelect);
+		this.add(lblPlayerPleaseSelect);
 	}
 
 	public void selectQuestion(int question) {
-		game.setCurrentPlayer(0);
-		game.setCurrentQuestion(questions[question]);
-		this.dispose();
-		GameFrame gameFrame = new GameFrame(game);
+		gameFrame.getGame().setCurrentPlayer(0);
+		gameFrame.getGame().setCurrentQuestion(questions[question]);
 		new AnswerEntryPanel(gameFrame);
-		gameFrame.setVisible(true);
 	}
 }
