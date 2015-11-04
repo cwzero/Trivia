@@ -24,6 +24,8 @@ public class QuestionSelectPanel extends JPanel {
 	 * 
 	 * @throws IOException
 	 */
+
+	
 	public QuestionSelectPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
 		gameFrame.setTitle("Select a question");
@@ -40,36 +42,43 @@ public class QuestionSelectPanel extends JPanel {
 
 		// Rather than using separate buttons for each question, maybe a label
 		// and radio button, with one button to move on
+		
+		//11/4 changed button size from 31 to 40
+		//		added set font to size 12 to make sure question fits on buttons
+		
 
 		btnQuestion1 = new JButton(questions[0]);
+		btnQuestion1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnQuestion1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				QuestionSelectPanel.this.selectQuestion(0);
 			}
 		});
-
-		btnQuestion1.setBounds(115, 92, 369, 31);
+			
+		btnQuestion1.setBounds(115, 92, 369, 40);
 		this.add(btnQuestion1);
 
 		btnQuestion2 = new JButton(questions[1]);
+		btnQuestion2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnQuestion2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				QuestionSelectPanel.this.selectQuestion(1);
 			}
 		});
-		btnQuestion2.setBounds(115, 142, 369, 31);
+		btnQuestion2.setBounds(115, 142, 369, 40);
 		this.add(btnQuestion2);
 
 		btnQuestion3 = new JButton(questions[2]);
+		btnQuestion3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnQuestion3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				QuestionSelectPanel.this.selectQuestion(2);
 			}
 		});
-		btnQuestion3.setBounds(115, 192, 369, 31);
+		btnQuestion3.setBounds(115, 192, 369, 40);
 		this.add(btnQuestion3);
 
 		JLabel lblPlayerPleaseSelect = new JLabel(
