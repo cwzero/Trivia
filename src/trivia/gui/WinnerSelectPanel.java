@@ -15,13 +15,15 @@ import java.util.Random;
 import java.awt.GridLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.SwingConstants;
+
+import java.awt.Button;
 import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class WinnerSelectPanel extends JPanel {
 	private GameFrame gameFrame;
 	protected int[] playerScore;
-	protected JRadioButton[] buttons = null;
+	protected JButton[] buttons = null;
 	protected int[] playerIndex;
 
 	/**
@@ -33,14 +35,6 @@ public class WinnerSelectPanel extends JPanel {
 		setBounds(100, 100, 600, 400);
 		gameFrame.setContentPane(this);
 		gameFrame.repaint();
-
-		JButton btnSelectWinner = new JButton("Select Winner");
-		btnSelectWinner.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				WinnerSelectPanel.this.btnSelectWinner_click();
-			}
-		});
 		this.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JLabel lblNewLabel = new JLabel("Select one answer for the question:");
@@ -53,29 +47,19 @@ public class WinnerSelectPanel extends JPanel {
 		this.add(lblSelectedQuestion);
 		lblSelectedQuestion.setText(gameFrame.getGame().getCurrentQuestion());
 
-		JRadioButton rdotbnAnswer1 = new JRadioButton("New radio button");
-		rdotbnAnswer1.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(rdotbnAnswer1);
-
-		JRadioButton rdobtnAnswer2 = new JRadioButton("New radio button");
-		rdobtnAnswer2.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(rdobtnAnswer2);
-
-		JRadioButton rdobtnAnswer3 = new JRadioButton("New radio button");
-		rdobtnAnswer3.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(rdobtnAnswer3);
-
-		JRadioButton rdobtnAnswer4 = new JRadioButton("New radio button");
-		rdobtnAnswer4.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(rdobtnAnswer4);
-		this.add(btnSelectWinner);
+		
 
 		String[] answers = gameFrame.getGame().getPlayerAnswers();
 		playerIndex = new int[gameFrame.getGame().getPlayerCount()];
 		int answerIndex = 0;
 		int buttonIndex = 0;
 
-		buttons = new JRadioButton[] { rdotbnAnswer1, rdobtnAnswer2, rdobtnAnswer3, rdobtnAnswer4 };
+		JButton rdotbnAnswer1 = new JButton("New radio button");
+		JButton rdobtnAnswer2 = new JButton("New radio button");
+		JButton rdobtnAnswer3 = new JButton("New radio button");
+		JButton rdobtnAnswer4 = new JButton("New radio button");
+		
+		buttons = new JButton[] { rdotbnAnswer1, rdobtnAnswer2, rdobtnAnswer3, rdobtnAnswer4 };
 
 		int[] playerOrder = new int[gameFrame.getGame().getPlayerCount()];
 		List<Integer> temp = new ArrayList<Integer>();
@@ -94,12 +78,44 @@ public class WinnerSelectPanel extends JPanel {
 			}
 			answerIndex++;
 		}
+		
+		
+		rdotbnAnswer1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				selectWinner(playerIndex[0]);
+			}
+		});
+		rdotbnAnswer1.setHorizontalAlignment(SwingConstants.CENTER);
+		this.add(rdotbnAnswer1);
 
-		ButtonGroup buttonGroup = new ButtonGroup();
-		buttonGroup.add(rdotbnAnswer1);
-		buttonGroup.add(rdobtnAnswer2);
-		buttonGroup.add(rdobtnAnswer3);
-		buttonGroup.add(rdobtnAnswer4);
+		
+		rdobtnAnswer2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				selectWinner(playerIndex[1]);
+			}
+		});
+		rdobtnAnswer2.setHorizontalAlignment(SwingConstants.CENTER);
+		this.add(rdobtnAnswer2);
+
+		
+		rdobtnAnswer3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				selectWinner(playerIndex[2]);
+			}
+		});
+		rdobtnAnswer3.setHorizontalAlignment(SwingConstants.CENTER);
+		this.add(rdobtnAnswer3);
+
+		
+		rdobtnAnswer4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				selectWinner(playerIndex[3]);
+			}
+		});
+		rdobtnAnswer4.setHorizontalAlignment(SwingConstants.CENTER);
+		this.add(rdobtnAnswer4);
+
+		
 
 		if (gameFrame.getGame().getPlayerCount() <= 3) {
 			rdobtnAnswer3.setVisible(false);
@@ -118,23 +134,14 @@ public class WinnerSelectPanel extends JPanel {
 			playerNum++;
 		}
 	}
+	
+	
 
-	public void btnSelectWinner_click() {
-		int winner = -1;
-		for (int buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++) {
-			if (buttons[buttonIndex].isSelected()) {
-				winner = playerIndex[buttonIndex];
-			}
-		}
+	private void selectWinner(int winner) {
 		gameFrame.getGame().setRoundWinner(winner);
-
-		if (winner == -1) {
-			JOptionPane.showMessageDialog(null, "Select one answer");
-		} else {
-			gameFrame.getGame().setPlayerScore(winner, gameFrame.getGame().getPlayerScore()[winner] + 1);
-
-			new GameStatusPanel(gameFrame);
-		}
+		gameFrame.getGame().setPlayerScore(winner, gameFrame.getGame().getPlayerScore()[winner] +1);
+		new GameStatusPanel(gameFrame);
+		
 	}
 
 }
