@@ -54,12 +54,12 @@ public class WinnerSelectPanel extends JPanel {
 		int answerIndex = 0;
 		int buttonIndex = 0;
 
-		JButton rdotbnAnswer1 = new JButton("New radio button");
-		JButton rdobtnAnswer2 = new JButton("New radio button");
-		JButton rdobtnAnswer3 = new JButton("New radio button");
-		JButton rdobtnAnswer4 = new JButton("New radio button");
+		JButton btnAnswer1 = new JButton("New radio button");
+		JButton btnAnswer2 = new JButton("New radio button");
+		JButton btnAnswer3 = new JButton("New radio button");
+		JButton btnAnswer4 = new JButton("New radio button");
 		
-		buttons = new JButton[] { rdotbnAnswer1, rdobtnAnswer2, rdobtnAnswer3, rdobtnAnswer4 };
+		buttons = new JButton[] { btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4 };
 
 		int[] playerOrder = new int[gameFrame.getGame().getPlayerCount()];
 		List<Integer> temp = new ArrayList<Integer>();
@@ -80,49 +80,49 @@ public class WinnerSelectPanel extends JPanel {
 		}
 		
 		
-		rdotbnAnswer1.addActionListener(new ActionListener() {
+		btnAnswer1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectWinner(playerIndex[0]);
 			}
 		});
-		rdotbnAnswer1.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(rdotbnAnswer1);
+		btnAnswer1.setHorizontalAlignment(SwingConstants.CENTER);
+		this.add(btnAnswer1);
 
 		
-		rdobtnAnswer2.addActionListener(new ActionListener() {
+		btnAnswer2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectWinner(playerIndex[1]);
 			}
 		});
-		rdobtnAnswer2.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(rdobtnAnswer2);
+		btnAnswer2.setHorizontalAlignment(SwingConstants.CENTER);
+		this.add(btnAnswer2);
 
 		
-		rdobtnAnswer3.addActionListener(new ActionListener() {
+		btnAnswer3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectWinner(playerIndex[2]);
 			}
 		});
-		rdobtnAnswer3.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(rdobtnAnswer3);
+		btnAnswer3.setHorizontalAlignment(SwingConstants.CENTER);
+		this.add(btnAnswer3);
 
 		
-		rdobtnAnswer4.addActionListener(new ActionListener() {
+		btnAnswer4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectWinner(playerIndex[3]);
 			}
 		});
-		rdobtnAnswer4.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(rdobtnAnswer4);
+		btnAnswer4.setHorizontalAlignment(SwingConstants.CENTER);
+		this.add(btnAnswer4);
 
 		
 
 		if (gameFrame.getGame().getPlayerCount() <= 3) {
-			rdobtnAnswer3.setVisible(false);
+			btnAnswer3.setVisible(false);
 
 		}
 		if (gameFrame.getGame().getPlayerCount() <= 4) {
-			rdobtnAnswer4.setVisible(false);
+			btnAnswer4.setVisible(false);
 		}
 	}
 
