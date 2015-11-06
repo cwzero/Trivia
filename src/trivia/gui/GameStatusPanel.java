@@ -2,6 +2,9 @@ package trivia.gui;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import trivia.Game;
+
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -99,19 +102,18 @@ public class GameStatusPanel extends JPanel {
 		gbc_btnStartNewGame.gridy = 4;
 		this.add(btnStartNewGame, gbc_btnStartNewGame);
 		if (gameFrame.getGame().isOver()) {
-			lblGameStatus.setText(gameFrame.getGame().getPlayerNames()[gameFrame.getGame().getGameWinner()]
-					+ " has won the gameFrame.getGame().");
+			lblGameStatus.setText(
+					gameFrame.getGame().getPlayerNames()[gameFrame.getGame().getGameWinner()] + " has won the game.");
 		} else {
 			lblGameStatus.setText(
 					gameFrame.getGame().getPlayerNames()[gameFrame.getGame().getRoundWinner()] + " has won the round.");
-		}
-		if (!gameFrame.getGame().isOver()) {
 			btnStartNewGame.setText("Next round");
 		}
 	}
 
 	private void btnStartNewGame_click() {
 		if (gameFrame.getGame().isOver()) {
+			gameFrame.setGame(new Game());
 			new GameSetupPanel(gameFrame);
 		} else {
 			gameFrame.getGame().nextRound();
