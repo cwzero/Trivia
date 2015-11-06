@@ -1,31 +1,24 @@
 package trivia.gui;
 
-import javax.swing.JOptionPane;
-
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.awt.GridLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.SwingConstants;
 
-import java.awt.Button;
-import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class WinnerSelectPanel extends JPanel {
 	private GameFrame gameFrame;
 	protected int[] playerScore;
-	protected JButton[] buttons = null;
+	protected JButton[] buttons = new JButton[4];
 	protected int[] playerIndex;
-	int[] questionOrder = new int[5];
 
 	/**
 	 * Create the frame.
@@ -48,19 +41,10 @@ public class WinnerSelectPanel extends JPanel {
 		this.add(lblSelectedQuestion);
 		lblSelectedQuestion.setText(gameFrame.getGame().getCurrentQuestion());
 
-		
-
 		String[] answers = gameFrame.getGame().getPlayerAnswers();
 		playerIndex = new int[gameFrame.getGame().getPlayerCount()];
 		int answerIndex = 0;
 		int buttonIndex = 0;
-
-		JButton btnAnswer1 = new JButton("New radio button");
-		JButton btnAnswer2 = new JButton("New radio button");
-		JButton btnAnswer3 = new JButton("New radio button");
-		JButton btnAnswer4 = new JButton("New radio button");
-		
-		buttons = new JButton[] { btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4 };
 
 		int[] playerOrder = new int[gameFrame.getGame().getPlayerCount()];
 		List<Integer> temp = new ArrayList<Integer>();
@@ -68,91 +52,38 @@ public class WinnerSelectPanel extends JPanel {
 			temp.add(i);
 		}
 
-		generateRandom(playerOrder, temp);
+		Random ran = new Random();
+		int playerNum = 0;
+		while (!temp.isEmpty()) {
+			playerOrder[playerNum] = temp.remove(ran.nextInt(temp.size()));
+			playerNum++;
+		}
 
 		while (answerIndex < answers.length) {
 			String currentAnswer = answers[playerOrder[answerIndex]];
 			if (currentAnswer != null && !currentAnswer.equals("")) {
-				buttons[buttonIndex].setText(currentAnswer);
 				buttonIndex++;
 				playerIndex[buttonIndex] = playerOrder[answerIndex];
+				buttons[buttonIndex] = new JButton(currentAnswer);
+				final int bIndex = buttonIndex;
+				buttons[buttonIndex].addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						WinnerSelectPanel.this.selectWinner(playerIndex[bIndex]);
+					}
+				});
+				buttons[buttonIndex].setHorizontalAlignment(SwingConstants.CENTER);
+				this.add(buttons[buttonIndex]);
 			}
 			answerIndex++;
 		}
-		
-		
-		btnAnswer1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				selectWinner(playerIndex[questionOrder[0]]);
-			}
-		});
-		btnAnswer1.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(btnAnswer1);
-
-		
-		btnAnswer2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				selectWinner(playerIndex[questionOrder[1]]);
-			}
-		});
-		btnAnswer2.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(btnAnswer2);
-
-		
-		btnAnswer3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				selectWinner(playerIndex[questionOrder[2]]);
-			}
-		});
-		btnAnswer3.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(btnAnswer3);
-
-		
-		btnAnswer4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				selectWinner(playerIndex[questionOrder[3]]);
-			}
-		});
-		btnAnswer4.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(btnAnswer4);
-
-		
-
-		if (gameFrame.getGame().getPlayerCount() <= 3) {
-			btnAnswer3.setVisible(false);
-
-		}
-		if (gameFrame.getGame().getPlayerCount() <= 4) {
-			btnAnswer4.setVisible(false);
-		}
 	}
-	
-	
-
-	private void generateRandom(int[] playerOrder, List<Integer> temp) {
-		Random ran = new Random();
-		int playerNum = 0;
-		int i = 0;
-		while (!temp.isEmpty()) {
-			playerOrder[playerNum] = temp.remove(ran.nextInt(temp.size()));
-			questionOrder[i] = playerNum;
-			playerNum++;
-			i++;
-			
-		}
-	}
-
 
 	private void selectWinner(int winner) {
-		for (int buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++) {
-			if (buttons[buttonIndex].isSelected()) {
-				winner = playerIndex[buttonIndex];
-			}
-		}
 		gameFrame.getGame().setRoundWinner(winner);
-		gameFrame.getGame().setPlayerScore(winner, gameFrame.getGame().getPlayerScore()[winner] +1);
+		gameFrame.getGame().setPlayerScore(winner, gameFrame.getGame().getPlayerScore()[winner] + 1);
 		new GameStatusPanel(gameFrame);
-		
+
 	}
 
 }
