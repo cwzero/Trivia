@@ -62,7 +62,7 @@ public class WinnerSelectPanel extends JPanel {
 		while (answerIndex < answers.length) {
 			String currentAnswer = answers[playerOrder[answerIndex]];
 			if (currentAnswer != null && !currentAnswer.equals("")) {
-				buttonIndex++;
+				
 				playerIndex[buttonIndex] = playerOrder[answerIndex];
 				buttons[buttonIndex] = new JButton(currentAnswer);
 				final int bIndex = buttonIndex;
@@ -74,6 +74,7 @@ public class WinnerSelectPanel extends JPanel {
 				});
 				buttons[buttonIndex].setHorizontalAlignment(SwingConstants.CENTER);
 				this.add(buttons[buttonIndex]);
+				buttonIndex++;
 			}
 			answerIndex++;
 		}
