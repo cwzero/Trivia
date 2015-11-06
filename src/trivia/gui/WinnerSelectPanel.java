@@ -25,6 +25,7 @@ public class WinnerSelectPanel extends JPanel {
 	protected int[] playerScore;
 	protected JButton[] buttons = null;
 	protected int[] playerIndex;
+	int[] questionOrder = new int[5];
 
 	/**
 	 * Create the frame.
@@ -82,7 +83,7 @@ public class WinnerSelectPanel extends JPanel {
 		
 		btnAnswer1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				selectWinner(playerIndex[0]);
+				selectWinner(playerIndex[questionOrder[0]]);
 			}
 		});
 		btnAnswer1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -91,7 +92,7 @@ public class WinnerSelectPanel extends JPanel {
 		
 		btnAnswer2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				selectWinner(playerIndex[1]);
+				selectWinner(playerIndex[questionOrder[1]]);
 			}
 		});
 		btnAnswer2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -100,7 +101,7 @@ public class WinnerSelectPanel extends JPanel {
 		
 		btnAnswer3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				selectWinner(playerIndex[2]);
+				selectWinner(playerIndex[questionOrder[2]]);
 			}
 		});
 		btnAnswer3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -109,7 +110,7 @@ public class WinnerSelectPanel extends JPanel {
 		
 		btnAnswer4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				selectWinner(playerIndex[3]);
+				selectWinner(playerIndex[questionOrder[3]]);
 			}
 		});
 		btnAnswer4.setHorizontalAlignment(SwingConstants.CENTER);
@@ -125,19 +126,29 @@ public class WinnerSelectPanel extends JPanel {
 			btnAnswer4.setVisible(false);
 		}
 	}
+	
+	
 
 	private void generateRandom(int[] playerOrder, List<Integer> temp) {
 		Random ran = new Random();
 		int playerNum = 0;
+		int i = 0;
 		while (!temp.isEmpty()) {
 			playerOrder[playerNum] = temp.remove(ran.nextInt(temp.size()));
+			questionOrder[i] = playerNum;
 			playerNum++;
+			i++;
+			
 		}
 	}
-	
-	
+
 
 	private void selectWinner(int winner) {
+		for (int buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++) {
+			if (buttons[buttonIndex].isSelected()) {
+				winner = playerIndex[buttonIndex];
+			}
+		}
 		gameFrame.getGame().setRoundWinner(winner);
 		gameFrame.getGame().setPlayerScore(winner, gameFrame.getGame().getPlayerScore()[winner] +1);
 		new GameStatusPanel(gameFrame);
