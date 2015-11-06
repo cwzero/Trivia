@@ -62,7 +62,6 @@ public class WinnerSelectPanel extends JPanel {
 		while (answerIndex < answers.length) {
 			String currentAnswer = answers[playerOrder[answerIndex]];
 			if (currentAnswer != null && !currentAnswer.equals("")) {
-				
 				playerIndex[buttonIndex] = playerOrder[answerIndex];
 				buttons[buttonIndex] = new JButton(currentAnswer);
 				final int bIndex = buttonIndex;
@@ -84,7 +83,6 @@ public class WinnerSelectPanel extends JPanel {
 		gameFrame.getGame().setRoundWinner(winner);
 		gameFrame.getGame().setPlayerScore(winner, gameFrame.getGame().getPlayerScore()[winner] + 1);
 		new GameStatusPanel(gameFrame);
-
 	}
 
 }

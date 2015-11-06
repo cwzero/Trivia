@@ -48,10 +48,6 @@ public class AnswerEntryPanel extends JPanel {
 
 		setBorder(new EmptyBorder(25, 25, 25, 25));
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		// gbl_columnWidths = new int[] { 265, 0 };
-		// gbl_rowHeights = new int[] { 14, 14, 20, 23, 0 };
-		// gbl_columnWeights = new double[] { 0.0 };
-		// gbl_rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0 };
 		setLayout(gbl_contentPane);
 
 		JLabel currentQuestionLabel = new JLabel("Question");
@@ -83,7 +79,7 @@ public class AnswerEntryPanel extends JPanel {
 		add(playerLabel, gbc_playerLabel);
 
 		answerField = new JTextField();
-		answerField.setHorizontalAlignment(SwingConstants.CENTER);
+		answerField.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_answerField = new GridBagConstraints();
 		gbc_answerField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_answerField.insets = new Insets(0, 0, 5, 0);
