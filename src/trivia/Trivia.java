@@ -7,6 +7,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import trivia.gui.MainMenuPanel;
 
+// Version 1.0.0 //
 public class Trivia {
 	public static void main(String[] args) {
 		try {
