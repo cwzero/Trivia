@@ -3,7 +3,7 @@ package trivia.gui;
 import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public abstract class CountdownLabel extends JLabel {
+public class CountdownLabel extends JLabel {
 	public CountdownLabel(int length) {
 		this.setText(length + "");
 		Thread countdownThread = new Thread() {
