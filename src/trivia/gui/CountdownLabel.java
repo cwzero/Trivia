@@ -14,6 +14,7 @@ public class CountdownLabel extends JLabel {
 			public void run() {
 				for (int a = length; a >= 0; a--) {
 					CountdownLabel.this.setText(a + "");
+					event(a);
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
@@ -26,5 +27,7 @@ public class CountdownLabel extends JLabel {
 		countdownThread.start();
 	}
 	
-	public void whenComplete() {}
+	public void event(int time) {
+		
+	}
 }
