@@ -30,6 +30,14 @@ public class WinnerSelectPanel extends JPanel {
 		gameFrame.setContentPane(this);
 		gameFrame.repaint();
 		this.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		CountdownLabel lblCountdown = new CountdownLabel(20);
+		lblCountdown.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCountdown.setHorizontalAlignment(SwingConstants.CENTER);
+		add(lblCountdown);
+		
+		
+		
 
 		JLabel lblNewLabel = new JLabel("Select one answer for the question:");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
