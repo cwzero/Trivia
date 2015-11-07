@@ -112,7 +112,7 @@ public class QuestionSelectPanel extends JPanel {
 				btnQuestion2.addMouseListener(new java.awt.event.MouseAdapter() {
 				    public void mouseEntered(java.awt.event.MouseEvent evt) {
 				    	btnQuestion2.setBackground(Color.YELLOW);
-				    	//btnQuestion1.setForeground(Color.WHITE);
+				    	btnQuestion1.setForeground(Color.WHITE);
 				    	 
 				    	try {
 							Game.playSound(file, 100);

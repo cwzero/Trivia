@@ -1,6 +1,12 @@
 package trivia.gui;
 
+
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+ import javax.sound.sampled.Clip;
 import javax.swing.JLabel;
+
 import javax.swing.JPanel;
 
 import java.awt.Font;
@@ -22,7 +28,6 @@ public class MainMenuPanel extends JPanel {
 		this(new GameFrame());
 		gameFrame.setVisible(true);
 	}
-
 	/**
 	 * Create the application.
 	 */
@@ -31,6 +36,13 @@ public class MainMenuPanel extends JPanel {
 		gameFrame.setContentPane(this);
 		gameFrame.repaint();
 		gameFrame.setTitle("Main Menu");
+		
+		
+
+	
+		
+		
+		
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 1.0 };
@@ -92,6 +104,12 @@ public class MainMenuPanel extends JPanel {
 		gameFrame.setVisible(true);
 	}
 
+	
+	
+	
+	
+
+	
 	public void newGameButtonClick() {
 		// Here we will close the main menu, then show a new game setup frame
 		new GameSetupPanel(gameFrame);

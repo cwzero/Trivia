@@ -241,7 +241,7 @@ public class Game {
 		return winner;
 	}
 
-	public void playSound(File soundFile, long length) throws IOException {
+	public static void playSound(File soundFile, long length) throws IOException {
 		InputStream is = new FileInputStream(soundFile);
 		AudioStream as = new AudioStream(is);
 		AudioData data = as.getData();
