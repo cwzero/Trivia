@@ -4,6 +4,10 @@ import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class CountdownLabel extends JLabel {
+	public CountdownLabel() {
+		
+	}
+	
 	public CountdownLabel(int length) {
 		this.setText(length + "");
 		Thread countdownThread = new Thread() {
