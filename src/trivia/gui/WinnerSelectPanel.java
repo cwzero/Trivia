@@ -1,5 +1,6 @@
 package trivia.gui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,7 @@ public class WinnerSelectPanel extends JPanel {
 	protected int[] playerScore;
 	protected JButton[] buttons = new JButton[4];
 	protected int[] playerIndex;
+	protected int increment = 20;
 
 	/**
 	 * Create the frame.
@@ -31,11 +33,49 @@ public class WinnerSelectPanel extends JPanel {
 		gameFrame.repaint();
 		this.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		CountdownLabel lblCountdown = new CountdownLabel(20);
+		CountdownLabel lblCountdown = new CountdownLabel(15)
+				{
+			
+					@Override
+					public void event(int time) {
+						
+						if (time == 5)
+						{
+							this.setForeground(Color.red);
+							this.setFont(new Font("Tahoma", Font.BOLD, 20));
+						}
+						if (time == 4)
+						{
+							this.setForeground(Color.red);
+							this.setFont(new Font("Tahoma", Font.BOLD, 30));
+						}
+						if (time == 3)
+						{
+							this.setForeground(Color.red);
+							this.setFont(new Font("Tahoma", Font.BOLD, 40));
+						}
+						if (time == 2)
+						{
+							this.setForeground(Color.red);
+							this.setFont(new Font("Tahoma", Font.BOLD, 50));
+						}
+						if (time == 1)
+						{
+							this.setForeground(Color.red);
+							this.setFont(new Font("Tahoma", Font.BOLD, 60));
+						}
+						if (time == 0)
+						{
+							this.setForeground(Color.red);
+							this.setFont(new Font("Tahoma", Font.BOLD, 70));
+						}
+					}
+			
+				};
+				
+		add(lblCountdown);
 		lblCountdown.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblCountdown.setHorizontalAlignment(SwingConstants.CENTER);
-		add(lblCountdown);
-		
 		
 		
 
