@@ -34,48 +34,60 @@ public class WinnerSelectPanel extends JPanel {
 		this.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		CountdownLabel lblCountdown = new CountdownLabel(15)
-				{
-			
-					@Override
-					public void event(int time) {
-						
-						if (time == 5)
-						{
-							this.setForeground(Color.red);
-							this.setFont(new Font("Tahoma", Font.BOLD, 20));
-						}
-						if (time == 4)
-						{
-							this.setForeground(Color.red);
-							this.setFont(new Font("Tahoma", Font.BOLD, 30));
-						}
-						if (time == 3)
-						{
-							this.setForeground(Color.red);
-							this.setFont(new Font("Tahoma", Font.BOLD, 40));
-						}
-						if (time == 2)
-						{
-							this.setForeground(Color.red);
-							this.setFont(new Font("Tahoma", Font.BOLD, 50));
-						}
-						if (time == 1)
-						{
-							this.setForeground(Color.red);
-							this.setFont(new Font("Tahoma", Font.BOLD, 60));
-						}
-						if (time == 0)
-						{
-							this.setForeground(Color.red);
-							this.setFont(new Font("Tahoma", Font.BOLD, 70));
-						}
-					}
-			
-				};
+		{
+	
+			@Override
+			public void event(int time) {
 				
-		add(lblCountdown);
-		lblCountdown.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCountdown.setHorizontalAlignment(SwingConstants.CENTER);
+				if (time == 5)
+				{
+					this.setForeground(Color.red);
+					this.setFont(new Font("Tahoma", Font.BOLD, 20));
+				}
+				if (time == 4)
+				{
+					this.setForeground(Color.red);
+					this.setFont(new Font("Tahoma", Font.BOLD, 30));
+				}
+				if (time == 3)
+				{
+					this.setForeground(Color.red);
+					this.setFont(new Font("Tahoma", Font.BOLD, 40));
+				}
+				if (time == 2)
+				{
+					this.setForeground(Color.red);
+					this.setFont(new Font("Tahoma", Font.BOLD, 50));
+				}
+				if (time == 1)
+				{
+					this.setForeground(Color.red);
+					this.setFont(new Font("Tahoma", Font.BOLD, 60));
+				}
+				if (time == 0)
+				{
+					this.setForeground(Color.red);
+					this.setFont(new Font("Tahoma", Font.BOLD, 70));
+					int numberPlayers = gameFrame.getGame().getPlayerCount();
+					int START = 1;
+				    int END = numberPlayers;
+				    Random random = new Random();
+				    int generated = random.nextInt(END);
+				    while (generated != gameFrame.getGame().getCurrentLeader())
+				    {
+				    	selectWinner(generated);
+				    }
+					
+				}
+			}
+	
+		};
+		
+add(lblCountdown);
+lblCountdown.setFont(new Font("Tahoma", Font.BOLD, 14));
+lblCountdown.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		
 		
 		
 
@@ -100,12 +112,7 @@ public class WinnerSelectPanel extends JPanel {
 			temp.add(i);
 		}
 
-		Random ran = new Random();
-		int playerNum = 0;
-		while (!temp.isEmpty()) {
-			playerOrder[playerNum] = temp.remove(ran.nextInt(temp.size()));
-			playerNum++;
-		}
+		generateRandom(playerOrder, temp);
 
 		while (answerIndex < answers.length) {
 			String currentAnswer = answers[playerOrder[answerIndex]];
@@ -124,6 +131,15 @@ public class WinnerSelectPanel extends JPanel {
 				buttonIndex++;
 			}
 			answerIndex++;
+		}
+	}
+
+	private void generateRandom(int[] playerOrder, List<Integer> temp) {
+		Random ran = new Random();
+		int playerNum = 0;
+		while (!temp.isEmpty()) {
+			playerOrder[playerNum] = temp.remove(ran.nextInt(temp.size()));
+			playerNum++;
 		}
 	}
 
