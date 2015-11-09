@@ -3,6 +3,8 @@ package trivia.gui;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.sun.prism.paint.Color;
+
 import trivia.Game;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -49,7 +51,22 @@ public class AnswerEntryPanel extends JPanel {
 		setBorder(new EmptyBorder(25, 25, 25, 25));
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		setLayout(gbl_contentPane);
-
+		
+		CountdownLabel countDown = new CountdownLabel(game.getTimeAnswer());
+		countDown.setFont(new Font("Tahoma", Font.BOLD, 30));
+		GridBagConstraints gbc_countDown = new GridBagConstraints();
+		gbc_countDown.fill = GridBagConstraints.BOTH;
+		gbc_countDown.insets = new Insets(0, 0, 5, 0);
+		gbc_countDown.gridx = 0;
+		gbc_countDown.gridy = 0;
+		gbc_countDown.gridheight = 1;
+		gbc_countDown.gridwidth = 1;
+		countDown.setVisible(true);
+	    this.add(countDown, gbc_countDown);
+	    if(game.getTimeAnswer()== 0){
+			countDown.setVisible(false);
+		}
+	    
 		JLabel currentQuestionLabel = new JLabel("Question");
 		currentQuestionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		currentQuestionLabel.setMaximumSize(new Dimension(600, 400));
@@ -61,7 +78,7 @@ public class AnswerEntryPanel extends JPanel {
 		gbc_currentQuestionLabel.fill = GridBagConstraints.BOTH;
 		gbc_currentQuestionLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_currentQuestionLabel.gridx = 0;
-		gbc_currentQuestionLabel.gridy = 0;
+		gbc_currentQuestionLabel.gridy = 1;
 		gbc_currentQuestionLabel.gridheight = 1;
 		gbc_currentQuestionLabel.gridwidth = 1;
 		add(currentQuestionLabel, gbc_currentQuestionLabel);
@@ -73,7 +90,7 @@ public class AnswerEntryPanel extends JPanel {
 		gbc_playerLabel.fill = GridBagConstraints.VERTICAL;
 		gbc_playerLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_playerLabel.gridx = 0;
-		gbc_playerLabel.gridy = 1;
+		gbc_playerLabel.gridy = 2;
 		gbc_playerLabel.gridheight = 1;
 		gbc_playerLabel.gridwidth = 1;
 		add(playerLabel, gbc_playerLabel);
@@ -84,7 +101,7 @@ public class AnswerEntryPanel extends JPanel {
 		gbc_answerField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_answerField.insets = new Insets(0, 0, 5, 0);
 		gbc_answerField.gridx = 0;
-		gbc_answerField.gridy = 2;
+		gbc_answerField.gridy = 3;
 		gbc_answerField.gridheight = 1;
 		gbc_answerField.gridwidth = 1;
 		add(answerField, gbc_answerField);
@@ -108,7 +125,7 @@ public class AnswerEntryPanel extends JPanel {
 		GridBagConstraints gbc_btnNextPlayer = new GridBagConstraints();
 		gbc_btnNextPlayer.anchor = GridBagConstraints.NORTH;
 		gbc_btnNextPlayer.gridx = 0;
-		gbc_btnNextPlayer.gridy = 3;
+		gbc_btnNextPlayer.gridy = 4;
 		gbc_btnNextPlayer.gridheight = 1;
 		gbc_btnNextPlayer.gridwidth = 1;
 		add(btnNextPlayer, gbc_btnNextPlayer);

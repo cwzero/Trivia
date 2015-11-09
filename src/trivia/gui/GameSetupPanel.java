@@ -9,11 +9,16 @@ import javax.swing.JButton;
 import javax.swing.SpinnerNumberModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 @SuppressWarnings("serial")
 public class GameSetupPanel extends JPanel {
 	private JSpinner roundCountSpinner = new JSpinner();
 	private JSpinner playerCountSpinner = new JSpinner();
+	private JSpinner answerTimeSpinner = new JSpinner();
+	private JCheckBox answerTimeCheckBox = new JCheckBox("Limit Answer Time");
 	private GameFrame gameFrame = null;
 
 	/**
@@ -31,19 +36,19 @@ public class GameSetupPanel extends JPanel {
 		this.setLayout(null);
 		
 		roundCountSpinner.setModel(new SpinnerNumberModel(3, 3, 10, 1));
-		roundCountSpinner.setBounds(324, 95, 39, 31);
+		roundCountSpinner.setBounds(298, 63, 39, 31);
 		this.add(roundCountSpinner);
 
 		playerCountSpinner.setModel(new SpinnerNumberModel(3, 3, 5, 1));
-		playerCountSpinner.setBounds(324, 139, 39, 31);
+		playerCountSpinner.setBounds(298, 105, 39, 31);
 		this.add(playerCountSpinner);
 
 		JLabel lblNewLabel = new JLabel("Number of Rounds");
-		lblNewLabel.setBounds(194, 99, 124, 23);
+		lblNewLabel.setBounds(99, 67, 124, 23);
 		this.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Number of Players");
-		lblNewLabel_1.setBounds(194, 142, 124, 24);
+		lblNewLabel_1.setBounds(99, 108, 124, 24);
 		this.add(lblNewLabel_1);
 
 		JButton continueButton = new JButton("Continue");
@@ -53,12 +58,30 @@ public class GameSetupPanel extends JPanel {
 				GameSetupPanel.this.continueButtonClick();
 			}
 		});
-		continueButton.setBounds(181, 184, 95, 23);
+		continueButton.setBounds(99, 213, 95, 23);
 		this.add(continueButton);
 
 		JButton backButton = new JButton("Back");
-		backButton.setBounds(288, 184, 95, 23);
+		backButton.setBounds(257, 213, 95, 23);
 		this.add(backButton);
+		
+		answerTimeSpinner.setModel(new SpinnerNumberModel(30, 10, 60, 1));
+		answerTimeSpinner.setBounds(298, 155, 39, 31);
+		answerTimeSpinner.setEnabled(false);
+		this.add(answerTimeSpinner);
+		
+		answerTimeCheckBox.setBounds(99, 163, 155, 23);
+		answerTimeCheckBox.addItemListener(new ItemListener() {
+		    @Override
+		    public void itemStateChanged(ItemEvent e) {
+		        if(e.getStateChange() == ItemEvent.SELECTED) {//checkbox has been selected
+		        	answerTimeSpinner.setEnabled(true);
+		        } else {//checkbox has been deselected
+		        	answerTimeSpinner.setEnabled(false);
+		        };
+		    }
+		});
+		this.add(answerTimeCheckBox);
 		
 		backButton.addActionListener(new ActionListener() {
 			@Override
@@ -73,7 +96,10 @@ public class GameSetupPanel extends JPanel {
 		gameFrame.getGame().setRoundCount(roundCount);
 		int playerCount = (int) playerCountSpinner.getValue();
 		gameFrame.getGame().setPlayerCount(playerCount);
-
+		if (answerTimeCheckBox.isSelected()){
+			int answerTime = (int) answerTimeSpinner.getValue();
+			gameFrame.getGame().setAnswerTime(answerTime);
+		}
 		new PlayerJoinPanel(gameFrame);
 	}
 }

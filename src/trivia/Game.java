@@ -23,6 +23,9 @@ public class Game {
 
 	// The player currently taking their turn - index into playerNames //
 	private int currentPlayer = 0;
+	
+	// The time allowed for the player to enter his answer
+	private int answerTime = 0;
 
 	// The currently selected question //
 	private String currentQuestion = "";
@@ -141,6 +144,14 @@ public class Game {
 
 	public int getCurrentLeader() {
 		return currentLeader;
+	}
+	
+	public void setAnswerTime(int time){
+		answerTime = time;
+	}
+	
+	public int getTimeAnswer(){
+		return answerTime;
 	}
 
 	public void setCurrentLeader(int currentLeader) {
