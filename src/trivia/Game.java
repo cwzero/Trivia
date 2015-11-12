@@ -95,10 +95,6 @@ public class Game {
 			}
 		}
 		input.close();
-		
-		for (Question q: questionPool) {
-			System.out.println(q.getText());
-		}
 	}
 
 	private void chooseLeader() {
