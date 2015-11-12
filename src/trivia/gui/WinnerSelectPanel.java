@@ -3,93 +3,73 @@ package trivia.gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import trivia.Player;
 
 @SuppressWarnings("serial")
 public class WinnerSelectPanel extends JPanel {
 	private GameFrame gameFrame;
 	protected int[] playerScore;
-	protected JButton[] buttons = new JButton[4];
-	protected int[] playerIndex;
 	protected int increment = 20;
 
 	/**
 	 * Create the frame.
 	 */
-	public WinnerSelectPanel(GameFrame gameFrame) {
+	public WinnerSelectPanel(final GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
 		gameFrame.setTitle("Select Winner");
 		setBounds(100, 100, 600, 400);
 		gameFrame.setContentPane(this);
 		gameFrame.repaint();
 		this.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		CountdownLabel lblCountdown = new CountdownLabel(15)
-		{
-	
+
+		CountdownLabel lblCountdown = new CountdownLabel(15) {
+
 			@Override
 			public void event(int time) {
-				
-				if (time == 5)
-				{
+				if (time == 5) {
 					this.setForeground(Color.red);
 					this.setFont(new Font("Tahoma", Font.BOLD, 20));
 				}
-				if (time == 4)
-				{
+				if (time == 4) {
 					this.setForeground(Color.red);
 					this.setFont(new Font("Tahoma", Font.BOLD, 30));
 				}
-				if (time == 3)
-				{
+				if (time == 3) {
 					this.setForeground(Color.red);
 					this.setFont(new Font("Tahoma", Font.BOLD, 40));
 				}
-				if (time == 2)
-				{
+				if (time == 2) {
 					this.setForeground(Color.red);
 					this.setFont(new Font("Tahoma", Font.BOLD, 50));
 				}
-				if (time == 1)
-				{
+				if (time == 1) {
 					this.setForeground(Color.red);
 					this.setFont(new Font("Tahoma", Font.BOLD, 60));
 				}
-				if (time == 0)
-				{
+				if (time == 0) {
 					this.setForeground(Color.red);
 					this.setFont(new Font("Tahoma", Font.BOLD, 70));
-					int numberPlayers = gameFrame.getGame().getPlayerCount();
-					int START = 1;
-				    int END = numberPlayers;
-				    Random random = new Random();
-				    int generated = random.nextInt(END);
-				    while (generated != gameFrame.getGame().getCurrentLeader())
-				    {
-				    	selectWinner(generated);
-				    }
-					
+					Random random = new Random();
+					int generated = random.nextInt(gameFrame.getGame().getPlayerCount());
+					while (generated != gameFrame.getGame().getCurrentLeader()) {
+						generated = random.nextInt(gameFrame.getGame().getPlayerCount());
+					}
+					selectWinner(generated);
 				}
 			}
-	
 		};
-		
-add(lblCountdown);
-lblCountdown.setFont(new Font("Tahoma", Font.BOLD, 14));
-lblCountdown.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		
-		
-		
+
+		add(lblCountdown);
+		lblCountdown.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCountdown.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JLabel lblNewLabel = new JLabel("Select one answer for the question:");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -99,53 +79,42 @@ lblCountdown.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelectedQuestion.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblSelectedQuestion.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(lblSelectedQuestion);
-		lblSelectedQuestion.setText(gameFrame.getGame().getCurrentQuestion());
-
-		String[] answers = gameFrame.getGame().getPlayerAnswers();
-		playerIndex = new int[gameFrame.getGame().getPlayerCount()];
-		int answerIndex = 0;
-		int buttonIndex = 0;
-
-		int[] playerOrder = new int[gameFrame.getGame().getPlayerCount()];
-		List<Integer> temp = new ArrayList<Integer>();
-		for (int i = 0; i < gameFrame.getGame().getPlayerCount(); i++) {
-			temp.add(i);
+		lblSelectedQuestion.setText(gameFrame.getGame().getCurrentQuestion().getText());
+		
+		List<PlayerButton> buttons = new ArrayList<PlayerButton>();
+		for (Player player: gameFrame.getGame().getPlayers()) {
+			buttons.add(new PlayerButton(player, this));
 		}
-
-		generateRandom(playerOrder, temp);
-
-		while (answerIndex < answers.length) {
-			String currentAnswer = answers[playerOrder[answerIndex]];
-			if (currentAnswer != null && !currentAnswer.equals("")) {
-				playerIndex[buttonIndex] = playerOrder[answerIndex];
-				buttons[buttonIndex] = new JButton(currentAnswer);
-				final int bIndex = buttonIndex;
-				buttons[buttonIndex].addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						WinnerSelectPanel.this.selectWinner(playerIndex[bIndex]);
-					}
-				});
-				buttons[buttonIndex].setHorizontalAlignment(SwingConstants.CENTER);
-				this.add(buttons[buttonIndex]);
-				buttonIndex++;
-			}
-			answerIndex++;
+		
+		buttons = shuffle(buttons);
+		
+		for(PlayerButton button: buttons) {
+			button.setHorizontalAlignment(SwingConstants.CENTER);
+			if (gameFrame.getGame().getCurrentLeader() != gameFrame.getGame().getPlayers().indexOf(button.getPlayer()))
+				this.add(button);
 		}
 	}
-
-	private void generateRandom(int[] playerOrder, List<Integer> temp) {
+	
+	private List<PlayerButton> shuffle(List<PlayerButton> orig) {
 		Random ran = new Random();
-		int playerNum = 0;
+		List<PlayerButton> temp = new ArrayList<PlayerButton>(orig);
+		List<PlayerButton> result = new ArrayList<PlayerButton>();
+		
 		while (!temp.isEmpty()) {
-			playerOrder[playerNum] = temp.remove(ran.nextInt(temp.size()));
-			playerNum++;
+			result.add(temp.remove(ran.nextInt(temp.size())));
 		}
+		return result;
 	}
 
 	private void selectWinner(int winner) {
 		gameFrame.getGame().setRoundWinner(winner);
-		gameFrame.getGame().setPlayerScore(winner, gameFrame.getGame().getPlayerScore()[winner] + 1);
+		gameFrame.getGame().setPlayerScore(winner, gameFrame.getGame().getPlayer(winner).getScore() + 1);
+		new GameStatusPanel(gameFrame);
+	}
+	
+	public void selectWinner(Player winner) {
+		winner.setWinner(true);
+		winner.setScore(winner.getScore() + 1);
 		new GameStatusPanel(gameFrame);
 	}
 

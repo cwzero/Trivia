@@ -1,9 +1,11 @@
 package trivia.gui;
-import java.io.IOException;
 
+import java.io.IOException;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import trivia.Question;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,7 +16,7 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class QuestionSelectPanel extends JPanel {
 	private GameFrame gameFrame;
-	private String[] questions = new String[3];
+	private Question[] questions = new Question[3];
 	private JButton btnQuestion1;
 	private JButton btnQuestion2;
 	private JButton btnQuestion3;
@@ -25,7 +27,6 @@ public class QuestionSelectPanel extends JPanel {
 	 * @throws IOException
 	 */
 
-	
 	public QuestionSelectPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
 		gameFrame.setTitle("Select a question");
@@ -42,12 +43,11 @@ public class QuestionSelectPanel extends JPanel {
 
 		// Rather than using separate buttons for each question, maybe a label
 		// and radio button, with one button to move on
-		
-		//11/4 changed button size from 31 to 40
-		//		added set font to size 12 to make sure question fits on buttons
-		
 
-		btnQuestion1 = new JButton(questions[0]);
+		// 11/4 changed button size from 31 to 40
+		// added set font to size 12 to make sure question fits on buttons
+
+		btnQuestion1 = new JButton(questions[0].getText());
 		btnQuestion1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnQuestion1.addActionListener(new ActionListener() {
 			@Override
@@ -55,11 +55,11 @@ public class QuestionSelectPanel extends JPanel {
 				QuestionSelectPanel.this.selectQuestion(0);
 			}
 		});
-			
+
 		btnQuestion1.setBounds(115, 92, 369, 40);
 		this.add(btnQuestion1);
 
-		btnQuestion2 = new JButton(questions[1]);
+		btnQuestion2 = new JButton(questions[1].getText());
 		btnQuestion2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnQuestion2.addActionListener(new ActionListener() {
 			@Override
@@ -70,7 +70,7 @@ public class QuestionSelectPanel extends JPanel {
 		btnQuestion2.setBounds(115, 142, 369, 40);
 		this.add(btnQuestion2);
 
-		btnQuestion3 = new JButton(questions[2]);
+		btnQuestion3 = new JButton(questions[2].getText());
 		btnQuestion3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnQuestion3.addActionListener(new ActionListener() {
 			@Override
@@ -82,7 +82,7 @@ public class QuestionSelectPanel extends JPanel {
 		this.add(btnQuestion3);
 
 		JLabel lblPlayerPleaseSelect = new JLabel(
-				gameFrame.getGame().getPlayerNames()[gameFrame.getGame().getCurrentLeader()]
+				gameFrame.getGame().getPlayer(gameFrame.getGame().getCurrentLeader()).getName()
 						+ ", please select question:");
 		lblPlayerPleaseSelect.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblPlayerPleaseSelect.setBounds(17, 24, 344, 49);

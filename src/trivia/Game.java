@@ -28,19 +28,13 @@ public class Game {
 	private int answerTime = 0;
 
 	// The currently selected question //
-	private String currentQuestion = "";
+	private Question currentQuestion = null;
 
 	// The possible questions //
-	private List<String> questionPool = null;
+	private List<Question> questionPool = null;
 
-	// The names of the players //
-	private String[] playerNames = null;
-
-	// Players' scores //
-	private int[] playerScore = null;
-
-	// The answers entered by the players this round //
-	private String[] playerAnswers = null;
+	// The game's players //
+	private List<Player> players = null;
 
 	// The winner of the round //
 	private int roundWinner = -1;
@@ -52,10 +46,11 @@ public class Game {
 	public Game(int roundCount, int playerCount) {
 		this.roundCount = roundCount;
 		this.playerCount = playerCount;
+		reset();
 	}
 	
-	public void resetNames() {
-		playerNames = new String[playerCount];
+	public void reset() {
+		players = new ArrayList<Player>();
 	}
 
 	public boolean isOver() {
@@ -64,15 +59,19 @@ public class Game {
 
 	public void nextRound() {
 		currentRound++;
-		currentQuestion = "";
-		playerAnswers = new String[playerCount];
+		currentQuestion = null;
+		for (Player player: players) {
+			player.setAnswer(null);
+		}
 		chooseLeader();
 		currentPlayer = 0;
 	}
 
 	public void start() {
-		playerScore = new int[playerCount];
-		playerAnswers = new String[playerCount];
+		for (Player player: players) {
+			player.setScore(0);
+			player.setAnswer(null);
+		}
 		loadQuestions();
 		chooseLeader();
 	}
@@ -85,9 +84,9 @@ public class Game {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		questionPool = new ArrayList<String>();
+		questionPool = new ArrayList<Question>();
 		while (input.hasNext())
-			questionPool.add(input.nextLine());
+			questionPool.add(new Question(input.nextLine()));
 		input.close();
 	}
 
@@ -102,11 +101,11 @@ public class Game {
 	}
 
 	public void setPlayerName(int player, String name) {
-		playerNames[player] = name;
+		players.get(player).setName(name);
 	}
 
 	public void setPlayerAnswer(int player, String answer) {
-		playerAnswers[player] = answer;
+		players.get(player).setAnswer(answer);
 	}
 
 	public int getCurrentPlayer() {
@@ -123,7 +122,7 @@ public class Game {
 
 	public void setPlayerCount(int playerCount) {
 		this.playerCount = playerCount;
-		playerNames = new String[playerCount];
+		players = new ArrayList<Player>(playerCount);
 	}
 
 	public int getRoundCount() {
@@ -158,53 +157,33 @@ public class Game {
 		this.currentLeader = currentLeader;
 	}
 
-	public String getCurrentQuestion() {
+	public Question getCurrentQuestion() {
 		return currentQuestion;
 	}
 
-	public void setCurrentQuestion(String currentQuestion) {
-		this.currentQuestion = currentQuestion;
-		questionPool.remove(currentQuestion);
+	public void setCurrentQuestion(Question question) {
+		this.currentQuestion = question;
+		questionPool.remove(question);
 		if (questionPool.isEmpty()) {
 			loadQuestions();
 		}
 	}
 
-	public String[] getPlayerNames() {
-		return playerNames;
-	}
-
-	public void setPlayerNames(String[] playerNames) {
-		this.playerNames = playerNames;
-	}
-
-	public int[] getPlayerScore() {
-		return playerScore;
-	}
-
 	public void setPlayerScore(int index, int playerScore) {
-		this.playerScore[index] = playerScore;
+		players.get(index).setScore(playerScore);
 	}
 
-	public String[] getPlayerAnswers() {
-		return playerAnswers;
-	}
-
-	public void setPlayerAnswers(String[] playerAnswers) {
-		this.playerAnswers = playerAnswers;
-	}
-
-	public String[] getQuestionPool(int count) {
-		String[] questions = new String[count];
+	public Question[] getQuestionPool(int count) {
+		Question[] questions = new Question[count];
 		for (int index = 0; index < count; index++) {
 			questions[index] = getRandomQuestion(questions);
 		}
 		return questions;
 	}
 
-	private String getRandomQuestion(String[] currentQuestions) {
-		String question = questionPool.get(new Random().nextInt(questionPool.size()));
-		for (String prev : currentQuestions) {
+	private Question getRandomQuestion(Question[] currentQuestions) {
+		Question question = questionPool.get(new Random().nextInt(questionPool.size()));
+		for (Question prev : currentQuestions) {
 			if (question.equals(prev)) {
 				return getRandomQuestion(currentQuestions);
 			}
@@ -216,31 +195,46 @@ public class Game {
 		return questionPool.toArray(new String[questionPool.size()]);
 	}
 
-	public void setQuestionPool(String[] questionPool) {
-		this.questionPool = new ArrayList<String>(Arrays.asList(questionPool));
+	public void setQuestionPool(Question[] questionPool) {
+		this.questionPool = new ArrayList<Question>(Arrays.asList(questionPool));
 	}
 
-	public String getQuestion(int questionIndex) {
+	public Question getQuestion(int questionIndex) {
 		return this.questionPool.get(questionIndex);
 	}
 
-	public int getRoundWinner() {
-		return roundWinner;
+	public Player getRoundWinner() {
+		for (Player player: players) {
+			if (player.isWinner())
+				return player;
+		}
+		return players.get(roundWinner);
 	}
 
 	public void setRoundWinner(int roundWinner) {
 		this.roundWinner = roundWinner;
 	}
 
-	public int getGameWinner() {
+	public Player getGameWinner() {
 		int maxScore = -1;
-		int winner = -1;
-		for (int player = 0; player < playerCount; player++) {
-			if (playerScore[player] > maxScore) {
-				maxScore = playerScore[player];
+		Player winner = null;
+		for (Player player: players) {
+			if (player.getScore() > maxScore && !player.equals(winner)) {
+				maxScore = player.getScore();
 				winner = player;
 			}
 		}
 		return winner;
+	}
+	
+	public Player getPlayer(int index) {
+		if (index < playerCount && index >= players.size()) {
+			players.add(new Player());
+		}
+		return players.get(index);
+	}
+
+	public List<Player> getPlayers() {
+		return players;
 	}
 }

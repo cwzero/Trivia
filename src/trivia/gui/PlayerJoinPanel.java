@@ -36,7 +36,7 @@ public class PlayerJoinPanel extends JPanel {
 		this.add(playerLabel);
 
 		playerNameField = new JTextField();
-		playerNameField.setText(gameFrame.getGame().getPlayerNames()[currentPlayer]);
+		playerNameField.setText(gameFrame.getGame().getPlayer(currentPlayer).getName());
 		playerNameField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PlayerJoinPanel.this.continueButtonClick();
@@ -74,7 +74,7 @@ public class PlayerJoinPanel extends JPanel {
 			gameFrame.getGame().setCurrentPlayer(currentPlayer - 1);
 			new PlayerJoinPanel(gameFrame);
 		} else {
-			gameFrame.getGame().resetNames();
+			gameFrame.getGame().reset();
 			new MainMenuPanel(gameFrame);
 		}
 	}
