@@ -14,4 +14,12 @@ public class Question {
 	public void setText(String text) {
 		this.text = text;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Question) {
+			return ((Question)obj).getText().equals(getText());
+		}
+		return super.equals(obj);
+	}
 }

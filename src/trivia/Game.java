@@ -279,6 +279,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import trivia.db.TriviaDatabase;
+
 public class Game {
 	// The number of players in the game //
 	private int playerCount = 0;
@@ -294,7 +296,7 @@ public class Game {
 
 	// The player currently taking their turn - index into playerNames //
 	private int currentPlayer = 0;
-	
+
 	// The time allowed for the player to enter his answer
 	private int answerTime = 0;
 
@@ -319,7 +321,7 @@ public class Game {
 		this.playerCount = playerCount;
 		reset();
 	}
-	
+
 	public void reset() {
 		players = new ArrayList<Player>();
 	}
@@ -331,7 +333,7 @@ public class Game {
 	public void nextRound() {
 		currentRound++;
 		currentQuestion = null;
-		for (Player player: players) {
+		for (Player player : players) {
 			player.setAnswer(null);
 		}
 		chooseLeader();
@@ -339,7 +341,7 @@ public class Game {
 	}
 
 	public void start() {
-		for (Player player: players) {
+		for (Player player : players) {
 			player.setScore(0);
 			player.setAnswer(null);
 		}
@@ -355,10 +357,19 @@ public class Game {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		questionPool = new ArrayList<Question>();
-		while (input.hasNext())
-			questionPool.add(new Question(input.nextLine()));
+		TriviaDatabase.init();
+		questionPool = new ArrayList<Question>(TriviaDatabase.getQuestions());
+		while (input.hasNext()) {
+			Question q = new Question(input.nextLine());
+			if (!questionPool.contains(q)) {
+				questionPool.add(q);
+			}
+		}
 		input.close();
+		
+		for (Question q: questionPool) {
+			System.out.println(q.getText());
+		}
 	}
 
 	private void chooseLeader() {
@@ -415,12 +426,12 @@ public class Game {
 	public int getCurrentLeader() {
 		return currentLeader;
 	}
-	
-	public void setAnswerTime(int time){
+
+	public void setAnswerTime(int time) {
 		answerTime = time;
 	}
-	
-	public int getTimeAnswer(){
+
+	public int getTimeAnswer() {
 		return answerTime;
 	}
 
@@ -475,7 +486,7 @@ public class Game {
 	}
 
 	public Player getRoundWinner() {
-		for (Player player: players) {
+		for (Player player : players) {
 			if (player.isWinner())
 				return player;
 		}
@@ -489,7 +500,7 @@ public class Game {
 	public Player getGameWinner() {
 		int maxScore = -1;
 		Player winner = null;
-		for (Player player: players) {
+		for (Player player : players) {
 			if (player.getScore() > maxScore && !player.equals(winner)) {
 				maxScore = player.getScore();
 				winner = player;
@@ -497,7 +508,7 @@ public class Game {
 		}
 		return winner;
 	}
-	
+
 	public Player getPlayer(int index) {
 		if (index < playerCount && index >= players.size()) {
 			players.add(new Player());
