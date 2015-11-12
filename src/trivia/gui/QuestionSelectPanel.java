@@ -11,10 +11,10 @@ import java.io.*;
 import sun.audio.*;
 import trivia.Game;
 
+import trivia.Question;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

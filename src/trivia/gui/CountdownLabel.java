@@ -8,7 +8,7 @@ public class CountdownLabel extends JLabel {
 		
 	}
 	
-	public CountdownLabel(int length) {
+	public CountdownLabel(final int length) {
 		this.setText(length + "");
 		Thread countdownThread = new Thread() {
 			public void run() {

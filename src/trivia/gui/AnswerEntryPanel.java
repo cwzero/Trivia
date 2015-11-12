@@ -3,8 +3,6 @@ package trivia.gui;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.sun.prism.paint.Color;
-
 import trivia.Game;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -71,7 +69,7 @@ public class AnswerEntryPanel extends JPanel {
 		currentQuestionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		currentQuestionLabel.setMaximumSize(new Dimension(600, 400));
 		if (game.getCurrentQuestion() != null && !game.getCurrentQuestion().equals("")) {
-			currentQuestionLabel.setText("<html>" + game.getCurrentQuestion() + "</html>");
+			currentQuestionLabel.setText("<html>" + game.getCurrentQuestion().getText() + "</html>");
 		}
 		currentQuestionLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		GridBagConstraints gbc_currentQuestionLabel = new GridBagConstraints();
@@ -83,7 +81,7 @@ public class AnswerEntryPanel extends JPanel {
 		gbc_currentQuestionLabel.gridwidth = 1;
 		add(currentQuestionLabel, gbc_currentQuestionLabel);
 
-		JLabel playerLabel = new JLabel(game.getPlayerNames()[game.getCurrentPlayer()] + " enter your answer.");
+		JLabel playerLabel = new JLabel(game.getPlayer(game.getCurrentPlayer()).getName() + " enter your answer.");
 		playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		GridBagConstraints gbc_playerLabel = new GridBagConstraints();

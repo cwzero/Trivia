@@ -24,7 +24,7 @@ public class GameSetupPanel extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	public GameSetupPanel(GameFrame gameFrame) {
+	public GameSetupPanel(final GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
 		gameFrame.setContentPane(this);
 		gameFrame.repaint();

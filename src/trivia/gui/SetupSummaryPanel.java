@@ -51,7 +51,7 @@ public class SetupSummaryPanel extends JPanel {
 		this.add(lblPlayers, gbc_lblPlayers);
 
 		for (int playerNumber = 0; playerNumber < gameFrame.getGame().getPlayerCount(); playerNumber++) {
-			JLabel playerLabel = new JLabel(gameFrame.getGame().getPlayerNames()[playerNumber]);
+			JLabel playerLabel = new JLabel(gameFrame.getGame().getPlayer(playerNumber).getName());
 			GridBagConstraints gbc_playerLabel = new GridBagConstraints();
 			gbc_playerLabel.fill = GridBagConstraints.HORIZONTAL;
 			gbc_playerLabel.gridx = 0;

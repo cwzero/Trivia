@@ -67,9 +67,9 @@ public class GameStatusPanel extends JPanel {
 		Object columnNames[] = { "Player Name", "Score", "Answer" };
 
 		for (int i = 0; i < gameFrame.getGame().getPlayerCount(); i++) {
-			rowData[i][0] = gameFrame.getGame().getPlayerNames()[i];
-			rowData[i][1] = gameFrame.getGame().getPlayerScore()[i] + "";
-			String answer = gameFrame.getGame().getPlayerAnswers()[i];
+			rowData[i][0] = gameFrame.getGame().getPlayer(i).getName();
+			rowData[i][1] = gameFrame.getGame().getPlayer(i).getScore() + "";
+			String answer = gameFrame.getGame().getPlayer(i).getAnswer();
 			if (answer == null || answer.equals("")) {
 				answer = "Leader";
 			}
@@ -103,10 +103,10 @@ public class GameStatusPanel extends JPanel {
 		this.add(btnStartNewGame, gbc_btnStartNewGame);
 		if (gameFrame.getGame().isOver()) {
 			lblGameStatus.setText(
-					gameFrame.getGame().getPlayerNames()[gameFrame.getGame().getGameWinner()] + " has won the game.");
+					gameFrame.getGame().getGameWinner().getName() + " has won the game.");
 		} else {
 			lblGameStatus.setText(
-					gameFrame.getGame().getPlayerNames()[gameFrame.getGame().getRoundWinner()] + " has won the round.");
+					gameFrame.getGame().getRoundWinner().getName() + " has won the round.");
 			btnStartNewGame.setText("Next round");
 		}
 	}
