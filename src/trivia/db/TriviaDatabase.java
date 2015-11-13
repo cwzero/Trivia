@@ -42,6 +42,7 @@ public class TriviaDatabase {
 				while (resultSet.next()) {
 					questions.add(new Question(resultSet.getString("Question_Text")));
 				}
+				connection.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

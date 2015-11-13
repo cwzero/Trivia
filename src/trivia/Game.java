@@ -357,8 +357,9 @@ public class Game {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		TriviaDatabase.init();
-		questionPool = new ArrayList<Question>(TriviaDatabase.getQuestions());
+		//TriviaDatabase.init();
+		//questionPool = new ArrayList<Question>(TriviaDatabase.getQuestions());
+		questionPool = new ArrayList<Question>();
 		while (input.hasNext()) {
 			Question q = new Question(input.nextLine());
 			if (!questionPool.contains(q)) {
