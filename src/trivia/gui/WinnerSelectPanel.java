@@ -59,10 +59,11 @@ public class WinnerSelectPanel extends JPanel {
 					this.setFont(new Font("Tahoma", Font.BOLD, 70));
 					Random random = new Random();
 					int generated = random.nextInt(gameFrame.getGame().getPlayerCount());
-					while (generated != gameFrame.getGame().getCurrentLeader()) {
+					while (generated == gameFrame.getGame().getCurrentLeader()) {
 						generated = random.nextInt(gameFrame.getGame().getPlayerCount());
 					}
 					selectWinner(generated);
+					
 				}
 			}
 		};
