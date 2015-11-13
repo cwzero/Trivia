@@ -26,8 +26,12 @@ public class TriviaDatabase {
 	public static void init() {
 		if (!initialized) {
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.jdbc.Driver").newInstance();
 			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
 				e.printStackTrace();
 			}
 			
@@ -36,7 +40,7 @@ public class TriviaDatabase {
 			questions = new ArrayList<Question>();
 
 			try {
-				connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db + "?user=" + user + "&password=" + pass);
+				connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db + "?user=" + user + "&password=" + pass + "");
 				statement = connection.createStatement();
 				resultSet = statement.executeQuery("SELECT Question_Text FROM Question;");
 				while (resultSet.next()) {

@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import trivia.Game;
+import trivia.Player;
 
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
@@ -102,11 +103,13 @@ public class GameStatusPanel extends JPanel {
 		gbc_btnStartNewGame.gridy = 4;
 		this.add(btnStartNewGame, gbc_btnStartNewGame);
 		if (gameFrame.getGame().isOver()) {
-			lblGameStatus.setText(
-					gameFrame.getGame().getGameWinner().getName() + " has won the game.");
+			Player gameWinner = gameFrame.getGame().getGameWinner();
+			if (gameWinner == null) {
+				lblGameStatus.setText("The game has ended with a tie.");
+			}
+			lblGameStatus.setText(gameWinner.getName() + " has won the game.");
 		} else {
-			lblGameStatus.setText(
-					gameFrame.getGame().getRoundWinner().getName() + " has won the round.");
+			lblGameStatus.setText(gameFrame.getGame().getRoundWinner().getName() + " has won the round.");
 			btnStartNewGame.setText("Next round");
 		}
 	}

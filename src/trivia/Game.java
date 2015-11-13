@@ -86,9 +86,9 @@ public class Game {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//TriviaDatabase.init();
-		//questionPool = new ArrayList<Question>(TriviaDatabase.getQuestions());
-		questionPool = new ArrayList<Question>();
+		TriviaDatabase.init();
+		questionPool = new ArrayList<Question>(TriviaDatabase.getQuestions());
+		//questionPool = new ArrayList<Question>();
 		while (input.hasNext()) {
 			Question q = new Question(input.nextLine());
 			if (!questionPool.contains(q)) {
@@ -226,13 +226,20 @@ public class Game {
 	public Player getGameWinner() {
 		int maxScore = -1;
 		Player winner = null;
+		boolean tie = true;
 		for (Player player : players) {
 			if (player.getScore() > maxScore && !player.equals(winner)) {
 				maxScore = player.getScore();
 				winner = player;
+				tie = false;
+			} else if (player.getScore() == maxScore) {
+				tie = true;
 			}
 		}
-		return winner;
+		if (!tie)
+			return winner;
+		else
+			return null;
 	}
 
 	public Player getPlayer(int index) {
