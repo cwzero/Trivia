@@ -3,6 +3,10 @@ package trivia.gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,12 +14,17 @@ import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import trivia.Game;
 import trivia.Player;
 
 @SuppressWarnings("serial")
 public class WinnerSelectPanel extends GamePanel {
 	protected int[] playerScore;
 	protected int increment = 20;
+	
+	File file = new File("timer.wav");
 
 	/**
 	 * Create the frame.
@@ -51,8 +60,23 @@ public class WinnerSelectPanel extends GamePanel {
 	@Override
 	protected void createGui() {
 		this.setLayout(new GridLayout(0, 1, 0, 0));
+		
+	
+		AudioStream theme = null;
+		try
+        {
+            InputStream a = new FileInputStream ("timer.wav");
+            theme = new AudioStream (a);          
+          
+        }
+        catch (java.io.IOException z)  //catching the exception
+        {
+        }
+        // Play audio.
+        AudioPlayer.player.start (theme);
 
-		CountdownLabel lblCountdown = new CountdownLabel(15) {
+
+		CountdownLabel lblCountdown = new CountdownLabel(11) {
 
 			@Override
 			public void event(int time) {
