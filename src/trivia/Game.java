@@ -15,6 +15,7 @@ import sun.audio.AudioData;
 import sun.audio.AudioDataStream;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
 
 public class Game {
 	// The number of players in the game //
@@ -237,6 +238,32 @@ public class Game {
 			}
 		}
 		return winner;
+	}
+
+	public static void playSoundLoop(File soundFile, long length) throws IOException {
+		InputStream is = new FileInputStream(soundFile);
+		AudioStream as = new AudioStream(is);
+		AudioData data = as.getData();
+		ContinuousAudioDataStream cas = new ContinuousAudioDataStream(data);
+		Thread audioThread = new Thread() {
+			public void run() {
+				AudioPlayer.player.start(cas);
+				try {
+					Thread.sleep(length);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				AudioPlayer.player.stop(cas);
+				try {
+					as.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		audioThread.start();
 	}
 
 	public static void playSound(File soundFile, long length) throws IOException {
