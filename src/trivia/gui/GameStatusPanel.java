@@ -21,6 +21,8 @@ public class GameStatusPanel extends GamePanel {
 	 */
 	public GameStatusPanel(GameFrame gameFrame) {
 		super(gameFrame);
+		createGui();
+		gameFrame.setVisible(true);
 	}
 
 	private void btnStartNewGame_click() {

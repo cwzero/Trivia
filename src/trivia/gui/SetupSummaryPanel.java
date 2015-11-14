@@ -19,6 +19,7 @@ public class SetupSummaryPanel extends GamePanel {
 	public SetupSummaryPanel(GameFrame gameFrame) {
 		super(gameFrame);
 		createGui();
+		gameFrame.setVisible(true);
 	}
 
 	private void buttonNext_click() {

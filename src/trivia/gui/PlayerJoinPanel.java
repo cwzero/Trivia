@@ -18,6 +18,8 @@ public class PlayerJoinPanel extends GamePanel {
 	 */
 	public PlayerJoinPanel(GameFrame gameFrame) {
 		super(gameFrame);
+		createGui();
+		gameFrame.setVisible(true);
 	}
 
 	public void backButtonClick() {

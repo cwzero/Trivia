@@ -23,6 +23,9 @@ public class GameSetupPanel extends GamePanel {
 	public GameSetupPanel(final GameFrame gameFrame) {
 		super(gameFrame);
 		createGui();
+		gameFrame.setVisible(true);
+		//roundCountSpinner.setValue(gameFrame.getGame().getRoundCount());
+		//playerCountSpinner.setValue(gameFrame.getGame().getPlayerCount());
 	}
 
 	public void continueButtonClick() {
@@ -91,14 +94,11 @@ public class GameSetupPanel extends GamePanel {
 			}
 		});
 		this.add(answerTimeCheckBox);
-
 		backButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new MainMenuPanel(gameFrame);
 			}
 		});
-		roundCountSpinner.setValue(gameFrame.getGame().getRoundCount());
-		playerCountSpinner.setValue(gameFrame.getGame().getPlayerCount());
 	}
 }

@@ -3,14 +3,12 @@ package trivia.gui;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.UIManager;
-
 import trivia.Game;
-
 import trivia.Question;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.UIManager;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -33,6 +31,7 @@ public class QuestionSelectPanel extends GamePanel {
 	public QuestionSelectPanel(GameFrame gameFrame) {
 		super(gameFrame);
 		createGui();
+		gameFrame.setVisible(true);
 	}
 
 	public void selectQuestion(int question) {
@@ -184,7 +183,7 @@ public class QuestionSelectPanel extends GamePanel {
 		this.add(btnQuestion3);
 
 		JLabel lblPlayerPleaseSelect = new JLabel(
-				gameFrame.getGame().getPlayers().get(gameFrame.getGame().getCurrentLeader()).getName()
+				gameFrame.getGame().getPlayer(gameFrame.getGame().getCurrentLeader()).getName()
 						+ ", please select question:");
 		lblPlayerPleaseSelect.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblPlayerPleaseSelect.setBounds(17, 24, 344, 49);

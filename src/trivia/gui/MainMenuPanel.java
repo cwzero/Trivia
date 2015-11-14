@@ -21,6 +21,7 @@ public class MainMenuPanel extends GamePanel {
 	public MainMenuPanel(GameFrame gameFrame) {
 		super(gameFrame);
 		createGui();
+		gameFrame.setVisible(true);
 	}
 
 	public void newGameButtonClick() {

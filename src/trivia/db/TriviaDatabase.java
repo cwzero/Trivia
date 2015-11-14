@@ -48,8 +48,6 @@ public class TriviaDatabase {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-			initialized = true;
 		}
 	}
 

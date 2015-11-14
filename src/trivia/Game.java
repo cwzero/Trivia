@@ -92,9 +92,6 @@ public class Game {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// TriviaDatabase.init();
-		// questionPool = new
-		// ArrayList<Question>(TriviaDatabase.getQuestions());
 		questionPool = new ArrayList<Question>();
 		while (input.hasNext()) {
 			Question q = new Question(input.nextLine());
@@ -268,13 +265,14 @@ public class Game {
 		audioThread.start();
 	}
 
-	public List<Player> getPlayers() {
-		return players;
+	public Player getPlayer(int index) {
+		if (index < playerCount && index >= players.size()) {
+			players.add(new Player());
+		}
+		return players.get(index);
 	}
 
-	public Player getPlayer(int index) {
-		if (index < playerCount && index > players.size() - 1)
-			players.add(new Player());
-		return players.get(index);
+	public List<Player> getPlayers() {
+		return players;
 	}
 }

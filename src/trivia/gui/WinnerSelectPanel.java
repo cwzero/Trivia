@@ -50,7 +50,6 @@ public class WinnerSelectPanel extends GamePanel {
 
 	@Override
 	protected void createGui() {
-
 		this.setLayout(new GridLayout(0, 1, 0, 0));
 
 		CountdownLabel lblCountdown = new CountdownLabel(15) {
@@ -86,7 +85,6 @@ public class WinnerSelectPanel extends GamePanel {
 						generated = random.nextInt(gameFrame.getGame().getPlayerCount());
 					}
 					selectWinner(generated);
-
 				}
 			}
 		};
@@ -118,5 +116,4 @@ public class WinnerSelectPanel extends GamePanel {
 				this.add(button);
 		}
 	}
-
 }

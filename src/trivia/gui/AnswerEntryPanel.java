@@ -31,6 +31,7 @@ public class AnswerEntryPanel extends GamePanel {
 			new WinnerSelectPanel(gameFrame);
 		} else {
 			createGui();
+			gameFrame.setVisible(true);
 		}
 	}
 
@@ -41,7 +42,7 @@ public class AnswerEntryPanel extends GamePanel {
 
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		setLayout(gbl_contentPane);
-
+		
 		CountdownLabel countDown = new CountdownLabel(game.getTimeAnswer());
 		countDown.setFont(new Font("Tahoma", Font.BOLD, 30));
 		GridBagConstraints gbc_countDown = new GridBagConstraints();
@@ -52,11 +53,11 @@ public class AnswerEntryPanel extends GamePanel {
 		gbc_countDown.gridheight = 1;
 		gbc_countDown.gridwidth = 1;
 		countDown.setVisible(true);
-		this.add(countDown, gbc_countDown);
-		if (game.getTimeAnswer() == 0) {
+	    this.add(countDown, gbc_countDown);
+	    if(game.getTimeAnswer()== 0){
 			countDown.setVisible(false);
 		}
-
+	    
 		JLabel currentQuestionLabel = new JLabel("Question");
 		currentQuestionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		currentQuestionLabel.setMaximumSize(new Dimension(600, 400));
