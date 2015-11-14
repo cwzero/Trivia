@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import trivia.db.TriviaDatabase;
-
 import sun.audio.AudioData;
 import sun.audio.AudioDataStream;
 import sun.audio.AudioPlayer;
@@ -94,8 +92,9 @@ public class Game {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//TriviaDatabase.init();
-		//questionPool = new ArrayList<Question>(TriviaDatabase.getQuestions());
+		// TriviaDatabase.init();
+		// questionPool = new
+		// ArrayList<Question>(TriviaDatabase.getQuestions());
 		questionPool = new ArrayList<Question>();
 		while (input.hasNext()) {
 			Question q = new Question(input.nextLine());
@@ -241,5 +240,39 @@ public class Game {
 			}
 		}
 		return winner;
+	}
+
+	public static void playSound(File soundFile, long length) throws IOException {
+		InputStream is = new FileInputStream(soundFile);
+		AudioStream as = new AudioStream(is);
+		AudioData data = as.getData();
+		AudioDataStream cas = new AudioDataStream(data);
+		Thread audioThread = new Thread() {
+			public void run() {
+				AudioPlayer.player.start(cas);
+				try {
+					Thread.sleep(length);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				AudioPlayer.player.stop(cas);
+				try {
+					as.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		audioThread.start();
+	}
+
+	public List<Player> getPlayers() {
+		return players;
+	}
+
+	public Player getPlayer(int index) {
+		return players.get(index);
 	}
 }

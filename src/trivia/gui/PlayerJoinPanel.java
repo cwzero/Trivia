@@ -16,7 +16,6 @@ public class PlayerJoinPanel extends JPanel {
 	private JButton btnBack;
 	private GameFrame gameFrame = null;
 	private int currentPlayer = 0;
-	
 
 	/**
 	 * Create the frame.
@@ -68,7 +67,7 @@ public class PlayerJoinPanel extends JPanel {
 			}
 		});
 	}
-	
+
 	public void backButtonClick() {
 		if (currentPlayer > 0) {
 			gameFrame.getGame().setCurrentPlayer(currentPlayer - 1);

@@ -102,11 +102,9 @@ public class GameStatusPanel extends JPanel {
 		gbc_btnStartNewGame.gridy = 4;
 		this.add(btnStartNewGame, gbc_btnStartNewGame);
 		if (gameFrame.getGame().isOver()) {
-			lblGameStatus.setText(
-					gameFrame.getGame().getGameWinner().getName() + " has won the game.");
+			lblGameStatus.setText(gameFrame.getGame().getGameWinner().getName() + " has won the game.");
 		} else {
-			lblGameStatus.setText(
-					gameFrame.getGame().getRoundWinner().getName() + " has won the round.");
+			lblGameStatus.setText(gameFrame.getGame().getRoundWinner().getName() + " has won the round.");
 			btnStartNewGame.setText("Next round");
 		}
 	}

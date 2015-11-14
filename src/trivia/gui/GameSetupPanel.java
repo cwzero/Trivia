@@ -32,9 +32,9 @@ public class GameSetupPanel extends JPanel {
 		playerCountSpinner.setValue(gameFrame.getGame().getPlayerCount());
 		gameFrame.setTitle("Game Setup");
 		setBorder(new EmptyBorder(5, 5, 5, 5));
-		
+
 		this.setLayout(null);
-		
+
 		roundCountSpinner.setModel(new SpinnerNumberModel(3, 3, 10, 1));
 		roundCountSpinner.setBounds(298, 63, 39, 31);
 		this.add(roundCountSpinner);
@@ -64,25 +64,27 @@ public class GameSetupPanel extends JPanel {
 		JButton backButton = new JButton("Back");
 		backButton.setBounds(257, 213, 95, 23);
 		this.add(backButton);
-		
+
 		answerTimeSpinner.setModel(new SpinnerNumberModel(30, 10, 60, 1));
 		answerTimeSpinner.setBounds(298, 155, 39, 31);
 		answerTimeSpinner.setEnabled(false);
 		this.add(answerTimeSpinner);
-		
+
 		answerTimeCheckBox.setBounds(99, 163, 155, 23);
 		answerTimeCheckBox.addItemListener(new ItemListener() {
-		    @Override
-		    public void itemStateChanged(ItemEvent e) {
-		        if(e.getStateChange() == ItemEvent.SELECTED) {//checkbox has been selected
-		        	answerTimeSpinner.setEnabled(true);
-		        } else {//checkbox has been deselected
-		        	answerTimeSpinner.setEnabled(false);
-		        };
-		    }
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {// checkbox has
+																// been selected
+					answerTimeSpinner.setEnabled(true);
+				} else {// checkbox has been deselected
+					answerTimeSpinner.setEnabled(false);
+				}
+				;
+			}
 		});
 		this.add(answerTimeCheckBox);
-		
+
 		backButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -96,7 +98,7 @@ public class GameSetupPanel extends JPanel {
 		gameFrame.getGame().setRoundCount(roundCount);
 		int playerCount = (int) playerCountSpinner.getValue();
 		gameFrame.getGame().setPlayerCount(playerCount);
-		if (answerTimeCheckBox.isSelected()){
+		if (answerTimeCheckBox.isSelected()) {
 			int answerTime = (int) answerTimeSpinner.getValue();
 			gameFrame.getGame().setAnswerTime(answerTime);
 		}

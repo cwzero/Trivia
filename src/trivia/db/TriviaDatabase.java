@@ -13,14 +13,14 @@ import trivia.Question;
 public class TriviaDatabase {
 	private static boolean initialized = false;
 	private static Connection connection = null;
-	
+
 	private static String host = "trivia.c8jug9wmu3by.us-east-1.rds.amazonaws.com";
 	private static int port = 3306;
 	private static String db = "Trivia";
-	
+
 	private static String user = "trivia";
 	private static String pass = "trivia";
-	
+
 	private static List<Question> questions;
 
 	public static void init() {
@@ -30,13 +30,14 @@ public class TriviaDatabase {
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
-			
+
 			Statement statement = null;
 			ResultSet resultSet = null;
 			questions = new ArrayList<Question>();
 
 			try {
-				connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db + "?user=" + user + "&password=" + pass);
+				connection = DriverManager.getConnection(
+						"jdbc:mysql://" + host + ":" + port + "/" + db + "?user=" + user + "&password=" + pass);
 				statement = connection.createStatement();
 				resultSet = statement.executeQuery("SELECT Question_Text FROM Question;");
 				while (resultSet.next()) {
@@ -47,7 +48,7 @@ public class TriviaDatabase {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			initialized = true;
 		}
 	}

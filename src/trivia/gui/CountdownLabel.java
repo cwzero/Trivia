@@ -5,9 +5,9 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public class CountdownLabel extends JLabel {
 	public CountdownLabel() {
-		
+
 	}
-	
+
 	public CountdownLabel(final int length) {
 		this.setText(length + "");
 		Thread countdownThread = new Thread() {
@@ -26,8 +26,8 @@ public class CountdownLabel extends JLabel {
 		};
 		countdownThread.start();
 	}
-	
+
 	public void event(int time) {
-		
+
 	}
 }

@@ -18,7 +18,7 @@ public class Question {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Question) {
-			return ((Question)obj).getText().equals(getText());
+			return ((Question) obj).getText().equals(getText());
 		}
 		return super.equals(obj);
 	}
