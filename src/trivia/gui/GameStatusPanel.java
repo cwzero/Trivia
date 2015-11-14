@@ -4,44 +4,54 @@ import trivia.Game;
 
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
+
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
-public class GameStatusPanel extends GamePanel {
+public class GameStatusPanel extends JPanel {
+	private GameFrame gameFrame;
+
 	/**
 	 * Create the frame.
 	 */
 	public GameStatusPanel(GameFrame gameFrame) {
-		super(gameFrame);
-		createGui();
-		gameFrame.setVisible(true);
-	}
-
-	private void btnStartNewGame_click() {
-		if (gameFrame.getGame().isOver()) {
-			gameFrame.setGame(new Game());
-			new GameSetupPanel(gameFrame);
-		} else {
-			gameFrame.getGame().nextRound();
-			new QuestionSelectPanel(gameFrame);
-		}
-	}
-
-	@Override
-	protected void createGui() {
+		this.gameFrame = gameFrame;
+		setBounds(100, 100, 450, 300);  
+        JPanel contentPane = new JPanel() {
+        	public void paintComponent(Graphics g) {  
+        		                      Image img = Toolkit.getDefaultToolkit().getImage(  
+        		                               GameFrame.class.getResource("/images/trivia.png"));  
+        		                     g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);  
+        		                 }  
+        		            };  
+        		            contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));  
+        		            contentPane.setLayout(new BorderLayout(0, 0));  
+        		           gameFrame.setContentPane(contentPane);  
+		
+		gameFrame.repaint();
 		gameFrame.setTitle("Current Game Status");
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		gameFrame.setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0 };
 
-		this.setLayout(gbl_contentPane);
+		contentPane.setLayout(gbl_contentPane);
 
 		JLabel lblGameStatus = new JLabel("Game Status");
 		lblGameStatus.setHorizontalAlignment(SwingConstants.CENTER);
@@ -52,7 +62,7 @@ public class GameStatusPanel extends GamePanel {
 		gbc_lblGameStatus.insets = new Insets(0, 0, 5, 0);
 		gbc_lblGameStatus.gridx = 0;
 		gbc_lblGameStatus.gridy = 0;
-		this.add(lblGameStatus, gbc_lblGameStatus);
+		contentPane.add(lblGameStatus, gbc_lblGameStatus);
 
 		// This create the label for the Scoreboard
 
@@ -65,7 +75,7 @@ public class GameStatusPanel extends GamePanel {
 		gbc_lblScoreboard.insets = new Insets(0, 0, 5, 0);
 		gbc_lblScoreboard.gridx = 0;
 		gbc_lblScoreboard.gridy = 2;
-		this.add(lblScoreboard, gbc_lblScoreboard);
+		contentPane.add(lblScoreboard, gbc_lblScoreboard);
 
 		// This is just to hold rows and columns for now but will need to read
 		// from
@@ -93,7 +103,7 @@ public class GameStatusPanel extends GamePanel {
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 3;
-		this.add(scrollPane, gbc_scrollPane);
+		contentPane.add(scrollPane, gbc_scrollPane);
 
 		// This button starts new game " Not valid yet"
 
@@ -108,12 +118,25 @@ public class GameStatusPanel extends GamePanel {
 		gbc_btnStartNewGame.fill = GridBagConstraints.VERTICAL;
 		gbc_btnStartNewGame.gridx = 0;
 		gbc_btnStartNewGame.gridy = 4;
-		this.add(btnStartNewGame, gbc_btnStartNewGame);
+		contentPane.add(btnStartNewGame, gbc_btnStartNewGame);
 		if (gameFrame.getGame().isOver()) {
-			lblGameStatus.setText(gameFrame.getGame().getGameWinner().getName() + " has won the game.");
+			lblGameStatus.setText(
+					gameFrame.getGame().getGameWinner().getName() + " has won the game.");
 		} else {
-			lblGameStatus.setText(gameFrame.getGame().getRoundWinner().getName() + " has won the round.");
+			lblGameStatus.setText(
+					gameFrame.getGame().getRoundWinner().getName() + " has won the round.");
 			btnStartNewGame.setText("Next round");
 		}
 	}
+
+	private void btnStartNewGame_click() {
+		if (gameFrame.getGame().isOver()) {
+			gameFrame.setGame(new Game());
+			new GameSetupPanel(gameFrame);
+		} else {
+			gameFrame.getGame().nextRound();
+			new QuestionSelectPanel(gameFrame);
+		}
+	}
 }
+
