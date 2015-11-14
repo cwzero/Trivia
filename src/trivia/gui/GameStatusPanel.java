@@ -22,6 +22,7 @@ import java.awt.Toolkit;
 
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class GameStatusPanel extends JPanel {
@@ -95,6 +96,8 @@ public class GameStatusPanel extends JPanel {
 		}
 
 		JTable table = new JTable(rowData, columnNames);
+		table.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		table.setBackground(Color.ORANGE);
 		JScrollPane scrollPane = new JScrollPane(table);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.weighty = 2.0;
