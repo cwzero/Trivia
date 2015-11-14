@@ -273,6 +273,8 @@ public class Game {
 	}
 
 	public Player getPlayer(int index) {
+		if (index < playerCount && index > players.size() - 1)
+			players.add(new Player());
 		return players.get(index);
 	}
 }
