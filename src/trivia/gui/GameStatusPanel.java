@@ -23,6 +23,7 @@ import java.awt.Toolkit;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 public class GameStatusPanel extends JPanel {
