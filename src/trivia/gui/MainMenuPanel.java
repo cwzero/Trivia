@@ -2,8 +2,6 @@ package trivia.gui;
 
 import javax.swing.JLabel;
 
-import javax.swing.JPanel;
-
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -16,21 +14,26 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 @SuppressWarnings("serial")
-public class MainMenuPanel extends JPanel {
-	private GameFrame gameFrame;
-
-	public MainMenuPanel() {
-		this(new GameFrame());
-		gameFrame.setVisible(true);
-	}
-
+public class MainMenuPanel extends GamePanel {
 	/**
 	 * Create the application.
 	 */
 	public MainMenuPanel(GameFrame gameFrame) {
-		this.gameFrame = gameFrame;
-		gameFrame.setContentPane(this);
-		gameFrame.repaint();
+		super(gameFrame);
+		createGui();
+	}
+
+	public void newGameButtonClick() {
+		// Here we will close the main menu, then show a new game setup frame
+		new GameSetupPanel(gameFrame);
+	}
+
+	public void quitButtonClick() {
+		System.exit(0);
+	}
+
+	@Override
+	protected void createGui() {
 		gameFrame.setTitle("Main Menu");
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -90,15 +93,5 @@ public class MainMenuPanel extends JPanel {
 		gbc_quitButton.weightx = 0;
 		gbc_quitButton.weighty = 0;
 		add(quitButton, gbc_quitButton);
-		gameFrame.setVisible(true);
-	}
-
-	public void newGameButtonClick() {
-		// Here we will close the main menu, then show a new game setup frame
-		new GameSetupPanel(gameFrame);
-	}
-
-	public void quitButtonClick() {
-		System.exit(0);
 	}
 }

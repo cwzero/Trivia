@@ -3,9 +3,7 @@ package trivia.gui;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JPanel;
 import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
 
 import trivia.Game;
 
@@ -20,8 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class QuestionSelectPanel extends JPanel {
-	private GameFrame gameFrame;
+public class QuestionSelectPanel extends GamePanel {
 	private Question[] questions = new Question[3];
 	private JButton btnQuestion1;
 	private JButton btnQuestion2;
@@ -34,11 +31,18 @@ public class QuestionSelectPanel extends JPanel {
 	 */
 
 	public QuestionSelectPanel(GameFrame gameFrame) {
-		this.gameFrame = gameFrame;
-		gameFrame.setTitle("Select a question");
-		gameFrame.setContentPane(this);
-		gameFrame.repaint();
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		super(gameFrame);
+		createGui();
+	}
+
+	public void selectQuestion(int question) {
+		gameFrame.getGame().setCurrentPlayer(0);
+		gameFrame.getGame().setCurrentQuestion(questions[question]);
+		new AnswerEntryPanel(gameFrame);
+	}
+
+	@Override
+	protected void createGui() {
 		this.setLayout(null);
 
 		File file = new File("click7.au");
@@ -185,11 +189,6 @@ public class QuestionSelectPanel extends JPanel {
 		lblPlayerPleaseSelect.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblPlayerPleaseSelect.setBounds(17, 24, 344, 49);
 		this.add(lblPlayerPleaseSelect);
-	}
 
-	public void selectQuestion(int question) {
-		gameFrame.getGame().setCurrentPlayer(0);
-		gameFrame.getGame().setCurrentQuestion(questions[question]);
-		new AnswerEntryPanel(gameFrame);
 	}
 }

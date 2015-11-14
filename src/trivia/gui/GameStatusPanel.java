@@ -1,8 +1,5 @@
 package trivia.gui;
 
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import trivia.Game;
 
 import javax.swing.JScrollPane;
@@ -18,18 +15,27 @@ import java.awt.Insets;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class GameStatusPanel extends JPanel {
-	private GameFrame gameFrame;
-
+public class GameStatusPanel extends GamePanel {
 	/**
 	 * Create the frame.
 	 */
 	public GameStatusPanel(GameFrame gameFrame) {
-		this.gameFrame = gameFrame;
-		gameFrame.repaint();
+		super(gameFrame);
+	}
+
+	private void btnStartNewGame_click() {
+		if (gameFrame.getGame().isOver()) {
+			gameFrame.setGame(new Game());
+			new GameSetupPanel(gameFrame);
+		} else {
+			gameFrame.getGame().nextRound();
+			new QuestionSelectPanel(gameFrame);
+		}
+	}
+
+	@Override
+	protected void createGui() {
 		gameFrame.setTitle("Current Game Status");
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		gameFrame.setContentPane(this);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0 };
 
@@ -106,16 +112,6 @@ public class GameStatusPanel extends JPanel {
 		} else {
 			lblGameStatus.setText(gameFrame.getGame().getRoundWinner().getName() + " has won the round.");
 			btnStartNewGame.setText("Next round");
-		}
-	}
-
-	private void btnStartNewGame_click() {
-		if (gameFrame.getGame().isOver()) {
-			gameFrame.setGame(new Game());
-			new GameSetupPanel(gameFrame);
-		} else {
-			gameFrame.getGame().nextRound();
-			new QuestionSelectPanel(gameFrame);
 		}
 	}
 }

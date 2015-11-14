@@ -8,14 +8,12 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import trivia.Player;
 
 @SuppressWarnings("serial")
-public class WinnerSelectPanel extends JPanel {
-	private GameFrame gameFrame;
+public class WinnerSelectPanel extends GamePanel {
 	protected int[] playerScore;
 	protected int increment = 20;
 
@@ -23,11 +21,36 @@ public class WinnerSelectPanel extends JPanel {
 	 * Create the frame.
 	 */
 	public WinnerSelectPanel(final GameFrame gameFrame) {
-		this.gameFrame = gameFrame;
-		gameFrame.setTitle("Select Winner");
-		setBounds(100, 100, 600, 400);
-		gameFrame.setContentPane(this);
-		gameFrame.repaint();
+		super(gameFrame);
+		createGui();
+	}
+
+	private List<PlayerButton> shuffle(List<PlayerButton> orig) {
+		Random ran = new Random();
+		List<PlayerButton> temp = new ArrayList<PlayerButton>(orig);
+		List<PlayerButton> result = new ArrayList<PlayerButton>();
+
+		while (!temp.isEmpty()) {
+			result.add(temp.remove(ran.nextInt(temp.size())));
+		}
+		return result;
+	}
+
+	private void selectWinner(int winner) {
+		gameFrame.getGame().setRoundWinner(winner);
+		gameFrame.getGame().setPlayerScore(winner, gameFrame.getGame().getPlayer(winner).getScore() + 1);
+		new GameStatusPanel(gameFrame);
+	}
+
+	public void selectWinner(Player winner) {
+		winner.setWinner(true);
+		winner.setScore(winner.getScore() + 1);
+		new GameStatusPanel(gameFrame);
+	}
+
+	@Override
+	protected void createGui() {
+
 		this.setLayout(new GridLayout(0, 1, 0, 0));
 
 		CountdownLabel lblCountdown = new CountdownLabel(15) {
@@ -94,29 +117,6 @@ public class WinnerSelectPanel extends JPanel {
 			if (gameFrame.getGame().getCurrentLeader() != gameFrame.getGame().getPlayers().indexOf(button.getPlayer()))
 				this.add(button);
 		}
-	}
-
-	private List<PlayerButton> shuffle(List<PlayerButton> orig) {
-		Random ran = new Random();
-		List<PlayerButton> temp = new ArrayList<PlayerButton>(orig);
-		List<PlayerButton> result = new ArrayList<PlayerButton>();
-
-		while (!temp.isEmpty()) {
-			result.add(temp.remove(ran.nextInt(temp.size())));
-		}
-		return result;
-	}
-
-	private void selectWinner(int winner) {
-		gameFrame.getGame().setRoundWinner(winner);
-		gameFrame.getGame().setPlayerScore(winner, gameFrame.getGame().getPlayer(winner).getScore() + 1);
-		new GameStatusPanel(gameFrame);
-	}
-
-	public void selectWinner(Player winner) {
-		winner.setWinner(true);
-		winner.setScore(winner.getScore() + 1);
-		new GameStatusPanel(gameFrame);
 	}
 
 }

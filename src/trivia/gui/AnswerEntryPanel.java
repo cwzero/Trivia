@@ -1,8 +1,5 @@
 package trivia.gui;
 
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import trivia.Game;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -17,12 +14,11 @@ import java.awt.Insets;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class AnswerEntryPanel extends JPanel {
-	private GameFrame gameFrame;
+public class AnswerEntryPanel extends GamePanel {
 	private JTextField answerField;
 
 	public AnswerEntryPanel(GameFrame gameFrame) {
-		this.gameFrame = gameFrame;
+		super(gameFrame);
 		Game game = gameFrame.getGame();
 
 		// To create the GUI for a the player who is not the current leader.
@@ -34,19 +30,15 @@ public class AnswerEntryPanel extends JPanel {
 
 			new WinnerSelectPanel(gameFrame);
 		} else {
-			createGUI();
+			createGui();
 		}
 	}
 
-	public void createGUI() {
-		gameFrame.setContentPane(this);
-		gameFrame.repaint();
-
+	@Override
+	protected void createGui() {
 		Game game = gameFrame.getGame();
 		gameFrame.setTitle("Enter Answer");
-		setBounds(100, 100, 600, 400);
 
-		setBorder(new EmptyBorder(25, 25, 25, 25));
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		setLayout(gbl_contentPane);
 
