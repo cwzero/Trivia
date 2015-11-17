@@ -20,40 +20,44 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
-public class MainMenuPanel extends GamePanel {
+public class MainMenuPanel extends GamePanel
+{
 	/**
 	 * Create the application.
 	 */
-	public MainMenuPanel(GameFrame gameFrame) {
+	public MainMenuPanel(GameFrame gameFrame)
+	{
 		super(gameFrame);
 		createGui();
 		gameFrame.setVisible(true);
 	}
 
-	public void newGameButtonClick() {
+	public void newGameButtonClick()
+	{
 		// Here we will close the main menu, then show a new game setup frame
 		new GameSetupPanel(gameFrame);
 	}
 
-	public void quitButtonClick() {
+	public void quitButtonClick()
+	{
 		System.exit(0);
 	}
 
 	@Override
-	protected void createGui() {
-		
-		setBounds(100, 100, 450, 300);  
-        JPanel contentPane = new JPanel() {
-        	public void paintComponent(Graphics g) {  
-        		                      Image img = Toolkit.getDefaultToolkit().getImage(  
-        		                               GameFrame.class.getResource("/images/trivia.png"));  
-        		                     g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);  
-        		                 }  
-        		            };  
-        		            contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));  
-        		            contentPane.setLayout(new BorderLayout(0, 0));  
-        		           gameFrame.setContentPane(contentPane);  
-		
+	protected void createGui()
+	{
+		setBounds(100, 100, 450, 300);
+		JPanel contentPane = new JPanel() {
+			public void paintComponent(Graphics g)
+			{
+				Image img = Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/trivia.png"));
+				g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+			}
+		};
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		gameFrame.setContentPane(contentPane);
+
 		gameFrame.repaint();
 		gameFrame.setTitle("Main Menu");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -83,7 +87,8 @@ public class MainMenuPanel extends GamePanel {
 		JButton newGameButton = new JButton("New Game");
 		newGameButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				MainMenuPanel.this.newGameButtonClick();
 			}
 		});
@@ -102,7 +107,8 @@ public class MainMenuPanel extends GamePanel {
 		JButton quitButton = new JButton("Quit");
 		quitButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				MainMenuPanel.this.quitButtonClick();
 			}
 		});

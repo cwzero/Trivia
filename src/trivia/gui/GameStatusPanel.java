@@ -22,6 +22,8 @@ import java.awt.Toolkit;
 
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.TableColumn;
+
 import java.awt.Color;
 
 @SuppressWarnings("serial")
@@ -98,12 +100,27 @@ public class GameStatusPanel extends JPanel {
 		JTable table = new JTable(rowData, columnNames);
 		table.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		table.setBackground(Color.ORANGE);
+		
+		// This makes the score column smaller to leave more space for answer
+		TableColumn column = null;
+		for (int i = 0; i < 3; i++) {
+		    column = table.getColumnModel().getColumn(i);
+		    if (i == 0) {
+		        column.setPreferredWidth(50); 
+		    } else if (i == 1){
+		        column.setPreferredWidth(10); //Second column is smaller
+		    }
+		    else {
+		        column.setPreferredWidth(150);
+		    }
+		}
+		
 		JScrollPane scrollPane = new JScrollPane(table);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.weighty = 2.0;
 		gbc_scrollPane.weightx = 1.0;
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane.insets = new Insets(0, 60, 5, 60);
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 3;
 		contentPane.add(scrollPane, gbc_scrollPane);
