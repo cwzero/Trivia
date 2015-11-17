@@ -97,6 +97,10 @@ public class Game {
 		}
 		input.close();
 	}
+	
+	private void saveQuestions() {
+		
+	}
 
 	private void chooseLeader() {
 		int prevLeader = currentLeader;
