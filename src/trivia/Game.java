@@ -16,6 +16,7 @@ import sun.audio.AudioDataStream;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 import sun.audio.ContinuousAudioDataStream;
+import trivia.db.TriviaDatabase;
 
 public class Game {
 	// The number of players in the game //
