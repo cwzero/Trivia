@@ -8,14 +8,12 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import trivia.Player;
 
 @SuppressWarnings("serial")
-public class WinnerSelectPanel extends JPanel {
-	private GameFrame gameFrame;
+public class WinnerSelectPanel extends GamePanel {
 	protected int[] playerScore;
 	protected int increment = 20;
 
@@ -23,11 +21,35 @@ public class WinnerSelectPanel extends JPanel {
 	 * Create the frame.
 	 */
 	public WinnerSelectPanel(final GameFrame gameFrame) {
-		this.gameFrame = gameFrame;
-		gameFrame.setTitle("Select Winner");
-		setBounds(100, 100, 600, 400);
-		gameFrame.setContentPane(this);
-		gameFrame.repaint();
+		super(gameFrame);
+		createGui();
+	}
+
+	private List<PlayerButton> shuffle(List<PlayerButton> orig) {
+		Random ran = new Random();
+		List<PlayerButton> temp = new ArrayList<PlayerButton>(orig);
+		List<PlayerButton> result = new ArrayList<PlayerButton>();
+
+		while (!temp.isEmpty()) {
+			result.add(temp.remove(ran.nextInt(temp.size())));
+		}
+		return result;
+	}
+
+	private void selectWinner(int winner) {
+		gameFrame.getGame().setRoundWinner(winner);
+		gameFrame.getGame().setPlayerScore(winner, gameFrame.getGame().getPlayer(winner).getScore() + 1);
+		new GameStatusPanel(gameFrame);
+	}
+
+	public void selectWinner(Player winner) {
+		winner.setWinner(true);
+		winner.setScore(winner.getScore() + 1);
+		new GameStatusPanel(gameFrame);
+	}
+
+	@Override
+	protected void createGui() {
 		this.setLayout(new GridLayout(0, 1, 0, 0));
 
 		CountdownLabel lblCountdown = new CountdownLabel(15) {
@@ -59,7 +81,7 @@ public class WinnerSelectPanel extends JPanel {
 					this.setFont(new Font("Tahoma", Font.BOLD, 70));
 					Random random = new Random();
 					int generated = random.nextInt(gameFrame.getGame().getPlayerCount());
-					while (generated != gameFrame.getGame().getCurrentLeader()) {
+					while (generated == gameFrame.getGame().getCurrentLeader()) {
 						generated = random.nextInt(gameFrame.getGame().getPlayerCount());
 					}
 					selectWinner(generated);
@@ -80,42 +102,18 @@ public class WinnerSelectPanel extends JPanel {
 		lblSelectedQuestion.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(lblSelectedQuestion);
 		lblSelectedQuestion.setText(gameFrame.getGame().getCurrentQuestion().getText());
-		
+
 		List<PlayerButton> buttons = new ArrayList<PlayerButton>();
-		for (Player player: gameFrame.getGame().getPlayers()) {
+		for (Player player : gameFrame.getGame().getPlayers()) {
 			buttons.add(new PlayerButton(player, this));
 		}
-		
+
 		buttons = shuffle(buttons);
-		
-		for(PlayerButton button: buttons) {
+
+		for (PlayerButton button : buttons) {
 			button.setHorizontalAlignment(SwingConstants.CENTER);
 			if (gameFrame.getGame().getCurrentLeader() != gameFrame.getGame().getPlayers().indexOf(button.getPlayer()))
 				this.add(button);
 		}
 	}
-	
-	private List<PlayerButton> shuffle(List<PlayerButton> orig) {
-		Random ran = new Random();
-		List<PlayerButton> temp = new ArrayList<PlayerButton>(orig);
-		List<PlayerButton> result = new ArrayList<PlayerButton>();
-		
-		while (!temp.isEmpty()) {
-			result.add(temp.remove(ran.nextInt(temp.size())));
-		}
-		return result;
-	}
-
-	private void selectWinner(int winner) {
-		gameFrame.getGame().setRoundWinner(winner);
-		gameFrame.getGame().setPlayerScore(winner, gameFrame.getGame().getPlayer(winner).getScore() + 1);
-		new GameStatusPanel(gameFrame);
-	}
-	
-	public void selectWinner(Player winner) {
-		winner.setWinner(true);
-		winner.setScore(winner.getScore() + 1);
-		new GameStatusPanel(gameFrame);
-	}
-
 }

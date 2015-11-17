@@ -16,7 +16,6 @@ public class PlayerButton extends JButton {
 		if (player.getAnswer() == null || player.getAnswer().equals(""))
 			setVisible(false);
 		setText(player.getAnswer());
-		
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

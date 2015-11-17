@@ -5,7 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import trivia.gui.MainMenuPanel;
+import trivia.gui.GameFrame;
 
 // Version 1.0.0 //
 public class Trivia {
@@ -22,7 +22,7 @@ public class Trivia {
 			@Override
 			public void run() {
 				try {
-					MainMenuPanel window = new MainMenuPanel();
+					GameFrame window = new GameFrame();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

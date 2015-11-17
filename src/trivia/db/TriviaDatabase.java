@@ -49,7 +49,6 @@ public class TriviaDatabase {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 			initialized = true;
 		}
 
@@ -58,8 +57,8 @@ public class TriviaDatabase {
 	public static List<Question> getQuestions() {
 		return questions;
 	}
-	
+
 	public static void addQuestions() {
-		
+
 	}
 }

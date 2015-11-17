@@ -4,38 +4,69 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
-public class MainMenuPanel extends JPanel {
-	private GameFrame gameFrame;
-
-	public MainMenuPanel() {
-		this(new GameFrame());
-		gameFrame.setVisible(true);
-	}
-
+public class MainMenuPanel extends GamePanel
+{
 	/**
 	 * Create the application.
 	 */
-	public MainMenuPanel(GameFrame gameFrame) {
-		this.gameFrame = gameFrame;
-		gameFrame.setContentPane(this);
+	public MainMenuPanel(GameFrame gameFrame)
+	{
+		super(gameFrame);
+		createGui();
+		gameFrame.setVisible(true);
+	}
+
+	public void newGameButtonClick()
+	{
+		// Here we will close the main menu, then show a new game setup frame
+		new GameSetupPanel(gameFrame);
+	}
+
+	public void quitButtonClick()
+	{
+		System.exit(0);
+	}
+
+	@Override
+	protected void createGui()
+	{
+		setBounds(100, 100, 450, 300);
+		JPanel contentPane = new JPanel() {
+			public void paintComponent(Graphics g)
+			{
+				Image img = Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/trivia.png"));
+				g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+			}
+		};
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		gameFrame.setContentPane(contentPane);
+
 		gameFrame.repaint();
 		gameFrame.setTitle("Main Menu");
-		
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		gameFrame.setContentPane(contentPane);
+
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 1.0 };
 
-		setLayout(gridBagLayout);
+		contentPane.setLayout(gridBagLayout);
 
 		JLabel lblTriviaGame = new JLabel("TRIVIA GAME");
 		lblTriviaGame.setHorizontalAlignment(SwingConstants.CENTER);
@@ -51,12 +82,13 @@ public class MainMenuPanel extends JPanel {
 		gbc_lblTriviaGame.gridwidth = 3;
 		gbc_lblTriviaGame.weightx = 0;
 		gbc_lblTriviaGame.weighty = 0;
-		add(lblTriviaGame, gbc_lblTriviaGame);
+		contentPane.add(lblTriviaGame, gbc_lblTriviaGame);
 
 		JButton newGameButton = new JButton("New Game");
 		newGameButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				MainMenuPanel.this.newGameButtonClick();
 			}
 		});
@@ -70,12 +102,13 @@ public class MainMenuPanel extends JPanel {
 		gbc_newGameButton.gridwidth = 1;
 		gbc_newGameButton.weightx = 0;
 		gbc_newGameButton.weighty = 0;
-		add(newGameButton, gbc_newGameButton);
+		contentPane.add(newGameButton, gbc_newGameButton);
 
 		JButton quitButton = new JButton("Quit");
 		quitButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				MainMenuPanel.this.quitButtonClick();
 			}
 		});
@@ -88,16 +121,6 @@ public class MainMenuPanel extends JPanel {
 		gbc_quitButton.gridy = 2;
 		gbc_quitButton.weightx = 0;
 		gbc_quitButton.weighty = 0;
-		add(quitButton, gbc_quitButton);
-		gameFrame.setVisible(true);
-	}
-
-	public void newGameButtonClick() {
-		// Here we will close the main menu, then show a new game setup frame
-		new GameSetupPanel(gameFrame);
-	}
-
-	public void quitButtonClick() {
-		System.exit(0);
+		contentPane.add(quitButton, gbc_quitButton);
 	}
 }

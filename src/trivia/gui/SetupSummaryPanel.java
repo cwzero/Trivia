@@ -1,8 +1,6 @@
 package trivia.gui;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
 import java.awt.GridBagConstraints;
@@ -11,8 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
-public class SetupSummaryPanel extends JPanel {
-	private GameFrame gameFrame;
+public class SetupSummaryPanel extends GamePanel {
 	private JButton buttonNext;
 	private JButton buttonBack;
 
@@ -20,12 +17,30 @@ public class SetupSummaryPanel extends JPanel {
 	 * Create the frame.
 	 */
 	public SetupSummaryPanel(GameFrame gameFrame) {
-		this.gameFrame = gameFrame;
-		gameFrame.setContentPane(this);
-		gameFrame.repaint();
+		super(gameFrame);
+		createGui();
+		gameFrame.setVisible(true);
+	}
 
+	private void buttonNext_click() {
+		gameFrame.getGame().start();
+
+		// Select leader and start game
+
+		// ---------------------------------------------------------------------//
+		// added by Brian to test question select frame
+		new QuestionSelectPanel(gameFrame);
+		// ---------------------------------------------------------------------//
+	}
+
+	private void buttonBack_click() {
+		// Eventually this should go back to edit setup
+		new MainMenuPanel(gameFrame);
+	}
+
+	@Override
+	protected void createGui() {
 		gameFrame.setTitle("Game Setup Summary");
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(new GridBagLayout());
 
 		JLabel lblNumberOfRounds = new JLabel("Number of Rounds: " + gameFrame.getGame().getRoundCount());
@@ -99,21 +114,5 @@ public class SetupSummaryPanel extends JPanel {
 				SetupSummaryPanel.this.buttonBack_click();
 			}
 		});
-	}
-
-	private void buttonNext_click() {
-		gameFrame.getGame().start();
-
-		// Select leader and start game
-
-		// ---------------------------------------------------------------------//
-		// added by Brian to test question select frame
-		new QuestionSelectPanel(gameFrame);
-		// ---------------------------------------------------------------------//
-	}
-
-	private void buttonBack_click() {
-		// Eventually this should go back to edit setup
-		new MainMenuPanel(gameFrame);
 	}
 }

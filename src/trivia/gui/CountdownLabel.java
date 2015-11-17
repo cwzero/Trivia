@@ -5,7 +5,7 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public class CountdownLabel extends JLabel {
 	public CountdownLabel() {
-		
+
 	}
 	
 	public CountdownLabel(final int length) {
