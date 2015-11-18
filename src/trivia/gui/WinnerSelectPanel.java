@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -63,6 +66,12 @@ public class WinnerSelectPanel extends GamePanel {
 	protected void createGui() {
 		this.setLayout(new GridLayout(0, 1, 0, 0));
 		
+		
+        Icon icon = new ImageIcon("beat.gif");
+        JLabel label = new JLabel(icon);
+        label.setSize(1000, 200);
+        this.add(label);
+        
 	
 		/*AudioStream theme = null;
 		try
