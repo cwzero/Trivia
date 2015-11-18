@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import sun.audio.AudioPlayer;
@@ -25,6 +26,7 @@ public class WinnerSelectPanel extends GamePanel {
 	protected int increment = 20;
 	
 	File file = new File("timer.wav");
+	File beep = new File("beep.wav");
 
 	/**
 	 * Create the frame.
@@ -62,7 +64,7 @@ public class WinnerSelectPanel extends GamePanel {
 		this.setLayout(new GridLayout(0, 1, 0, 0));
 		
 	
-		AudioStream theme = null;
+		/*AudioStream theme = null;
 		try
         {
             InputStream a = new FileInputStream ("timer.wav");
@@ -74,12 +76,27 @@ public class WinnerSelectPanel extends GamePanel {
         }
         // Play audio.
         AudioPlayer.player.start (theme);
+        */
 
 
-		CountdownLabel lblCountdown = new CountdownLabel(11) {
+		CountdownLabel lblCountdown = new CountdownLabel(15) {
 
 			@Override
 			public void event(int time) {
+				if (time <= 15 && time > 0) {
+					AudioStream theme = null;
+					try
+			        {
+			            InputStream a = new FileInputStream ("tick.wav");
+			            theme = new AudioStream (a);          
+			          
+			        }
+			        catch (java.io.IOException z)  //catching the exception
+			        {
+			        }
+			        // Play audio.
+			        AudioPlayer.player.start (theme);
+				}
 				if (time == 5) {
 					this.setForeground(Color.red);
 					this.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -103,11 +120,24 @@ public class WinnerSelectPanel extends GamePanel {
 				if (time == 0) {
 					this.setForeground(Color.red);
 					this.setFont(new Font("Tahoma", Font.BOLD, 70));
+					AudioStream theme = null;
+					try
+			        {
+			            InputStream a = new FileInputStream ("ring.wav");
+			            theme = new AudioStream (a);          
+			          
+			        }
+			        catch (java.io.IOException z)  //catching the exception
+			        {
+			        }
+			        // Play audio.
+			        AudioPlayer.player.start (theme);
 					Random random = new Random();
 					int generated = random.nextInt(gameFrame.getGame().getPlayerCount());
 					while (generated == gameFrame.getGame().getCurrentLeader()) {
 						generated = random.nextInt(gameFrame.getGame().getPlayerCount());
 					}
+					JOptionPane.showMessageDialog(this, "TIME IS UP!!");
 					selectWinner(generated);
 				}
 			}
