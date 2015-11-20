@@ -64,6 +64,7 @@ public class QuestionSelectPanel extends GamePanel {
 
 		// mouse over and exit
 		btnQuestion1.addMouseListener(new java.awt.event.MouseAdapter() {
+			@Override
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
 				btnQuestion1.setBackground(Color.YELLOW);
 				// btnQuestion1.setForeground(Color.WHITE);
@@ -77,9 +78,10 @@ public class QuestionSelectPanel extends GamePanel {
 
 			}
 
+			@Override
 			public void mouseExited(java.awt.event.MouseEvent evt) {
 				btnQuestion1.setBackground(UIManager.getColor("control"));
-				btnQuestion1.setForeground(UIManager.getColor("control"));
+				//btnQuestion1.setForeground(UIManager.getColor("control"));
 			}
 		});
 		// pop file
@@ -107,9 +109,10 @@ public class QuestionSelectPanel extends GamePanel {
 
 		// mouse over and exit
 		btnQuestion2.addMouseListener(new java.awt.event.MouseAdapter() {
+			@Override
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
 				btnQuestion2.setBackground(Color.YELLOW);
-				btnQuestion1.setForeground(Color.WHITE);
+				//btnQuestion1.setForeground(Color.WHITE);
 
 				try {
 					Game.playSound(file, 100);
@@ -120,9 +123,10 @@ public class QuestionSelectPanel extends GamePanel {
 
 			}
 
+			@Override
 			public void mouseExited(java.awt.event.MouseEvent evt) {
 				btnQuestion2.setBackground(UIManager.getColor("control"));
-				btnQuestion2.setForeground(UIManager.getColor("control"));
+				//btnQuestion2.setForeground(UIManager.getColor("control"));
 			}
 		});
 
@@ -147,6 +151,7 @@ public class QuestionSelectPanel extends GamePanel {
 
 		// mouse over and exit
 		btnQuestion3.addMouseListener(new java.awt.event.MouseAdapter() {
+			@Override
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
 				btnQuestion3.setBackground(Color.YELLOW);
 				// btnQuestion1.setForeground(Color.WHITE);
@@ -160,9 +165,10 @@ public class QuestionSelectPanel extends GamePanel {
 
 			}
 
+			@Override
 			public void mouseExited(java.awt.event.MouseEvent evt) {
 				btnQuestion3.setBackground(UIManager.getColor("control"));
-				btnQuestion3.setForeground(UIManager.getColor("control"));
+				//btnQuestion3.setForeground(UIManager.getColor("control"));
 			}
 		});
 

@@ -3,18 +3,28 @@ package trivia.gui;
 import javax.swing.JLabel;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class MainMenuPanel extends GamePanel {
+	
+	public MainMenuPanel() {
+		createGui();
+	}
+	
 	/**
 	 * Create the application.
 	 */
@@ -32,9 +42,20 @@ public class MainMenuPanel extends GamePanel {
 	public void quitButtonClick() {
 		System.exit(0);
 	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		Image img = Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/trivia.png"));
+		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+	}
 
 	@Override
 	protected void createGui() {
+		setBounds(100, 100, 450, 300);
+		setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLayout(new BorderLayout(0, 0));
+
+		gameFrame.repaint();
 		gameFrame.setTitle("Main Menu");
 
 		GridBagLayout gridBagLayout = new GridBagLayout();

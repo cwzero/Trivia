@@ -16,6 +16,7 @@ import sun.audio.AudioDataStream;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 import sun.audio.ContinuousAudioDataStream;
+//import trivia.db.TriviaDatabase;
 
 public class Game {
 	// The number of players in the game //
@@ -93,7 +94,8 @@ public class Game {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		questionPool = new ArrayList<Question>();
+		//TriviaDatabase.init();
+		questionPool = new ArrayList<Question>(/*TriviaDatabase.getQuestions()*/);
 		while (input.hasNext()) {
 			Question q = new Question(input.nextLine());
 			if (!questionPool.contains(q)) {
@@ -231,13 +233,20 @@ public class Game {
 	public Player getGameWinner() {
 		int maxScore = -1;
 		Player winner = null;
+		boolean tie = true;
 		for (Player player : players) {
 			if (player.getScore() > maxScore && !player.equals(winner)) {
 				maxScore = player.getScore();
 				winner = player;
+				tie = false;
+			} else if (player.getScore() == maxScore) {
+				tie = true;
 			}
 		}
-		return winner;
+		if (!tie)
+			return winner;
+		else
+			return null;
 	}
 
 	public static void playSoundLoop(File soundFile, long length) throws IOException {
@@ -246,6 +255,7 @@ public class Game {
 		AudioData data = as.getData();
 		ContinuousAudioDataStream cas = new ContinuousAudioDataStream(data);
 		Thread audioThread = new Thread() {
+			@Override
 			public void run() {
 				AudioPlayer.player.start(cas);
 				try {
@@ -272,6 +282,7 @@ public class Game {
 		AudioData data = as.getData();
 		AudioDataStream cas = new AudioDataStream(data);
 		Thread audioThread = new Thread() {
+			@Override
 			public void run() {
 				AudioPlayer.player.start(cas);
 				try {
@@ -291,6 +302,34 @@ public class Game {
 		};
 		audioThread.start();
 	}
+	
+	public static int getRandomNumberInRange(int min, int max) {
+
+		if (min >= max) {
+			throw new IllegalArgumentException("max must be greater than min");
+		}
+
+		Random r = new Random();
+		return r.nextInt((max - min) + 1) + min;
+	}
+	
+	  public String choose(File f) throws FileNotFoundException
+	  {
+	     String result = null;
+	     Random rand = new Random();
+	     int n = 0;
+	     for(Scanner sc = new Scanner(f); sc.hasNext(); )
+	     {
+	        ++n;
+	        String line = sc.nextLine();
+	        if(rand.nextInt(n) == 0)
+	           result = line;         
+	     }
+
+	     return result;      
+	  }
+	
+	
 
 	public Player getPlayer(int index) {
 		if (index < playerCount && index >= players.size()) {

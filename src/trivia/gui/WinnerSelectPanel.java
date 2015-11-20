@@ -1,38 +1,21 @@
 package trivia.gui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
-import com.sun.prism.Image;
-
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-import trivia.Game;
 import trivia.Player;
 
 @SuppressWarnings("serial")
 public class WinnerSelectPanel extends GamePanel {
 	protected int[] playerScore;
 	protected int increment = 20;
-	
-	File file = new File("timer.wav");
-	File beep = new File("beep.wav");
 
 	/**
 	 * Create the frame.
@@ -68,75 +51,44 @@ public class WinnerSelectPanel extends GamePanel {
 	@Override
 	protected void createGui() {
 		this.setLayout(new GridLayout(0, 1, 0, 0));
-	
-        Icon icon = new ImageIcon("spinner.gif");
 
 		CountdownLabel lblCountdown = new CountdownLabel(15) {
-			
+
 			@Override
 			public void event(int time) {
-				if (time <= 15 && time > 0) {
-					AudioStream theme = null;
-					try
-			        {
-			            InputStream a = new FileInputStream ("tick.wav");
-			            theme = new AudioStream (a);          
-			          
-			        }
-			        catch (java.io.IOException z)  //catching the exception
-			        {
-			        }
-			        // Play audio.
-			        AudioPlayer.player.start (theme);
-				}
 				if (time == 5) {
 					this.setForeground(Color.red);
 					this.setFont(new Font("Tahoma", Font.BOLD, 20));
 				}
 				if (time == 4) {
 					this.setForeground(Color.red);
-					this.setFont(new Font("Tahoma", Font.BOLD, 25));
+					this.setFont(new Font("Tahoma", Font.BOLD, 30));
 				}
 				if (time == 3) {
 					this.setForeground(Color.red);
-					this.setFont(new Font("Tahoma", Font.BOLD, 30));
+					this.setFont(new Font("Tahoma", Font.BOLD, 40));
 				}
 				if (time == 2) {
 					this.setForeground(Color.red);
-					this.setFont(new Font("Tahoma", Font.BOLD, 35));
+					this.setFont(new Font("Tahoma", Font.BOLD, 50));
 				}
 				if (time == 1) {
 					this.setForeground(Color.red);
-					this.setFont(new Font("Tahoma", Font.BOLD, 40));
+					this.setFont(new Font("Tahoma", Font.BOLD, 60));
 				}
 				if (time == 0) {
 					this.setForeground(Color.red);
-					this.setFont(new Font("Tahoma", Font.BOLD, 45));
-					AudioStream theme = null;
-					try
-			        {
-			            InputStream a = new FileInputStream ("ring.wav");
-			            theme = new AudioStream (a);   
-			        }
-			        catch (java.io.IOException z)  //catching the exception
-			        {
-			        }
-			        // Play audio.
-			        AudioPlayer.player.start (theme);
+					this.setFont(new Font("Tahoma", Font.BOLD, 70));
 					Random random = new Random();
 					int generated = random.nextInt(gameFrame.getGame().getPlayerCount());
 					while (generated == gameFrame.getGame().getCurrentLeader()) {
 						generated = random.nextInt(gameFrame.getGame().getPlayerCount());
 					}
-					
 					selectWinner(generated);
 				}
 			}
 		};
-		
-		lblCountdown.setIcon(icon);
-		lblCountdown.setIconTextGap(-70);
-		lblCountdown.setBorder(getBorder());
+
 		add(lblCountdown);
 		lblCountdown.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblCountdown.setHorizontalAlignment(SwingConstants.CENTER);
@@ -159,9 +111,7 @@ public class WinnerSelectPanel extends GamePanel {
 		buttons = shuffle(buttons);
 
 		for (PlayerButton button : buttons) {
-			button.setLayout(null);
 			button.setHorizontalAlignment(SwingConstants.CENTER);
-			button.setPreferredSize(new Dimension(100,100));
 			if (gameFrame.getGame().getCurrentLeader() != gameFrame.getGame().getPlayers().indexOf(button.getPlayer()))
 				this.add(button);
 		}
