@@ -5,14 +5,19 @@ import javax.swing.border.EmptyBorder;
 
 import trivia.Game;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Random;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.awt.HeadlessException;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.SwingConstants;
@@ -21,6 +26,7 @@ import javax.swing.SwingConstants;
 public class AnswerEntryPanel extends JPanel {
 	private GameFrame gameFrame;
 	private JTextField answerField;
+	private String s;
 
 	public AnswerEntryPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
@@ -51,13 +57,32 @@ public class AnswerEntryPanel extends JPanel {
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		setLayout(gbl_contentPane);
 		
+		
+		
 		CountdownLabel countDown = new CountdownLabel(game.getTimeAnswer()){
+			
+			
 
 			@Override
 			public void event(int time) {
 				if (time == 0) {
-					
-				}
+					Object[] options = {Game.getRandomNumberInRange(1, 99),
+										Game.getRandomNumberInRange(1, 99),
+										Game.getRandomNumberInRange(1, 99)};
+								try {
+									int n = JOptionPane.showOptionDialog(gameFrame,
+									s = game.choose(new File("math.txt")),
+									"Buy more time",
+									JOptionPane.YES_NO_CANCEL_OPTION,
+									JOptionPane.QUESTION_MESSAGE,
+									null,
+									options,
+									options[2]);
+								} catch (HeadlessException | FileNotFoundException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
 			}
 		};
 		countDown.setFont(new Font("Tahoma", Font.BOLD, 30));
