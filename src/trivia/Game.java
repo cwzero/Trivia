@@ -260,6 +260,7 @@ public class Game {
 		AudioData data = as.getData();
 		ContinuousAudioDataStream cas = new ContinuousAudioDataStream(data);
 		Thread audioThread = new Thread() {
+			@Override
 			public void run() {
 				AudioPlayer.player.start(cas);
 				try {
@@ -286,6 +287,7 @@ public class Game {
 		AudioData data = as.getData();
 		AudioDataStream cas = new AudioDataStream(data);
 		Thread audioThread = new Thread() {
+			@Override
 			public void run() {
 				AudioPlayer.player.start(cas);
 				try {

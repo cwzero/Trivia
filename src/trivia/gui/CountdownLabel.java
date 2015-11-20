@@ -11,6 +11,7 @@ public class CountdownLabel extends JLabel {
 	public CountdownLabel(final int length) {
 		this.setText(length + "");
 		Thread countdownThread = new Thread() {
+			@Override
 			public void run() {
 				for (int a = length; a >= 0; a--) {
 					CountdownLabel.this.setText(a + "");

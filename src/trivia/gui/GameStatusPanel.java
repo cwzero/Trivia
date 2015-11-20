@@ -36,18 +36,18 @@ public class GameStatusPanel extends JPanel {
 	 */
 	public GameStatusPanel(GameFrame gameFrame) {
 		this.gameFrame = gameFrame;
-		setBounds(100, 100, 450, 300);  
-        JPanel contentPane = new JPanel() {
-        	public void paintComponent(Graphics g) {  
-        		                      Image img = Toolkit.getDefaultToolkit().getImage(  
-        		                               GameFrame.class.getResource("/images/trivia.png"));  
-        		                     g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);  
-        		                 }  
-        		            };  
-        		            contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));  
-        		            contentPane.setLayout(new BorderLayout(0, 0));  
-        		           gameFrame.setContentPane(contentPane);  
-		
+		setBounds(100, 100, 450, 300);
+		JPanel contentPane = new JPanel() {
+			@Override
+			public void paintComponent(Graphics g) {
+				Image img = Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/trivia.png"));
+				g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+			}
+		};
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		gameFrame.setContentPane(contentPane);
+
 		gameFrame.repaint();
 		gameFrame.setTitle("Current Game Status");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -101,21 +101,20 @@ public class GameStatusPanel extends JPanel {
 		JTable table = new JTable(rowData, columnNames);
 		table.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		table.setBackground(Color.ORANGE);
-		
+
 		// This makes the score column smaller to leave more space for answer
 		TableColumn column = null;
 		for (int i = 0; i < 3; i++) {
-		    column = table.getColumnModel().getColumn(i);
-		    if (i == 0) {
-		        column.setPreferredWidth(50); 
-		    } else if (i == 1){
-		        column.setPreferredWidth(10); //Second column is smaller
-		    }
-		    else {
-		        column.setPreferredWidth(150);
-		    }
+			column = table.getColumnModel().getColumn(i);
+			if (i == 0) {
+				column.setPreferredWidth(50);
+			} else if (i == 1) {
+				column.setPreferredWidth(10); // Second column is smaller
+			} else {
+				column.setPreferredWidth(150);
+			}
 		}
-		
+
 		JScrollPane scrollPane = new JScrollPane(table);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
@@ -130,6 +129,7 @@ public class GameStatusPanel extends JPanel {
 
 		JButton btnStartNewGame = new JButton("Start New Game");
 		btnStartNewGame.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				GameStatusPanel.this.btnStartNewGame_click();
 			}
@@ -144,8 +144,9 @@ public class GameStatusPanel extends JPanel {
 			Player gameWinner = gameFrame.getGame().getGameWinner();
 			if (gameWinner == null) {
 				lblGameStatus.setText("The game has ended with a tie.");
+			} else {
+				lblGameStatus.setText(gameWinner.getName() + " has won the game.");
 			}
-			lblGameStatus.setText(gameWinner.getName() + " has won the game.");
 		} else {
 			lblGameStatus.setText(gameFrame.getGame().getRoundWinner().getName() + " has won the round.");
 			btnStartNewGame.setText("Next round");
@@ -162,4 +163,3 @@ public class GameStatusPanel extends JPanel {
 		}
 	}
 }
-
