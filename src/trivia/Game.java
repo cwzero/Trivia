@@ -302,6 +302,34 @@ public class Game {
 		};
 		audioThread.start();
 	}
+	
+	public static int getRandomNumberInRange(int min, int max) {
+
+		if (min >= max) {
+			throw new IllegalArgumentException("max must be greater than min");
+		}
+
+		Random r = new Random();
+		return r.nextInt((max - min) + 1) + min;
+	}
+	
+	  public String choose(File f) throws FileNotFoundException
+	  {
+	     String result = null;
+	     Random rand = new Random();
+	     int n = 0;
+	     for(Scanner sc = new Scanner(f); sc.hasNext(); )
+	     {
+	        ++n;
+	        String line = sc.nextLine();
+	        if(rand.nextInt(n) == 0)
+	           result = line;         
+	     }
+
+	     return result;      
+	  }
+	
+	
 
 	public Player getPlayer(int index) {
 		if (index < playerCount && index >= players.size()) {
