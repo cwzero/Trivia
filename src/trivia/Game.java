@@ -16,7 +16,7 @@ import sun.audio.AudioDataStream;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 import sun.audio.ContinuousAudioDataStream;
-import trivia.db.TriviaDatabase;
+//import trivia.db.TriviaDatabase;
 
 public class Game {
 	// The number of players in the game //
@@ -94,9 +94,8 @@ public class Game {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		TriviaDatabase.init();
-		questionPool = new ArrayList<Question>(TriviaDatabase.getQuestions());
-		//questionPool = new ArrayList<Question>();
+		//TriviaDatabase.init();
+		questionPool = new ArrayList<Question>(/*TriviaDatabase.getQuestions()*/);
 		while (input.hasNext()) {
 			Question q = new Question(input.nextLine());
 			if (!questionPool.contains(q)) {
@@ -104,10 +103,6 @@ public class Game {
 			}
 		}
 		input.close();
-	}
-
-	private void saveQuestions() {
-
 	}
 
 	private void chooseLeader() {
