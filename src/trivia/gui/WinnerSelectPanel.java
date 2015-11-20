@@ -128,7 +128,7 @@ public class WinnerSelectPanel extends GamePanel {
 					while (generated == gameFrame.getGame().getCurrentLeader()) {
 						generated = random.nextInt(gameFrame.getGame().getPlayerCount());
 					}
-					JOptionPane.showMessageDialog(this, "TIME IS UP!!");
+					
 					selectWinner(generated);
 				}
 			}
