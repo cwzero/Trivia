@@ -1,7 +1,6 @@
 package trivia.gui;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import java.awt.Font;
 import java.awt.Graphics;
@@ -38,29 +37,26 @@ public class MainMenuPanel extends GamePanel {
 	public void quitButtonClick() {
 		System.exit(0);
 	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		Image img = Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/trivia.png"));
+		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+	}
 
 	@Override
 	protected void createGui() {
 		setBounds(100, 100, 450, 300);
-		JPanel contentPane = new JPanel() {
-			public void paintComponent(Graphics g) {
-				Image img = Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/trivia.png"));
-				g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-			}
-		};
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		gameFrame.setContentPane(contentPane);
+		setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLayout(new BorderLayout(0, 0));
 
 		gameFrame.repaint();
 		gameFrame.setTitle("Main Menu");
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		gameFrame.setContentPane(contentPane);
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 1.0 };
 
-		contentPane.setLayout(gridBagLayout);
+		setLayout(gridBagLayout);
 
 		JLabel lblTriviaGame = new JLabel("TRIVIA GAME");
 		lblTriviaGame.setHorizontalAlignment(SwingConstants.CENTER);
@@ -76,7 +72,7 @@ public class MainMenuPanel extends GamePanel {
 		gbc_lblTriviaGame.gridwidth = 3;
 		gbc_lblTriviaGame.weightx = 0;
 		gbc_lblTriviaGame.weighty = 0;
-		contentPane.add(lblTriviaGame, gbc_lblTriviaGame);
+		add(lblTriviaGame, gbc_lblTriviaGame);
 
 		JButton newGameButton = new JButton("New Game");
 		newGameButton.addActionListener(new ActionListener() {
@@ -95,7 +91,7 @@ public class MainMenuPanel extends GamePanel {
 		gbc_newGameButton.gridwidth = 1;
 		gbc_newGameButton.weightx = 0;
 		gbc_newGameButton.weighty = 0;
-		contentPane.add(newGameButton, gbc_newGameButton);
+		add(newGameButton, gbc_newGameButton);
 
 		JButton quitButton = new JButton("Quit");
 		quitButton.addActionListener(new ActionListener() {
@@ -113,6 +109,6 @@ public class MainMenuPanel extends GamePanel {
 		gbc_quitButton.gridy = 2;
 		gbc_quitButton.weightx = 0;
 		gbc_quitButton.weighty = 0;
-		contentPane.add(quitButton, gbc_quitButton);
+		add(quitButton, gbc_quitButton);
 	}
 }
