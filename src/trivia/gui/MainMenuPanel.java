@@ -20,6 +20,11 @@ import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class MainMenuPanel extends GamePanel {
+	
+	public MainMenuPanel() {
+		createGui();
+	}
+	
 	/**
 	 * Create the application.
 	 */

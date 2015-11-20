@@ -16,7 +16,7 @@ public class TriviaDatabase {
 
 	private static String host = "bitweb3.nwtc.edu";
 	private static int port = 1433;
-	private static String db = "trivia";
+	private static String db = "dbdev128";
 
 	private static String user = "dbdev128";
 	private static String pass = "123456";
