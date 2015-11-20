@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -50,7 +51,15 @@ public class AnswerEntryPanel extends JPanel {
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		setLayout(gbl_contentPane);
 		
-		CountdownLabel countDown = new CountdownLabel(game.getTimeAnswer());
+		CountdownLabel countDown = new CountdownLabel(game.getTimeAnswer()){
+
+			@Override
+			public void event(int time) {
+				if (time == 0) {
+					
+				}
+			}
+		};
 		countDown.setFont(new Font("Tahoma", Font.BOLD, 30));
 		GridBagConstraints gbc_countDown = new GridBagConstraints();
 		gbc_countDown.fill = GridBagConstraints.BOTH;
@@ -64,6 +73,10 @@ public class AnswerEntryPanel extends JPanel {
 	    if(game.getTimeAnswer()== 0){
 			countDown.setVisible(false);
 		}
+	    else
+	    {
+	    	
+	    }
 	    
 		JLabel currentQuestionLabel = new JLabel("Question");
 		currentQuestionLabel.setHorizontalAlignment(SwingConstants.CENTER);
