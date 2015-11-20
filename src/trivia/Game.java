@@ -1,14 +1,22 @@
 package trivia;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import trivia.db.TriviaDatabase;
+import sun.audio.AudioData;
+import sun.audio.AudioDataStream;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
+//import trivia.db.TriviaDatabase;
 
 public class Game {
 	// The number of players in the game //
@@ -87,8 +95,7 @@ public class Game {
 			e.printStackTrace();
 		}
 		//TriviaDatabase.init();
-		//questionPool = new ArrayList<Question>(TriviaDatabase.getQuestions());
-		questionPool = new ArrayList<Question>();
+		questionPool = new ArrayList<Question>(/*TriviaDatabase.getQuestions()*/);
 		while (input.hasNext()) {
 			Question q = new Question(input.nextLine());
 			if (!questionPool.contains(q)) {
@@ -226,13 +233,74 @@ public class Game {
 	public Player getGameWinner() {
 		int maxScore = -1;
 		Player winner = null;
+		boolean tie = true;
 		for (Player player : players) {
 			if (player.getScore() > maxScore && !player.equals(winner)) {
 				maxScore = player.getScore();
 				winner = player;
+				tie = false;
+			} else if (player.getScore() == maxScore) {
+				tie = true;
 			}
 		}
-		return winner;
+		if (!tie)
+			return winner;
+		else
+			return null;
+	}
+
+	public static void playSoundLoop(File soundFile, long length) throws IOException {
+		InputStream is = new FileInputStream(soundFile);
+		AudioStream as = new AudioStream(is);
+		AudioData data = as.getData();
+		ContinuousAudioDataStream cas = new ContinuousAudioDataStream(data);
+		Thread audioThread = new Thread() {
+			@Override
+			public void run() {
+				AudioPlayer.player.start(cas);
+				try {
+					Thread.sleep(length);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				AudioPlayer.player.stop(cas);
+				try {
+					as.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		audioThread.start();
+	}
+
+	public static void playSound(File soundFile, long length) throws IOException {
+		InputStream is = new FileInputStream(soundFile);
+		AudioStream as = new AudioStream(is);
+		AudioData data = as.getData();
+		AudioDataStream cas = new AudioDataStream(data);
+		Thread audioThread = new Thread() {
+			@Override
+			public void run() {
+				AudioPlayer.player.start(cas);
+				try {
+					Thread.sleep(length);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				AudioPlayer.player.stop(cas);
+				try {
+					as.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		audioThread.start();
 	}
 	
 	public static int getRandomNumberInRange(int min, int max) {

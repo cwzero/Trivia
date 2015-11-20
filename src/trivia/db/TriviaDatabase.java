@@ -13,46 +13,52 @@ import trivia.Question;
 public class TriviaDatabase {
 	private static boolean initialized = false;
 	private static Connection connection = null;
-	
-	private static String host = "trivia.c8jug9wmu3by.us-east-1.rds.amazonaws.com";
-	private static int port = 3306;
-	private static String db = "Trivia";
-	
-	private static String user = "trivia";
-	private static String pass = "trivia";
-	
+
+	private static String host = "bitweb3.nwtc.edu";
+	private static int port = 1433;
+	private static String db = "trivia";
+
+	private static String user = "dbdev128";
+	private static String pass = "123456";
+
 	private static List<Question> questions;
 
 	public static void init() {
 		if (!initialized) {
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
-			
+
 			Statement statement = null;
 			ResultSet resultSet = null;
 			questions = new ArrayList<Question>();
 
 			try {
-				connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db + "?user=" + user + "&password=" + pass);
+				connection = DriverManager.getConnection("jdbc:sqlserver://" + host + ":" + port + ";database=" + db + ";user="
+						+ user + ";password=" + pass + ";");
 				statement = connection.createStatement();
-				resultSet = statement.executeQuery("SELECT Question_Text FROM Question;");
+				resultSet = statement.executeQuery("SELECT question_text FROM question;");
 				while (resultSet.next()) {
-					questions.add(new Question(resultSet.getString("Question_Text")));
+					questions.add(new Question(resultSet.getString("question_text")));
 				}
+				statement.close();
 				connection.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 			initialized = true;
 		}
+
 	}
 
 	public static List<Question> getQuestions() {
 		return questions;
+	}
+
+	public static void addQuestions() {
+
 	}
 }

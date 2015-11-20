@@ -7,9 +7,11 @@ import trivia.Game;
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame {
 	private Game game = new Game();
-	
+
 	public GameFrame() {
 		this(new Game());
+		new StartLogoPanel(this);
+		setVisible(true);
 	}
 
 	public GameFrame(Game game) {
