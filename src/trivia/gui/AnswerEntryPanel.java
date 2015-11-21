@@ -23,6 +23,10 @@ import javax.swing.SwingConstants;
 public class AnswerEntryPanel extends GamePanel {
 	private JTextField answerField;
 	private String s;
+	
+	private JLabel question;
+	private int oneX = 7;
+    private int oneY = 7;
 
 	public AnswerEntryPanel(GameFrame gameFrame) {
 		super(gameFrame);
@@ -46,6 +50,12 @@ public class AnswerEntryPanel extends GamePanel {
 	protected void createGui() {
 		Game game = gameFrame.getGame();
 		gameFrame.setTitle("Enter Answer");
+		
+		question = new JLabel("?");
+        question.setBounds(oneX, oneY, 25, 25);
+        question.setFont(new Font("Serif", Font.BOLD, 35));
+        question.setForeground(Color.RED);
+        super.add(question);
 
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		setLayout(gbl_contentPane);
@@ -142,6 +152,7 @@ public class AnswerEntryPanel extends GamePanel {
 			public void actionPerformed(ActionEvent e) {
 				AnswerEntryPanel.this.nextPlayerButton_Click();
 			}
+			
 		});
 
 		JButton btnNextPlayer = new JButton("Next Player");
@@ -158,6 +169,15 @@ public class AnswerEntryPanel extends GamePanel {
 		gbc_btnNextPlayer.gridheight = 1;
 		gbc_btnNextPlayer.gridwidth = 1;
 		add(btnNextPlayer, gbc_btnNextPlayer);
+		
+		Thread animationThread = new Thread() {
+			@Override
+			public void run() {
+				moveIt();
+			}
+		};
+		
+		animationThread.start();
 	}
 
 	public void nextPlayerButton_Click() {
@@ -177,4 +197,48 @@ public class AnswerEntryPanel extends GamePanel {
 			new WinnerSelectPanel(gameFrame);
 		}
 	}
+	
+	private void moveIt() {
+		boolean up = false;
+	    boolean down = true;
+	    boolean left = false;
+	    boolean right = true;
+    	
+        while(true){
+            if(oneX >= 575){
+                right = false;
+                left = true;
+            }
+            if(oneX <= 0){
+                right = true;
+                left = false;
+            }
+            if(oneY >= 350){
+                up = true;
+                down = false;
+            }
+            if(oneY <= 0){
+                up = false;
+                down = true;
+            }
+            if(up){
+                oneY--;
+            }
+            if(down){
+                oneY++;
+            }
+            if(left){
+                oneX--;
+            }
+            if(right){
+                oneX++;
+            }
+            try{
+                Thread.sleep(20);
+            } catch (Exception exc){}
+            question.setBounds(oneX, oneY, 25, 25);
+            gameFrame.repaint();
+            
+        }
+    }
 }
