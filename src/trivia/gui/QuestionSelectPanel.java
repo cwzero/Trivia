@@ -21,6 +21,10 @@ public class QuestionSelectPanel extends GamePanel {
 	private JButton btnQuestion1;
 	private JButton btnQuestion2;
 	private JButton btnQuestion3;
+	
+	public QuestionSelectPanel() {
+		createGui();
+	}
 
 	/**
 	 * Create the frame.

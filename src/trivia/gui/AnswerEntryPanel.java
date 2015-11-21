@@ -24,6 +24,10 @@ public class AnswerEntryPanel extends GamePanel {
 	private JTextField answerField;
 	private String s;
 	private CountdownLabel countDown;
+	
+	public AnswerEntryPanel() {
+		createGui();
+	}
 
 	public AnswerEntryPanel(GameFrame gameFrame) {
 		super(gameFrame);
