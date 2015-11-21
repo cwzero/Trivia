@@ -71,7 +71,7 @@ public class MainMenuPanel extends GamePanel {
 
 		setLayout(gridBagLayout);
 
-		JLabel lblTriviaGame = new JLabel("TRIVIA GAME");
+		/*JLabel lblTriviaGame = new JLabel("TRIVIA GAME");
 		lblTriviaGame.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTriviaGame.setBackground(new Color(240, 240, 240));
 		lblTriviaGame.setFont(new Font("Tahoma", Font.BOLD, 38));
@@ -85,7 +85,7 @@ public class MainMenuPanel extends GamePanel {
 		gbc_lblTriviaGame.gridwidth = 3;
 		gbc_lblTriviaGame.weightx = 0;
 		gbc_lblTriviaGame.weighty = 0;
-		add(lblTriviaGame, gbc_lblTriviaGame);
+		add(lblTriviaGame, gbc_lblTriviaGame);*/
 
 		Icon starticon = new ImageIcon("src/images/staticstart.png");
 		Icon hoverstart = new ImageIcon("src/images/start.gif");
@@ -116,7 +116,7 @@ public class MainMenuPanel extends GamePanel {
 		GridBagConstraints gbc_newGameButton = new GridBagConstraints();
 		gbc_newGameButton.fill = GridBagConstraints.BOTH;
 		gbc_newGameButton.insets = new Insets(0, 0, 5, 0);
-		gbc_newGameButton.gridx = 1;
+		gbc_newGameButton.gridx = 2;
 		gbc_newGameButton.gridy = 1;
 		gbc_newGameButton.fill = GridBagConstraints.BOTH;
 		gbc_newGameButton.gridwidth = 1;
@@ -139,7 +139,7 @@ public class MainMenuPanel extends GamePanel {
 		gbc_quitButton.fill = GridBagConstraints.BOTH;
 		gbc_quitButton.gridheight = 1;
 		gbc_quitButton.gridwidth = 1;
-		gbc_quitButton.gridx = 1;
+		gbc_quitButton.gridx = 2;
 		gbc_quitButton.gridy = 2;
 		gbc_quitButton.weightx = 0;
 		gbc_quitButton.weighty = 0;

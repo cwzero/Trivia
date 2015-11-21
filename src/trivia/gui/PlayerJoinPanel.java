@@ -20,7 +20,7 @@ public class PlayerJoinPanel extends GamePanel {
 	/**
 	 * Create the frame.
 	 */
-	public PlayerJoinPanel(GameFrame gameFrame) {
+	public PlayerJoinPanel(final GameFrame gameFrame) {
 		super(gameFrame);
 		createGui();
 		gameFrame.setVisible(true);

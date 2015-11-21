@@ -24,7 +24,7 @@ public class GameSetupPanel extends GamePanel {
 	/**
 	 * Create the frame.
 	 */
-	public GameSetupPanel(final GameFrame gameFrame) {
+	public GameSetupPanel(GameFrame gameFrame) {
 		super(gameFrame);
 		createGui();
 		gameFrame.setVisible(true);

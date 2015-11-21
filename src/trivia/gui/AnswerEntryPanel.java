@@ -18,6 +18,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.SwingConstants;
 
+import java.awt.Color;
+
 @SuppressWarnings("serial")
 public class AnswerEntryPanel extends GamePanel {
 	private JTextField answerField;
@@ -52,6 +54,8 @@ public class AnswerEntryPanel extends GamePanel {
 	protected void createGui() {
 		Game game = gameFrame.getGame();
 		gameFrame.setTitle("Enter Answer");
+		
+		this.setBackground(new Color(234,186,9));
 
 		question = new JLabel("?");
 		question.setBounds(oneX, oneY, 25, 25);
