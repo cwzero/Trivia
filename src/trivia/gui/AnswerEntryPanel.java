@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Random;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -22,11 +21,10 @@ import javax.swing.SwingConstants;
 @SuppressWarnings("serial")
 public class AnswerEntryPanel extends GamePanel {
 	private JTextField answerField;
-	private String s;
-	
 	private JLabel question;
 	private int oneX = 7;
-    private int oneY = 7;
+	private int oneY = 7;
+	private CountdownLabel countDown;
 
 	public AnswerEntryPanel(GameFrame gameFrame) {
 		super(gameFrame);
@@ -50,42 +48,31 @@ public class AnswerEntryPanel extends GamePanel {
 	protected void createGui() {
 		Game game = gameFrame.getGame();
 		gameFrame.setTitle("Enter Answer");
-		
+
 		question = new JLabel("?");
-        question.setBounds(oneX, oneY, 25, 25);
-        question.setFont(new Font("Serif", Font.BOLD, 35));
-        question.setForeground(Color.RED);
-        super.add(question);
+		question.setBounds(oneX, oneY, 25, 25);
+		question.setFont(new Font("Serif", Font.BOLD, 35));
+		question.setForeground(Color.RED);
+		super.add(question);
 
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		setLayout(gbl_contentPane);
-		
-		
-		
-		CountdownLabel countDown = new CountdownLabel(game.getTimeAnswer()){
-			
-			
 
+		countDown = new CountdownLabel(game.getTimeAnswer()) {
 			@Override
 			public void event(int time) {
 				if (time == 0) {
-					Object[] options = {Game.getRandomNumberInRange(1, 99),
-										Game.getRandomNumberInRange(1, 99),
-										Game.getRandomNumberInRange(1, 99)};
-								try {
-									int n = JOptionPane.showOptionDialog(gameFrame,
-									s = game.choose(new File("math.txt")),
-									"Buy more time",
-									JOptionPane.YES_NO_CANCEL_OPTION,
-									JOptionPane.QUESTION_MESSAGE,
-									null,
-									options,
-									options[2]);
-								} catch (HeadlessException | FileNotFoundException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-						}
+					Object[] options = { Game.getRandomNumberInRange(1, 99), Game.getRandomNumberInRange(1, 99),
+							Game.getRandomNumberInRange(1, 99) };
+					try {
+						@SuppressWarnings("unused")
+						int n = JOptionPane.showOptionDialog(gameFrame, game.choose(new File("math.txt")),
+								"Buy more time", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,
+								options, options[2]);
+					} catch (HeadlessException | FileNotFoundException e) {
+						e.printStackTrace();
+					}
+				}
 			}
 		};
 		countDown.setFont(new Font("Tahoma", Font.BOLD, 30));
@@ -97,15 +84,13 @@ public class AnswerEntryPanel extends GamePanel {
 		gbc_countDown.gridheight = 1;
 		gbc_countDown.gridwidth = 1;
 		countDown.setVisible(true);
-	    this.add(countDown, gbc_countDown);
-	    if(game.getTimeAnswer()== 0){
+		this.add(countDown, gbc_countDown);
+		if (game.getTimeAnswer() == 0) {
 			countDown.setVisible(false);
+		} else {
+
 		}
-	    else
-	    {
-	    	
-	    }
-	    
+
 		JLabel currentQuestionLabel = new JLabel("Question");
 		currentQuestionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		currentQuestionLabel.setMaximumSize(new Dimension(600, 400));
@@ -152,7 +137,7 @@ public class AnswerEntryPanel extends GamePanel {
 			public void actionPerformed(ActionEvent e) {
 				AnswerEntryPanel.this.nextPlayerButton_Click();
 			}
-			
+
 		});
 
 		JButton btnNextPlayer = new JButton("Next Player");
@@ -169,18 +154,19 @@ public class AnswerEntryPanel extends GamePanel {
 		gbc_btnNextPlayer.gridheight = 1;
 		gbc_btnNextPlayer.gridwidth = 1;
 		add(btnNextPlayer, gbc_btnNextPlayer);
-		
+
 		Thread animationThread = new Thread() {
 			@Override
 			public void run() {
 				moveIt();
 			}
 		};
-		
+
 		animationThread.start();
 	}
 
 	public void nextPlayerButton_Click() {
+		countDown.stop();
 		Game game = gameFrame.getGame();
 		String playerAnswer = answerField.getText();
 		if (!playerAnswer.equals("")) {
@@ -197,48 +183,49 @@ public class AnswerEntryPanel extends GamePanel {
 			new WinnerSelectPanel(gameFrame);
 		}
 	}
-	
+
 	private void moveIt() {
 		boolean up = false;
-	    boolean down = true;
-	    boolean left = false;
-	    boolean right = true;
-    	
-        while(true){
-            if(oneX >= 575){
-                right = false;
-                left = true;
-            }
-            if(oneX <= 0){
-                right = true;
-                left = false;
-            }
-            if(oneY >= 350){
-                up = true;
-                down = false;
-            }
-            if(oneY <= 0){
-                up = false;
-                down = true;
-            }
-            if(up){
-                oneY--;
-            }
-            if(down){
-                oneY++;
-            }
-            if(left){
-                oneX--;
-            }
-            if(right){
-                oneX++;
-            }
-            try{
-                Thread.sleep(20);
-            } catch (Exception exc){}
-            question.setBounds(oneX, oneY, 25, 25);
-            gameFrame.repaint();
-            
-        }
-    }
+		boolean down = true;
+		boolean left = false;
+		boolean right = true;
+
+		while (true) {
+			if (oneX >= 575) {
+				right = false;
+				left = true;
+			}
+			if (oneX <= 0) {
+				right = true;
+				left = false;
+			}
+			if (oneY >= 350) {
+				up = true;
+				down = false;
+			}
+			if (oneY <= 0) {
+				up = false;
+				down = true;
+			}
+			if (up) {
+				oneY--;
+			}
+			if (down) {
+				oneY++;
+			}
+			if (left) {
+				oneX--;
+			}
+			if (right) {
+				oneX++;
+			}
+			try {
+				Thread.sleep(20);
+			} catch (Exception exc) {
+			}
+			question.setBounds(oneX, oneY, 25, 25);
+			gameFrame.repaint();
+
+		}
+	}
 }
