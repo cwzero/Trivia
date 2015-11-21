@@ -12,11 +12,14 @@ import javax.swing.UIManager;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class QuestionSelectPanel extends GamePanel {
+	private static Font customFont = null;
 	private Question[] questions = new Question[3];
 	private JButton btnQuestion1;
 	private JButton btnQuestion2;
@@ -50,6 +53,29 @@ public class QuestionSelectPanel extends GamePanel {
 
 		File file = new File("click7.au");
 		File pop = new File("pop.au");
+		
+		
+		
+		
+		
+		
+		
+		
+		 //create the font
+
+        try {
+            //create the font to use. Specify the size!
+            customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/images/BradBunR.ttf")).deriveFont(26f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            //register the font
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/images/BradBunR.ttf")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch(FontFormatException e)
+        {
+            e.printStackTrace();
+        }
 
 		// called the new method openfile
 		// returns an array into questions
@@ -64,7 +90,7 @@ public class QuestionSelectPanel extends GamePanel {
 		// added set font to size 12 to make sure question fits on buttons
 
 		btnQuestion1 = new JButton(questions[0].getText());
-		btnQuestion1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnQuestion1.setFont(customFont);
 
 		// mouse over and exit
 		btnQuestion1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -105,11 +131,11 @@ public class QuestionSelectPanel extends GamePanel {
 			}
 		});
 
-		btnQuestion1.setBounds(115, 92, 369, 40);
+		btnQuestion1.setBounds(115, 92, 500, 40);
 		this.add(btnQuestion1);
 
 		btnQuestion2 = new JButton(questions[1].getText());
-		btnQuestion2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnQuestion2.setFont(customFont);
 
 		// mouse over and exit
 		btnQuestion2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -147,11 +173,11 @@ public class QuestionSelectPanel extends GamePanel {
 				}
 			}
 		});
-		btnQuestion2.setBounds(115, 142, 369, 40);
+		btnQuestion2.setBounds(115, 142, 500, 40);
 		this.add(btnQuestion2);
 
 		btnQuestion3 = new JButton(questions[2].getText());
-		btnQuestion3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnQuestion3.setFont(customFont);
 
 		// mouse over and exit
 		btnQuestion3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -189,13 +215,13 @@ public class QuestionSelectPanel extends GamePanel {
 				}
 			}
 		});
-		btnQuestion3.setBounds(115, 192, 369, 40);
+		btnQuestion3.setBounds(115, 192, 500, 40);
 		this.add(btnQuestion3);
 
 		JLabel lblPlayerPleaseSelect = new JLabel(
 				gameFrame.getGame().getPlayer(gameFrame.getGame().getCurrentLeader()).getName()
 						+ ", please select question:");
-		lblPlayerPleaseSelect.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblPlayerPleaseSelect.setFont(customFont);
 		lblPlayerPleaseSelect.setBounds(17, 24, 344, 49);
 		this.add(lblPlayerPleaseSelect);
 
