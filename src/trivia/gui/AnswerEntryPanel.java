@@ -25,6 +25,10 @@ public class AnswerEntryPanel extends GamePanel {
 	private int oneX = 7;
 	private int oneY = 7;
 	private CountdownLabel countDown;
+	
+	public AnswerEntryPanel() {
+		createGui();
+	}
 
 	public AnswerEntryPanel(GameFrame gameFrame) {
 		super(gameFrame);

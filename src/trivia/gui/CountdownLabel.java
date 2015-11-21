@@ -8,7 +8,7 @@ public class CountdownLabel extends JLabel {
 	private boolean finished = false;
 	
 	public CountdownLabel() {
-
+		
 	}
 	
 	public CountdownLabel(final int length) {

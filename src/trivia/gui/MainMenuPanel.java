@@ -6,11 +6,19 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.BorderLayout;
 import java.awt.Color;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+
+import trivia.Game;
 
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -79,14 +87,32 @@ public class MainMenuPanel extends GamePanel {
 		gbc_lblTriviaGame.weighty = 0;
 		add(lblTriviaGame, gbc_lblTriviaGame);
 
-		JButton newGameButton = new JButton("New Game");
+		Icon starticon = new ImageIcon("src/images/staticstart.png");
+		Icon hoverstart = new ImageIcon("src/images/start.gif");
+		
+		
+		JButton newGameButton = new JButton(starticon);
 		newGameButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainMenuPanel.this.newGameButtonClick();
 			}
 		});
-		newGameButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		// mouse over and exit
+		newGameButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			@Override
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				newGameButton.setIcon(hoverstart);
+			}
+
+			@Override
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				newGameButton.setIcon(starticon);
+			}
+		});
+		newGameButton.setOpaque(false);
+		newGameButton.setContentAreaFilled(false);
+		newGameButton.setBorderPainted(false);
 		GridBagConstraints gbc_newGameButton = new GridBagConstraints();
 		gbc_newGameButton.fill = GridBagConstraints.BOTH;
 		gbc_newGameButton.insets = new Insets(0, 0, 5, 0);
@@ -96,7 +122,10 @@ public class MainMenuPanel extends GamePanel {
 		gbc_newGameButton.gridwidth = 1;
 		gbc_newGameButton.weightx = 0;
 		gbc_newGameButton.weighty = 0;
+		//newGameButton.setIcon(icon);
 		add(newGameButton, gbc_newGameButton);
+		
+		
 
 		JButton quitButton = new JButton("Quit");
 		quitButton.addActionListener(new ActionListener() {
