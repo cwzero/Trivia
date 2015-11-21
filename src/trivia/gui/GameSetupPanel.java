@@ -90,6 +90,7 @@ public class GameSetupPanel extends GamePanel {
 				} else {// checkbox has been deselected
 					answerTimeSpinner.setEnabled(false);
 				}
+				;
 			}
 		});
 		this.add(answerTimeCheckBox);

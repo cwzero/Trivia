@@ -10,7 +10,7 @@ public class GameFrame extends JFrame {
 
 	public GameFrame() {
 		this(new Game());
-		new StartLogoPanel(this);
+		new MainMenuPanel(this);
 		setVisible(true);
 	}
 

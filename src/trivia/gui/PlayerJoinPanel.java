@@ -66,7 +66,6 @@ public class PlayerJoinPanel extends GamePanel {
 		playerNameField = new JTextField();
 		playerNameField.setText(gameFrame.getGame().getPlayer(currentPlayer).getName());
 		playerNameField.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				PlayerJoinPanel.this.continueButtonClick();
 			}
