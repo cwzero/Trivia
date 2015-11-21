@@ -3,6 +3,8 @@ package trivia.gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,6 +18,7 @@ import trivia.Player;
 public class WinnerSelectPanel extends GamePanel {
 	protected int[] playerScore;
 	protected int increment = 20;
+	protected CountdownLabel lblCountdown;
 
 	/**
 	 * Create the frame.
@@ -52,7 +55,7 @@ public class WinnerSelectPanel extends GamePanel {
 	protected void createGui() {
 		this.setLayout(new GridLayout(0, 1, 0, 0));
 
-		CountdownLabel lblCountdown = new CountdownLabel(15) {
+		lblCountdown = new CountdownLabel(15) {
 
 			@Override
 			public void event(int time) {
@@ -113,7 +116,15 @@ public class WinnerSelectPanel extends GamePanel {
 		for (PlayerButton button : buttons) {
 			button.setHorizontalAlignment(SwingConstants.CENTER);
 			if (gameFrame.getGame().getCurrentLeader() != gameFrame.getGame().getPlayers().indexOf(button.getPlayer()))
+			{
+				button.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						lblCountdown.stop();
+					}
+				});
 				this.add(button);
+			}
 		}
 	}
 }

@@ -23,6 +23,7 @@ import javax.swing.SwingConstants;
 public class AnswerEntryPanel extends GamePanel {
 	private JTextField answerField;
 	private String s;
+	private CountdownLabel countDown;
 
 	public AnswerEntryPanel(GameFrame gameFrame) {
 		super(gameFrame);
@@ -52,10 +53,7 @@ public class AnswerEntryPanel extends GamePanel {
 		
 		
 		
-		CountdownLabel countDown = new CountdownLabel(game.getTimeAnswer()){
-			
-			
-
+		countDown = new CountdownLabel(game.getTimeAnswer()){
 			@Override
 			public void event(int time) {
 				if (time == 0) {
@@ -161,6 +159,7 @@ public class AnswerEntryPanel extends GamePanel {
 	}
 
 	public void nextPlayerButton_Click() {
+		countDown.stop();
 		Game game = gameFrame.getGame();
 		String playerAnswer = answerField.getText();
 		if (!playerAnswer.equals("")) {
