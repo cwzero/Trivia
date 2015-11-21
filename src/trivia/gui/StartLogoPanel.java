@@ -35,7 +35,7 @@ public class StartLogoPanel extends GamePanel {
 
 	@Override
 	public void paintComponent(Graphics g) {
-		Image img = Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/main-logo.png"));
+		Image img = Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/splashgif.gif"));
 		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 	}
 }
