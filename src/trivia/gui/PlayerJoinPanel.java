@@ -12,6 +12,10 @@ public class PlayerJoinPanel extends GamePanel {
 	private JTextField playerNameField;
 	private JButton btnBack;
 	private int currentPlayer = 0;
+	
+	public PlayerJoinPanel() {
+		createGui();
+	}
 
 	/**
 	 * Create the frame.

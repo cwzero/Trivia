@@ -5,7 +5,6 @@ import trivia.Player;
 
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -28,34 +27,51 @@ import javax.swing.table.TableColumn;
 import java.awt.Color;
 
 @SuppressWarnings("serial")
-public class GameStatusPanel extends JPanel {
+public class GameStatusPanel extends GamePanel {
 	private GameFrame gameFrame;
 
+	public GameStatusPanel() {
+		createGui();
+	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		Image img = Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/trivia.png"));
+		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+	}
+	
 	/**
 	 * Create the frame.
 	 */
 	public GameStatusPanel(GameFrame gameFrame) {
-		this.gameFrame = gameFrame;
+		super(gameFrame);
+		createGui();
+		gameFrame.setVisible(true);
+	}
+
+	private void btnStartNewGame_click() {
+		if (gameFrame.getGame().isOver()) {
+			gameFrame.setGame(new Game());
+			new GameSetupPanel(gameFrame);
+		} else {
+			gameFrame.getGame().nextRound();
+			new QuestionSelectPanel(gameFrame);
+		}
+	}
+
+	@Override
+	protected void createGui() {
 		setBounds(100, 100, 450, 300);
-		JPanel contentPane = new JPanel() {
-			@Override
-			public void paintComponent(Graphics g) {
-				Image img = Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/trivia.png"));
-				g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-			}
-		};
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		gameFrame.setContentPane(contentPane);
+		setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLayout(new BorderLayout(0, 0));
 
 		gameFrame.repaint();
 		gameFrame.setTitle("Current Game Status");
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		gameFrame.setContentPane(contentPane);
+		setBorder(new EmptyBorder(5, 5, 5, 5));
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0 };
 
-		contentPane.setLayout(gbl_contentPane);
+		setLayout(gbl_contentPane);
 
 		JLabel lblGameStatus = new JLabel("Game Status");
 		lblGameStatus.setHorizontalAlignment(SwingConstants.CENTER);
@@ -66,7 +82,7 @@ public class GameStatusPanel extends JPanel {
 		gbc_lblGameStatus.insets = new Insets(0, 0, 5, 0);
 		gbc_lblGameStatus.gridx = 0;
 		gbc_lblGameStatus.gridy = 0;
-		contentPane.add(lblGameStatus, gbc_lblGameStatus);
+		add(lblGameStatus, gbc_lblGameStatus);
 
 		// This create the label for the Scoreboard
 
@@ -79,7 +95,7 @@ public class GameStatusPanel extends JPanel {
 		gbc_lblScoreboard.insets = new Insets(0, 0, 5, 0);
 		gbc_lblScoreboard.gridx = 0;
 		gbc_lblScoreboard.gridy = 2;
-		contentPane.add(lblScoreboard, gbc_lblScoreboard);
+		add(lblScoreboard, gbc_lblScoreboard);
 
 		// This is just to hold rows and columns for now but will need to read
 		// from
@@ -123,7 +139,7 @@ public class GameStatusPanel extends JPanel {
 		gbc_scrollPane.insets = new Insets(0, 60, 5, 60);
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 3;
-		contentPane.add(scrollPane, gbc_scrollPane);
+		add(scrollPane, gbc_scrollPane);
 
 		// This button starts new game " Not valid yet"
 
@@ -139,7 +155,7 @@ public class GameStatusPanel extends JPanel {
 		gbc_btnStartNewGame.fill = GridBagConstraints.VERTICAL;
 		gbc_btnStartNewGame.gridx = 0;
 		gbc_btnStartNewGame.gridy = 4;
-		contentPane.add(btnStartNewGame, gbc_btnStartNewGame);
+		add(btnStartNewGame, gbc_btnStartNewGame);
 		if (gameFrame.getGame().isOver()) {
 			Player gameWinner = gameFrame.getGame().getGameWinner();
 			if (gameWinner == null) {
@@ -150,16 +166,6 @@ public class GameStatusPanel extends JPanel {
 		} else {
 			lblGameStatus.setText(gameFrame.getGame().getRoundWinner().getName() + " has won the round.");
 			btnStartNewGame.setText("Next round");
-		}
-	}
-
-	private void btnStartNewGame_click() {
-		if (gameFrame.getGame().isOver()) {
-			gameFrame.setGame(new Game());
-			new GameSetupPanel(gameFrame);
-		} else {
-			gameFrame.getGame().nextRound();
-			new QuestionSelectPanel(gameFrame);
 		}
 	}
 }

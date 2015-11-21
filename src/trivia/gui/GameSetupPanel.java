@@ -16,6 +16,10 @@ public class GameSetupPanel extends GamePanel {
 	private JSpinner playerCountSpinner = new JSpinner();
 	private JSpinner answerTimeSpinner = new JSpinner();
 	private JCheckBox answerTimeCheckBox = new JCheckBox("Limit Answer Time");
+	
+	public GameSetupPanel() {
+		createGui();
+	}
 
 	/**
 	 * Create the frame.

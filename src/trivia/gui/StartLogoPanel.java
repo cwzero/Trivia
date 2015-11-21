@@ -6,6 +6,11 @@ import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class StartLogoPanel extends GamePanel {
+	
+	public StartLogoPanel() {
+		createGui();
+	}
+	
 	/**
 	 * Create the frame.
 	 */

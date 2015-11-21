@@ -12,6 +12,10 @@ import java.awt.event.ActionListener;
 public class SetupSummaryPanel extends GamePanel {
 	private JButton buttonNext;
 	private JButton buttonBack;
+	
+	public SetupSummaryPanel() {
+		createGui();
+	}
 
 	/**
 	 * Create the frame.

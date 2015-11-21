@@ -19,6 +19,10 @@ public class WinnerSelectPanel extends GamePanel {
 	protected int[] playerScore;
 	protected int increment = 20;
 	protected CountdownLabel lblCountdown;
+	
+	public WinnerSelectPanel() {
+		createGui();
+	}
 
 	/**
 	 * Create the frame.
