@@ -4,12 +4,17 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.DisplayMode;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +37,10 @@ public class MainMenuPanel extends GamePanel {
 	public MainMenuPanel() {
 		createGui();
 	}
-	
+	//titlemusic from playonloop.com
+	File file = new File("click7.au");
+	File pop = new File("pop.au");
+	File music = new File("titlemusic.wav");
 	/**
 	 * Create the application.
 	 */
@@ -53,23 +61,38 @@ public class MainMenuPanel extends GamePanel {
 	
 	@Override
 	public void paintComponent(Graphics g) {
-		Image img = Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/trivia.png"));
+		Image img = Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/backgroundgif.gif"));
 		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 	}
-
+	int count = 0;
 	@Override
 	protected void createGui() {
+		gameFrame.setVisible(false);
+		
+		
+			
+	
 		setBounds(100, 100, 450, 300);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(new BorderLayout(0, 0));
 
 		gameFrame.repaint();
-		gameFrame.setTitle("Main Menu");
+		//gameFrame.setTitle("Main Menu");
+		
 
+		try {
+			Game.playSound(music, (120000));
+			
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		
+		}
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 1.0 };
 
 		setLayout(gridBagLayout);
+		Icon headericon = new ImageIcon("src/images/headergif.gif");
 
 		/*JLabel lblTriviaGame = new JLabel("TRIVIA GAME");
 		lblTriviaGame.setHorizontalAlignment(SwingConstants.CENTER);
@@ -87,27 +110,36 @@ public class MainMenuPanel extends GamePanel {
 		gbc_lblTriviaGame.weighty = 0;
 		add(lblTriviaGame, gbc_lblTriviaGame);*/
 
-		Icon starticon = new ImageIcon("src/images/staticstart.png");
-		Icon hoverstart = new ImageIcon("src/images/start.gif");
+		//right now, smaller image as startIcon gives it an effect that pushes exitbutton and logo away from startgame
+		Icon startIcon = new ImageIcon("src/images/staticstart.png");
+		Icon hoverStart = new ImageIcon("src/images/startgif.gif");
 		
 		
-		JButton newGameButton = new JButton(starticon);
+		JButton newGameButton = new JButton(startIcon);
 		newGameButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainMenuPanel.this.newGameButtonClick();
+				// pop noise on click
+				try {
+					Game.playSound(pop, 100);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		// mouse over and exit
 		newGameButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			@Override
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				newGameButton.setIcon(hoverstart);
+				newGameButton.setIcon(hoverStart);
+			
 			}
 
 			@Override
 			public void mouseExited(java.awt.event.MouseEvent evt) {
-				newGameButton.setIcon(starticon);
+				newGameButton.setIcon(startIcon);
 			}
 		});
 		newGameButton.setOpaque(false);
@@ -126,15 +158,42 @@ public class MainMenuPanel extends GamePanel {
 		add(newGameButton, gbc_newGameButton);
 		
 		
-
-		JButton quitButton = new JButton("Quit");
+		Icon exitIcon = new ImageIcon("src/images/exit1.png");
+		Icon hoverExit = new ImageIcon("src/images/exitgif.gif");
+		
+		JButton quitButton = new JButton(exitIcon);
 		quitButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				try {
+					Game.playSound(pop, 100);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				MainMenuPanel.this.quitButtonClick();
+				// pop noise on click
+			
 			}
 		});
-		quitButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	
+		// mouse over and exit
+		quitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			@Override
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				quitButton.setIcon(hoverExit);
+				
+			}
+
+			@Override
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				quitButton.setIcon(exitIcon);
+			}
+		});
+		quitButton.setOpaque(false);
+		quitButton.setContentAreaFilled(false);
+		quitButton.setBorderPainted(false);
+		
 		GridBagConstraints gbc_quitButton = new GridBagConstraints();
 		gbc_quitButton.fill = GridBagConstraints.BOTH;
 		gbc_quitButton.gridheight = 1;
@@ -144,5 +203,13 @@ public class MainMenuPanel extends GamePanel {
 		gbc_quitButton.weightx = 0;
 		gbc_quitButton.weighty = 0;
 		add(quitButton, gbc_quitButton);
+		
+		
+		
+		//on EACH PAGE click question mark for instructions on game, have one main that tells how the game works from start to finish
+		//have another one broken up into each section of the game in the view point of the user
+		
+		gameFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		//gameFrame.setVisible(true);
 	}
 }

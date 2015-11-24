@@ -13,18 +13,22 @@ import javax.swing.UIManager;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class QuestionSelectPanel extends GamePanel {
-	private static Font customFont = null;
+	private static Font customFont;
+	private static Font customFont2;
 	private Question[] questions = new Question[3];
 	private JButton btnQuestion1;
 	private JButton btnQuestion2;
 	private JButton btnQuestion3;
-	
+
 	public QuestionSelectPanel() {
 		createGui();
 	}
@@ -47,36 +51,52 @@ public class QuestionSelectPanel extends GamePanel {
 		new AnswerEntryPanel(gameFrame);
 	}
 
+	public void paintComponent(Graphics g) {
+		Image img = Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/backgroundgif.gif"));
+		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+	}
+
+	File file = new File("click7.au");
+	File pop = new File("pop.au");
+	File music = new File("questionselectmusic.wav");
+
 	@Override
 	protected void createGui() {
 		this.setLayout(null);
 
-		File file = new File("click7.au");
-		File pop = new File("pop.au");
-		
-		
-		
-		
-		
-		
-		
-		
-		 //create the font
+		try {
+			Game.playSound(music, (120000));
 
-        try {
-            //create the font to use. Specify the size!
-            customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/images/BradBunR.ttf")).deriveFont(26f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            //register the font
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/images/BradBunR.ttf")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        catch(FontFormatException e)
-        {
-            e.printStackTrace();
-        }
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
 
+		}
+
+		// create the font
+
+		try {
+			// create the font to use. Specify the size!
+			customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")).deriveFont(20f);
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			// register the font
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		}
+		try {
+			// create the font to use. Specify the size!
+			customFont2 = Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")).deriveFont(34f);
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			// register the font
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		}
 		// called the new method openfile
 		// returns an array into questions
 		questions = gameFrame.getGame().getQuestionPool(3);
@@ -92,12 +112,17 @@ public class QuestionSelectPanel extends GamePanel {
 		btnQuestion1 = new JButton(questions[0].getText());
 		btnQuestion1.setFont(customFont);
 
+		btnQuestion1.setOpaque(false);
+		btnQuestion1.setContentAreaFilled(false);
+		btnQuestion1.setBorderPainted(false);
+		btnQuestion1.setForeground(Color.WHITE);
+
 		// mouse over and exit
 		btnQuestion1.addMouseListener(new java.awt.event.MouseAdapter() {
 			@Override
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnQuestion1.setBackground(Color.YELLOW);
-				// btnQuestion1.setForeground(Color.WHITE);
+				// btnQuestion1.setBackground(Color.YELLOW);
+				btnQuestion1.setForeground(Color.YELLOW);
 
 				try {
 					Game.playSound(file, 100);
@@ -110,8 +135,8 @@ public class QuestionSelectPanel extends GamePanel {
 
 			@Override
 			public void mouseExited(java.awt.event.MouseEvent evt) {
-				btnQuestion1.setBackground(UIManager.getColor("control"));
-				//btnQuestion1.setForeground(UIManager.getColor("control"));
+				// btnQuestion1.setBackground(UIManager.getColor("control"));
+				btnQuestion1.setForeground(Color.WHITE);
 			}
 		});
 		// pop file
@@ -131,18 +156,21 @@ public class QuestionSelectPanel extends GamePanel {
 			}
 		});
 
-		btnQuestion1.setBounds(115, 92, 500, 40);
+		btnQuestion1.setBounds(((gameFrame.getWidth() / 2) - 400), (gameFrame.getHeight() / 2) - 100, 800, 75);
 		this.add(btnQuestion1);
 
 		btnQuestion2 = new JButton(questions[1].getText());
 		btnQuestion2.setFont(customFont);
-
+		btnQuestion2.setOpaque(false);
+		btnQuestion2.setContentAreaFilled(false);
+		btnQuestion2.setBorderPainted(false);
+		btnQuestion2.setForeground(Color.WHITE);
 		// mouse over and exit
 		btnQuestion2.addMouseListener(new java.awt.event.MouseAdapter() {
 			@Override
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnQuestion2.setBackground(Color.YELLOW);
-				//btnQuestion1.setForeground(Color.WHITE);
+				// btnQuestion2.setBackground(Color.YELLOW);
+				btnQuestion2.setForeground(Color.YELLOW);
 
 				try {
 					Game.playSound(file, 100);
@@ -155,8 +183,8 @@ public class QuestionSelectPanel extends GamePanel {
 
 			@Override
 			public void mouseExited(java.awt.event.MouseEvent evt) {
-				btnQuestion2.setBackground(UIManager.getColor("control"));
-				//btnQuestion2.setForeground(UIManager.getColor("control"));
+				// btnQuestion2.setBackground(UIManager.getColor("control"));
+				btnQuestion2.setForeground(Color.WHITE);
 			}
 		});
 
@@ -173,18 +201,21 @@ public class QuestionSelectPanel extends GamePanel {
 				}
 			}
 		});
-		btnQuestion2.setBounds(115, 142, 500, 40);
+		btnQuestion2.setBounds(btnQuestion1.getX(), btnQuestion1.getY() + 75, 800, 75);
 		this.add(btnQuestion2);
 
 		btnQuestion3 = new JButton(questions[2].getText());
 		btnQuestion3.setFont(customFont);
-
+		btnQuestion3.setOpaque(false);
+		btnQuestion3.setContentAreaFilled(false);
+		btnQuestion3.setBorderPainted(false);
+		btnQuestion3.setForeground(Color.WHITE);
 		// mouse over and exit
 		btnQuestion3.addMouseListener(new java.awt.event.MouseAdapter() {
 			@Override
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				btnQuestion3.setBackground(Color.YELLOW);
-				// btnQuestion1.setForeground(Color.WHITE);
+				// btnQuestion3.setBackground(Color.YELLOW);
+				btnQuestion3.setForeground(Color.YELLOW);
 
 				try {
 					Game.playSound(file, 100);
@@ -197,8 +228,8 @@ public class QuestionSelectPanel extends GamePanel {
 
 			@Override
 			public void mouseExited(java.awt.event.MouseEvent evt) {
-				btnQuestion3.setBackground(UIManager.getColor("control"));
-				//btnQuestion3.setForeground(UIManager.getColor("control"));
+				// btnQuestion3.setBackground(UIManager.getColor("control"));
+				btnQuestion3.setForeground(Color.WHITE);
 			}
 		});
 
@@ -215,14 +246,17 @@ public class QuestionSelectPanel extends GamePanel {
 				}
 			}
 		});
-		btnQuestion3.setBounds(115, 192, 500, 40);
+		btnQuestion3.setBounds(btnQuestion2.getX(), btnQuestion2.getY() + 75, 800, 75);
 		this.add(btnQuestion3);
 
 		JLabel lblPlayerPleaseSelect = new JLabel(
 				gameFrame.getGame().getPlayer(gameFrame.getGame().getCurrentLeader()).getName()
 						+ ", please select question:");
-		lblPlayerPleaseSelect.setFont(customFont);
-		lblPlayerPleaseSelect.setBounds(17, 24, 344, 49);
+		lblPlayerPleaseSelect.setFont(customFont2);
+		lblPlayerPleaseSelect.setBounds(((gameFrame.getWidth() / 2) - 300), (gameFrame.getHeight() / 2) - 200, 800, 75);
+	
+		lblPlayerPleaseSelect.setForeground(Color.LIGHT_GRAY);
+
 		this.add(lblPlayerPleaseSelect);
 
 	}
