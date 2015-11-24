@@ -58,7 +58,7 @@ public class QuestionSelectPanel extends GamePanel {
 
 	File file = new File("click7.au");
 	File pop = new File("pop.au");
-	File music = new File("questionselectmusic.wav");
+	File music = new File("answerquestionmusic.wav");
 
 	@Override
 	protected void createGui() {
