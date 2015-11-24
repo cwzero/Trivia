@@ -54,6 +54,7 @@ public class StartLogoPanel extends GamePanel {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		gameFrame.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 		setBounds(100, 100, 450, 300);
+		
 	
 		
 		

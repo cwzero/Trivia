@@ -83,8 +83,7 @@ public class GameSetupPanel extends GamePanel {
 	protected void createGui() {
 		
 		setBounds(100, 100, 450, 300);
-		//GridBagLayout gridBagLayout = new GridBagLayout();
-		//gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 1.0 };
+		
 
 		
 		
@@ -106,11 +105,11 @@ public class GameSetupPanel extends GamePanel {
 
 	
 		
-		//setLayout(gridBagLayout);
+		
 
 		gameFrame.repaint();
 		gameFrame.setTitle("Game Setup");
-		setLayout(null);
+		this.setLayout(null);
 		//this.setLayout(null);
 		
 		JLabel lblRounds = new JLabel("Number of Rounds");
