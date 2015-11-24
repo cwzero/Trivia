@@ -253,7 +253,7 @@ public class QuestionSelectPanel extends GamePanel {
 				gameFrame.getGame().getPlayer(gameFrame.getGame().getCurrentLeader()).getName()
 						+ ", please select question:");
 		lblPlayerPleaseSelect.setFont(customFont2);
-		lblPlayerPleaseSelect.setBounds(((gameFrame.getWidth() / 2) - 300), (gameFrame.getHeight() / 2) - 200, 800, 75);
+		lblPlayerPleaseSelect.setBounds(((gameFrame.getWidth() / 2) - 320), (gameFrame.getHeight() / 2) - 200, 800, 75);
 	
 		lblPlayerPleaseSelect.setForeground(Color.LIGHT_GRAY);
 
