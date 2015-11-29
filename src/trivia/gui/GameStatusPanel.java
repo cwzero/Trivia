@@ -28,16 +28,8 @@ import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class GameStatusPanel extends GamePanel {
-	private GameFrame gameFrame;
-
 	public GameStatusPanel() {
 		createGui();
-	}
-	
-	@Override
-	public void paintComponent(Graphics g) {
-		Image img = Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/trivia.png"));
-		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 	}
 	
 	/**
@@ -62,7 +54,7 @@ public class GameStatusPanel extends GamePanel {
 	@Override
 	protected void createGui() {
 		setBounds(100, 100, 450, 300);
-		setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBorder(new EmptyBorder(25, 25, 25, 25));
 		setLayout(new BorderLayout(0, 0));
 
 		gameFrame.repaint();

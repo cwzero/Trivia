@@ -33,14 +33,16 @@ import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class MainMenuPanel extends GamePanel {
-	
+
 	public MainMenuPanel() {
 		createGui();
 	}
-	//titlemusic from playonloop.com
+
+	// titlemusic from playonloop.com
 	File file = new File("click7.au");
 	File pop = new File("pop.au");
 	File music = new File("titlemusic.wav");
+
 	/**
 	 * Create the application.
 	 */
@@ -58,35 +60,27 @@ public class MainMenuPanel extends GamePanel {
 	public void quitButtonClick() {
 		System.exit(0);
 	}
-	
-	@Override
-	public void paintComponent(Graphics g) {
-		Image img = Toolkit.getDefaultToolkit().getImage(GameFrame.class.getResource("/images/backgroundgif.gif"));
-		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-	}
+
 	int count = 0;
+
 	@Override
 	protected void createGui() {
 		gameFrame.setVisible(false);
-		
-		
-			
-	
+
 		setBounds(100, 100, 450, 300);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(new BorderLayout(0, 0));
 
 		gameFrame.repaint();
-		//gameFrame.setTitle("Main Menu");
-		
+		// gameFrame.setTitle("Main Menu");
 
 		try {
 			Game.playSound(music, (120000));
-			
+
 		} catch (IOException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
-		
+
 		}
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 1.0 };
@@ -110,11 +104,11 @@ public class MainMenuPanel extends GamePanel {
 		gbc_lblTriviaGame.weighty = 0;
 		add(lblTriviaGame, gbc_lblTriviaGame);
 
-		//right now, smaller image as startIcon gives it an effect that pushes exitbutton and logo away from startgame
+		// right now, smaller image as startIcon gives it an effect that pushes
+		// exitbutton and logo away from startgame
 		Icon startIcon = new ImageIcon("src/images/staticstart.png");
 		Icon hoverStart = new ImageIcon("src/images/startgif.gif");
-		
-		
+
 		JButton newGameButton = new JButton(startIcon);
 		newGameButton.addActionListener(new ActionListener() {
 			@Override
@@ -134,7 +128,7 @@ public class MainMenuPanel extends GamePanel {
 			@Override
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
 				newGameButton.setIcon(hoverStart);
-			
+
 			}
 
 			@Override
@@ -154,13 +148,12 @@ public class MainMenuPanel extends GamePanel {
 		gbc_newGameButton.gridwidth = 1;
 		gbc_newGameButton.weightx = 0;
 		gbc_newGameButton.weighty = 0;
-		//newGameButton.setIcon(icon);
+		// newGameButton.setIcon(icon);
 		add(newGameButton, gbc_newGameButton);
-		
-		
+
 		Icon exitIcon = new ImageIcon("src/images/exit1.png");
 		Icon hoverExit = new ImageIcon("src/images/exitgif.gif");
-		
+
 		JButton quitButton = new JButton(exitIcon);
 		quitButton.addActionListener(new ActionListener() {
 			@Override
@@ -173,16 +166,16 @@ public class MainMenuPanel extends GamePanel {
 				}
 				MainMenuPanel.this.quitButtonClick();
 				// pop noise on click
-			
+
 			}
 		});
-	
+
 		// mouse over and exit
 		quitButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			@Override
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
 				quitButton.setIcon(hoverExit);
-				
+
 			}
 
 			@Override
@@ -193,7 +186,7 @@ public class MainMenuPanel extends GamePanel {
 		quitButton.setOpaque(false);
 		quitButton.setContentAreaFilled(false);
 		quitButton.setBorderPainted(false);
-		
+
 		GridBagConstraints gbc_quitButton = new GridBagConstraints();
 		gbc_quitButton.fill = GridBagConstraints.BOTH;
 		gbc_quitButton.gridheight = 1;
@@ -203,13 +196,13 @@ public class MainMenuPanel extends GamePanel {
 		gbc_quitButton.weightx = 0;
 		gbc_quitButton.weighty = 0;
 		add(quitButton, gbc_quitButton);
-		
-		
-		
-		//on EACH PAGE click question mark for instructions on game, have one main that tells how the game works from start to finish
-		//have another one broken up into each section of the game in the view point of the user
-		
-		gameFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-		//gameFrame.setVisible(true);
+
+		// on EACH PAGE click question mark for instructions on game, have one
+		// main that tells how the game works from start to finish
+		// have another one broken up into each section of the game in the view
+		// point of the user
+
+		gameFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		// gameFrame.setVisible(true);
 	}
 }

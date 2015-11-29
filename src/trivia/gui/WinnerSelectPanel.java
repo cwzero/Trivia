@@ -11,6 +11,7 @@ import java.util.Random;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import trivia.Player;
 
@@ -58,6 +59,7 @@ public class WinnerSelectPanel extends GamePanel {
 	@Override
 	protected void createGui() {
 		this.setLayout(new GridLayout(0, 1, 0, 0));
+		this.setBorder(new EmptyBorder(25, 25, 25, 25));
 
 		lblCountdown = new CountdownLabel(15) {
 

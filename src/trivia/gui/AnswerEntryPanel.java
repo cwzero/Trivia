@@ -26,7 +26,7 @@ public class AnswerEntryPanel extends GamePanel {
 	private JLabel question;
 	private int oneX = 7;
 	private int oneY = 7;
-	private CountdownLabel countDown;
+	//private CountdownLabel countDown;
 	
 	public AnswerEntryPanel() {
 		createGui();
@@ -54,8 +54,6 @@ public class AnswerEntryPanel extends GamePanel {
 	protected void createGui() {
 		Game game = gameFrame.getGame();
 		gameFrame.setTitle("Enter Answer");
-		
-		this.setBackground(new Color(234,186,9));
 
 		question = new JLabel("?");
 		question.setBounds(oneX, oneY, 25, 25);
@@ -66,7 +64,7 @@ public class AnswerEntryPanel extends GamePanel {
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		setLayout(gbl_contentPane);
 
-		countDown = new CountdownLabel(game.getTimeAnswer()) {
+		/*countDown = new CountdownLabel(game.getTimeAnswer()) {
 			@Override
 			public void event(int time) {
 				if (time == 0) {
@@ -97,7 +95,7 @@ public class AnswerEntryPanel extends GamePanel {
 			countDown.setVisible(false);
 		} else {
 
-		}
+		}*/
 
 		JLabel currentQuestionLabel = new JLabel("Question");
 		currentQuestionLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -174,7 +172,7 @@ public class AnswerEntryPanel extends GamePanel {
 	}
 
 	public void nextPlayerButton_Click() {
-		countDown.stop();
+		//countDown.stop();
 		Game game = gameFrame.getGame();
 		String playerAnswer = answerField.getText();
 		if (!playerAnswer.equals("")) {
