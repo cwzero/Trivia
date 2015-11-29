@@ -1,35 +1,25 @@
 package trivia.gui;
 
-import javax.swing.JLabel;
-
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.DisplayMode;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import trivia.Game;
-
-import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class MainMenuPanel extends GamePanel {

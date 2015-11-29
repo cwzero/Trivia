@@ -1,31 +1,27 @@
 package trivia.gui;
 
-import trivia.Game;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.HeadlessException;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import java.awt.Color;
+import trivia.Game;
 
 @SuppressWarnings("serial")
 public class AnswerEntryPanel extends GamePanel {
 	private JTextField answerField;
-	private JLabel question;
+	/*private JLabel question;
 	private int oneX = 7;
 	private int oneY = 7;
+	*/
 	//private CountdownLabel countDown;
 	
 	public AnswerEntryPanel() {
@@ -55,11 +51,11 @@ public class AnswerEntryPanel extends GamePanel {
 		Game game = gameFrame.getGame();
 		gameFrame.setTitle("Enter Answer");
 
-		question = new JLabel("?");
+		/*question = new JLabel("?");
 		question.setBounds(oneX, oneY, 25, 25);
 		question.setFont(new Font("Serif", Font.BOLD, 35));
 		question.setForeground(Color.RED);
-		super.add(question);
+		super.add(question);*/
 
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		setLayout(gbl_contentPane);
@@ -161,14 +157,14 @@ public class AnswerEntryPanel extends GamePanel {
 		gbc_btnNextPlayer.gridwidth = 1;
 		add(btnNextPlayer, gbc_btnNextPlayer);
 
-		Thread animationThread = new Thread() {
+		/*Thread animationThread = new Thread() {
 			@Override
 			public void run() {
 				moveIt();
 			}
 		};
 
-		animationThread.start();
+		animationThread.start();*/
 	}
 
 	public void nextPlayerButton_Click() {
@@ -190,7 +186,7 @@ public class AnswerEntryPanel extends GamePanel {
 		}
 	}
 
-	private void moveIt() {
+	/*private void moveIt() {
 		boolean up = false;
 		boolean down = true;
 		boolean left = false;
@@ -233,5 +229,5 @@ public class AnswerEntryPanel extends GamePanel {
 			gameFrame.repaint();
 
 		}
-	}
+	}*/
 }

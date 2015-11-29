@@ -1,11 +1,6 @@
 package trivia;
 
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
-import java.io.File;
-import java.io.IOException;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -25,8 +20,7 @@ public class Trivia {
 		//-rethink questions/answers , take trivia questions, but dont supply 3 possible anwsers, let the users "bs" an answer
 		//-provide the leader with the answer, but let leader compare answers, select winner(s) assign points based on opinion
 		//what u thinkin?
-		
-		
+	
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException

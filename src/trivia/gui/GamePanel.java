@@ -18,7 +18,7 @@ public abstract class GamePanel extends JPanel {
 	public GamePanel(GameFrame gameFrame) {
 		this();
 		this.gameFrame = gameFrame;
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.setBorder(new EmptyBorder(200, 200, 200, 200));
 		this.setBounds(100, 100, 600, 400);
 		gameFrame.setContentPane(this);
 		gameFrame.setVisible(true);
