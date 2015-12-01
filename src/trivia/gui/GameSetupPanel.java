@@ -171,6 +171,7 @@ public class GameSetupPanel extends GamePanel {
 		Icon unchecked = new ImageIcon("src/images/unchecked.png");
 		answerTimeCheckBox.setIcon(unchecked);
 		answerTimeCheckBox.setSelectedIcon(checked);
+		answerTimeCheckBox.setEnabled(false);
 		answerTimeCheckBox.setHorizontalAlignment(SwingConstants.LEFT);
 		// this.add(backButton);
 		answerTimeCheckBox.setBounds(lblPlayers.getX() - 50, lblPlayers.getY() + 95, 500, 75);

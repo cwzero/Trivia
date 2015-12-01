@@ -99,12 +99,11 @@ public class AnswerEntryPanel extends GamePanel {
 		add(playerLabel, gbc_playerLabel);
 		JLabel currentQuestionLabel = new JLabel("Question");
 		currentQuestionLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		currentQuestionLabel.setPreferredSize(new Dimension(400, 100));
+		currentQuestionLabel.setPreferredSize(new Dimension(600, 100));
 		if (game.getCurrentQuestion() != null && !game.getCurrentQuestion().equals("")) {
 			currentQuestionLabel.setText("<html>" + game.getCurrentQuestion().getText() + "</html>");
 		}
 		currentQuestionLabel.setFont(southPark);
-		currentQuestionLabel.setForeground(Color.WHITE);
 		GridBagConstraints gbc_currentQuestionLabel = new GridBagConstraints();
 		gbc_currentQuestionLabel.fill = GridBagConstraints.NONE;
 		gbc_currentQuestionLabel.insets = new Insets(0, 0, 5, 0);
@@ -121,9 +120,10 @@ public class AnswerEntryPanel extends GamePanel {
 			}
 		};
 		answerField.setHorizontalAlignment(SwingConstants.CENTER);
-		answerField.setFont(southPark);
+		answerField.setFont(southParkBig);
 		answerField.setOpaque(false);
 		answerField.setPreferredSize(new Dimension(600, 100));
+		answerField.setForeground(Color.WHITE);
 		GridBagConstraints gbc_answerField = new GridBagConstraints();
 		gbc_answerField.fill = GridBagConstraints.NONE;
 		gbc_answerField.insets = new Insets(0, 0, 5, 0);

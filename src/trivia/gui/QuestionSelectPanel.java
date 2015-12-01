@@ -224,7 +224,7 @@ public class QuestionSelectPanel extends GamePanel {
 						+ ", please select question:");
 		lblPlayerPleaseSelect.setFont(southPark);
 		lblPlayerPleaseSelect.setBounds(((gameFrame.getWidth() / 2) - 320), (gameFrame.getHeight() / 2) - 200, 800, 75);
-		lblPlayerPleaseSelect.setForeground(Color.LIGHT_GRAY);
+		lblPlayerPleaseSelect.setForeground(Color.BLACK);
 
 		this.add(lblPlayerPleaseSelect);
 

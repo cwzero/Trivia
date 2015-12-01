@@ -89,7 +89,7 @@ public class PlayerJoinPanel extends GamePanel {
 		playerLabel.setBounds((gameFrame.getWidth() / 2) - 370, (gameFrame.getHeight() / 2) - 200, 750, 100);
 		this.add(playerLabel);
 		playerLabel.setFont(southPark);
-		playerLabel.setForeground(Color.WHITE);
+		playerLabel.setForeground(Color.BLACK);
 		playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
 		playerNameField = new JTextField() {
@@ -98,6 +98,7 @@ public class PlayerJoinPanel extends GamePanel {
 				
 			}
 		};
+		playerNameField.setForeground(Color.WHITE);
 		playerNameField.setText(gameFrame.getGame().getPlayer(currentPlayer).getName());
 		playerNameField.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
