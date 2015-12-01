@@ -1,10 +1,13 @@
 package trivia.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,6 +15,7 @@ import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import trivia.Game;
 import trivia.Player;
 
 @SuppressWarnings("serial")
@@ -19,6 +23,7 @@ public class WinnerSelectPanel extends GamePanel {
 	protected int[] playerScore;
 	protected int increment = 20;
 	protected CountdownLabel lblCountdown;
+	File file = new File("click7.au");
 
 	public WinnerSelectPanel() {
 		createGui();
@@ -119,6 +124,28 @@ public class WinnerSelectPanel extends GamePanel {
 			button.setContentAreaFilled(false);
 			button.setOpaque(false);
 			button.setBorderPainted(false);
+			button.setForeground(Color.WHITE);
+			button.addMouseListener(new java.awt.event.MouseAdapter() {
+				@Override
+				public void mouseEntered(java.awt.event.MouseEvent evt) {
+					// btnQuestion2.setBackground(Color.YELLOW);
+					button.setForeground(Color.YELLOW);
+
+					try {
+						Game.playSound(file, 100);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+
+				@Override
+				public void mouseExited(java.awt.event.MouseEvent evt) {
+					// btnQuestion2.setBackground(UIManager.getColor("control"));
+					button.setForeground(Color.WHITE);
+				}
+			});
 			if (gameFrame.getGame().getCurrentLeader() != gameFrame.getGame().getPlayers()
 					.indexOf(button.getPlayer())) {
 				button.addActionListener(new ActionListener() {
