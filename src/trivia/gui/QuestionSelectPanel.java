@@ -79,7 +79,7 @@ public class QuestionSelectPanel extends GamePanel {
 		// 11/4 changed button size from 31 to 40
 		// added set font to size 12 to make sure question fits on buttons
 
-		btnQuestion1 = new JButton(questions[0].getText());
+		btnQuestion1 = new JButton("<html>" + questions[0].getText() + "</html>");
 		btnQuestion1.setFont(southPark);
 
 		btnQuestion1.setOpaque(false);
@@ -129,7 +129,7 @@ public class QuestionSelectPanel extends GamePanel {
 		btnQuestion1.setBounds(((gameFrame.getWidth() / 2) - 400), (gameFrame.getHeight() / 2) - 100, 800, 75);
 		this.add(btnQuestion1);
 
-		btnQuestion2 = new JButton(questions[1].getText());
+		btnQuestion2 = new JButton("<html>" + questions[1].getText() + "</html>");
 		btnQuestion2.setFont(southPark);
 		btnQuestion2.setOpaque(false);
 		btnQuestion2.setContentAreaFilled(false);
@@ -174,7 +174,7 @@ public class QuestionSelectPanel extends GamePanel {
 		btnQuestion2.setBounds(btnQuestion1.getX(), btnQuestion1.getY() + 75, 800, 75);
 		this.add(btnQuestion2);
 
-		btnQuestion3 = new JButton(questions[2].getText());
+		btnQuestion3 = new JButton("<html>" + questions[2].getText() + "</html>");
 		btnQuestion3.setFont(southPark);
 		btnQuestion3.setOpaque(false);
 		btnQuestion3.setContentAreaFilled(false);
