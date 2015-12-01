@@ -16,6 +16,8 @@ public abstract class GamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	protected GameFrame gameFrame;
 	protected Font southPark, southParkBig, southParkMed;
+	protected static File click = new File("click7.au");
+	protected static File pop = new File("pop.au");
 	
 	public GamePanel() {
 		try {

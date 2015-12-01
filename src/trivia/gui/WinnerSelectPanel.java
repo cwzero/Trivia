@@ -48,12 +48,6 @@ public class WinnerSelectPanel extends GamePanel {
 		return result;
 	}
 
-	private void selectWinner(int winner) {
-		gameFrame.getGame().setRoundWinner(winner);
-		gameFrame.getGame().setPlayerScore(winner, gameFrame.getGame().getPlayer(winner).getScore() + 1);
-		new GameStatusPanel(gameFrame);
-	}
-
 	public void selectWinner(Player winner) {
 		winner.setWinner(true);
 		winner.setScore(winner.getScore() + 1);
@@ -152,6 +146,12 @@ public class WinnerSelectPanel extends GamePanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						//lblCountdown.stop();
+						try {
+							Game.playSound(pop, 100);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					}
 				});
 				button.setPreferredSize(new Dimension(600, 100));
