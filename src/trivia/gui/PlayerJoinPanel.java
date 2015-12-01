@@ -16,10 +16,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
-import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -28,7 +25,6 @@ import java.awt.event.ActionEvent;
 public class PlayerJoinPanel extends GamePanel {
 	private JTextField playerNameField;
 	private int currentPlayer = 0;
-	private static Font customFont;
 
 	public PlayerJoinPanel() {
 		createGui();
@@ -88,22 +84,10 @@ public class PlayerJoinPanel extends GamePanel {
 		gameFrame.setTitle("Enter Player Name");
 		this.setLayout(null);
 
-		try {
-			// create the font to use. Specify the size!
-			customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")).deriveFont(50f);
-			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			// register the font
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")));
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (FontFormatException e) {
-			e.printStackTrace();
-		}
-
 		JLabel playerLabel = new JLabel("Player " + (currentPlayer + 1) + ", Enter Name");
 		playerLabel.setBounds((gameFrame.getWidth() / 2) - 370, (gameFrame.getHeight() / 2) - 200, 750, 100);
 		this.add(playerLabel);
-		playerLabel.setFont(customFont);
+		playerLabel.setFont(southPark);
 		playerLabel.setForeground(Color.WHITE);
 		playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -139,8 +123,9 @@ public class PlayerJoinPanel extends GamePanel {
 		});
 
 		playerNameField.setBounds(playerLabel.getX(), playerLabel.getY() + 150, 750, 80);
-		playerNameField.setFont(customFont);
+		playerNameField.setFont(southPark);
 		playerNameField.setHorizontalAlignment(SwingConstants.CENTER);
+		playerNameField.setOpaque(false);
 		this.add(playerNameField);
 		playerNameField.setColumns(10);
 		playerNameField.requestFocus();
@@ -193,7 +178,7 @@ public class PlayerJoinPanel extends GamePanel {
 		btnBack.setContentAreaFilled(false);
 		btnBack.setBorderPainted(false);
 
-		btnBack.setFont(customFont);
+		btnBack.setFont(southPark);
 		add(btnBack);
 
 		Icon continueIcon = new ImageIcon("src/images/continue1.png");

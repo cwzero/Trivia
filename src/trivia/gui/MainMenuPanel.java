@@ -2,7 +2,6 @@ package trivia.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -81,7 +80,6 @@ public class MainMenuPanel extends GamePanel {
 		JLabel lblTriviaGame = new JLabel(headericon);
 		lblTriviaGame.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTriviaGame.setBackground(new Color(240, 240, 240));
-		lblTriviaGame.setFont(new Font("Tahoma", Font.BOLD, 38));
 
 		GridBagConstraints gbc_lblTriviaGame = new GridBagConstraints();
 		gbc_lblTriviaGame.fill = GridBagConstraints.BOTH;

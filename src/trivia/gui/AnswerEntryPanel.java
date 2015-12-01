@@ -157,6 +157,9 @@ public class AnswerEntryPanel extends GamePanel {
 
 		answerField = new JTextField();
 		answerField.setHorizontalAlignment(SwingConstants.LEFT);
+		answerField.setFont(southPark);
+		answerField.setOpaque(false);
+		answerField.setColumns(10);
 		GridBagConstraints gbc_answerField = new GridBagConstraints();
 		gbc_answerField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_answerField.insets = new Insets(0, 0, 5, 0);
@@ -166,9 +169,6 @@ public class AnswerEntryPanel extends GamePanel {
 		gbc_answerField.gridwidth = 1;
 		add(answerField, gbc_answerField);
 		answerField.requestFocus();
-		answerField.setColumns(10);
-		answerField.setFont(customFont);
-		
 
 		answerField.addActionListener(new ActionListener() {
 			@Override
@@ -179,6 +179,10 @@ public class AnswerEntryPanel extends GamePanel {
 		});
 
 		JButton btnNextPlayer = new JButton("Next Player");
+		btnNextPlayer.setFont(southPark);
+		btnNextPlayer.setOpaque(false);
+		btnNextPlayer.setContentAreaFilled(false);
+		btnNextPlayer.setBorderPainted(false);
 		btnNextPlayer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

@@ -1,10 +1,7 @@
 package trivia.gui;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
-import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -31,7 +28,6 @@ public class GameSetupPanel extends GamePanel {
 	private JSpinner playerCountSpinner = new JSpinner();
 	private JSpinner answerTimeSpinner = new JSpinner();
 	private JCheckBox answerTimeCheckBox = new JCheckBox("Limit Answer Time");
-	private static Font customFont;
 
 	public GameSetupPanel() {
 
@@ -76,18 +72,6 @@ public class GameSetupPanel extends GamePanel {
 
 		setBounds(100, 100, 450, 300);
 
-		try {
-			// create the font to use. Specify the size!
-			customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")).deriveFont(25f);
-			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			// register the font
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")));
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (FontFormatException e) {
-			e.printStackTrace();
-		}
-
 		gameFrame.repaint();
 		gameFrame.setTitle("Game Setup");
 		this.setLayout(null);
@@ -96,26 +80,26 @@ public class GameSetupPanel extends GamePanel {
 		JLabel lblRounds = new JLabel("Number of Rounds");
 		lblRounds.setBounds(((gameFrame.getWidth() / 2) - 300), (gameFrame.getHeight() / 2) - 200, 500, 75);
 		lblRounds.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRounds.setFont(customFont);
+		lblRounds.setFont(southPark);
 		lblRounds.setForeground(Color.WHITE);
 		lblRounds.setHorizontalAlignment(SwingConstants.LEFT);
 		add(lblRounds);
 
 		roundCountSpinner.setModel(new SpinnerNumberModel(3, 3, 10, 1));
 		roundCountSpinner.setBounds((lblRounds.getX() + lblRounds.getWidth()), lblRounds.getY() + 23, 66, 45);
-		roundCountSpinner.setFont(customFont);
+		roundCountSpinner.setFont(southPark);
 		this.add(roundCountSpinner);
 
 		JLabel lblPlayers = new JLabel("Number of Players");
 		lblPlayers.setBounds(lblRounds.getX(), lblRounds.getY() + 95, 500, 75);
-		lblPlayers.setFont(customFont);
+		lblPlayers.setFont(southPark);
 		lblPlayers.setForeground(Color.WHITE);
 		lblPlayers.setHorizontalAlignment(SwingConstants.LEFT);
 		this.add(lblPlayers);
 
 		playerCountSpinner.setModel(new SpinnerNumberModel(3, 3, 5, 1));
 		playerCountSpinner.setBounds((lblPlayers.getX() + lblPlayers.getWidth()), lblPlayers.getY() + 23, 66, 45);
-		playerCountSpinner.setFont(customFont);
+		playerCountSpinner.setFont(southPark);
 		this.add(playerCountSpinner);
 
 		Icon backIcon = new ImageIcon("src/images/back1.png");
@@ -140,7 +124,7 @@ public class GameSetupPanel extends GamePanel {
 		backButton.setContentAreaFilled(false);
 		backButton.setBorderPainted(false);
 
-		backButton.setFont(customFont);
+		backButton.setFont(southPark);
 		add(backButton);
 
 		Icon continueIcon = new ImageIcon("src/images/continue1.png");
@@ -193,7 +177,7 @@ public class GameSetupPanel extends GamePanel {
 		answerTimeCheckBox.setOpaque(false);
 		answerTimeCheckBox.setContentAreaFilled(false);
 		answerTimeCheckBox.setBorderPainted(false);
-		answerTimeCheckBox.setFont(customFont);
+		answerTimeCheckBox.setFont(southPark);
 		answerTimeCheckBox.setForeground(Color.WHITE);
 		answerTimeCheckBox.addItemListener(new ItemListener() {
 
@@ -220,7 +204,7 @@ public class GameSetupPanel extends GamePanel {
 		answerTimeSpinner.setBounds((answerTimeCheckBox.getX() + answerTimeCheckBox.getWidth() + 50),
 				answerTimeCheckBox.getY() + 23, 66, 45);
 		answerTimeSpinner.setEnabled(false);
-		answerTimeSpinner.setFont(customFont);
+		answerTimeSpinner.setFont(southPark);
 		this.add(answerTimeSpinner);
 
 		backButton.addActionListener(new ActionListener() {

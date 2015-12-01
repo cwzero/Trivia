@@ -1,8 +1,6 @@
 package trivia.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -11,10 +9,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 import trivia.Game;
@@ -61,7 +60,7 @@ public class GameStatusPanel extends GamePanel {
 
 		JLabel lblGameStatus = new JLabel("Game Status");
 		lblGameStatus.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGameStatus.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblGameStatus.setFont(southPark);
 		GridBagConstraints gbc_lblGameStatus = new GridBagConstraints();
 		gbc_lblGameStatus.weighty = 0.05;
 		gbc_lblGameStatus.weightx = 1.0;
@@ -73,7 +72,7 @@ public class GameStatusPanel extends GamePanel {
 		// This create the label for the Scoreboard
 
 		JLabel lblScoreboard = new JLabel("Scoreboard");
-		lblScoreboard.setFont(new Font("Lithos Pro Regular", Font.ITALIC, 20));
+		lblScoreboard.setFont(southPark);
 		GridBagConstraints gbc_lblScoreboard = new GridBagConstraints();
 		gbc_lblScoreboard.weightx = 1.0;
 		gbc_lblScoreboard.weighty = 0.05;
@@ -87,13 +86,17 @@ public class GameStatusPanel extends GamePanel {
 		// from
 		// a file or a list before displaying the player and scores
 
-		String[][] rowData = new String[gameFrame.getGame().getPlayerCount()][3];
-		Object columnNames[] = { "Player Name", "Score", "Answer" };
+		String[][] rowData = new String[gameFrame.getGame().getPlayerCount() + 1][3];
+		String columnNames[] = { "Player Name", "Score", "Answer" };
 
-		for (int i = 0; i < gameFrame.getGame().getPlayerCount(); i++) {
-			rowData[i][0] = gameFrame.getGame().getPlayer(i).getName();
-			rowData[i][1] = gameFrame.getGame().getPlayer(i).getScore() + "";
-			String answer = gameFrame.getGame().getPlayer(i).getAnswer();
+		rowData[0][0] = columnNames[0];
+		rowData[0][1] = columnNames[1];
+		rowData[0][2] = columnNames[2];
+
+		for (int i = 1; i < gameFrame.getGame().getPlayerCount() + 1; i++) {
+			rowData[i][0] = gameFrame.getGame().getPlayer(i - 1).getName();
+			rowData[i][1] = gameFrame.getGame().getPlayer(i - 1).getScore() + "";
+			String answer = gameFrame.getGame().getPlayer(i - 1).getAnswer();
 			if (answer == null || answer.equals("")) {
 				answer = "Leader";
 			}
@@ -101,13 +104,16 @@ public class GameStatusPanel extends GamePanel {
 		}
 
 		JTable table = new JTable(rowData, columnNames);
-		table.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-		table.setBackground(Color.ORANGE);
+		TableCellRenderer renderer = new DefaultTableCellRenderer() {
+			{
+				setOpaque(false);
+			}
+		};
+		table.setDefaultRenderer(Object.class, renderer);
+		table.setOpaque(false);
+		table.setFont(southPark);
 		table.setShowGrid(false);
-		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-
-		// This makes the score column smaller to leave more space for answer
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		TableColumn column = null;
 		for (int i = 0; i < 3; i++) {
 			column = table.getColumnModel().getColumn(i);
@@ -120,14 +126,29 @@ public class GameStatusPanel extends GamePanel {
 			}
 		}
 
-		JScrollPane scrollPane = new JScrollPane(table);
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.weighty = 2.0;
-		gbc_scrollPane.weightx = 1.0;
-		gbc_scrollPane.insets = new Insets(0, 60, 15, 60);
-		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 3;
-		add(scrollPane, gbc_scrollPane);
+		/*
+		 * // This makes the score column smaller to leave more space for answer
+		 * TableColumn column = null; for (int i = 0; i < 3; i++) { column =
+		 * table.getColumnModel().getColumn(i); if (i == 0) {
+		 * column.setPreferredWidth(50); } else if (i == 1) {
+		 * column.setPreferredWidth(10); // Second column is smaller } else {
+		 * column.setPreferredWidth(150); } }
+		 * 
+		 * JScrollPane scrollPane = new JScrollPane(table);
+		 * scrollPane.setOpaque(false); GridBagConstraints gbc_scrollPane = new
+		 * GridBagConstraints(); gbc_scrollPane.weighty = 2.0;
+		 * gbc_scrollPane.weightx = 1.0; gbc_scrollPane.insets = new Insets(0,
+		 * 60, 15, 60); gbc_scrollPane.gridx = 0; gbc_scrollPane.gridy = 3;
+		 * add(scrollPane, gbc_scrollPane);
+		 */
+
+		GridBagConstraints gbc_table = new GridBagConstraints();
+		gbc_table.weightx = 1.0;
+		gbc_table.weighty = 2.0;
+		gbc_table.insets = new Insets(0, 60, 15, 60);
+		gbc_table.gridx = 0;
+		gbc_table.gridy = 3;
+		add(table, gbc_table);
 
 		// This button starts new game " Not valid yet"
 
