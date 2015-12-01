@@ -61,7 +61,7 @@ public class GameStatusPanel extends GamePanel {
 
 		JLabel lblGameStatus = new JLabel("Game Status");
 		lblGameStatus.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGameStatus.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblGameStatus.setFont(new Font("Dialog", Font.BOLD, 20));
 		GridBagConstraints gbc_lblGameStatus = new GridBagConstraints();
 		gbc_lblGameStatus.weighty = 0.05;
 		gbc_lblGameStatus.weightx = 1.0;
@@ -73,7 +73,7 @@ public class GameStatusPanel extends GamePanel {
 		// This create the label for the Scoreboard
 
 		JLabel lblScoreboard = new JLabel("Scoreboard");
-		lblScoreboard.setFont(new Font("Lithos Pro Regular", Font.ITALIC, 16));
+		lblScoreboard.setFont(new Font("Lithos Pro Regular", Font.ITALIC, 20));
 		GridBagConstraints gbc_lblScoreboard = new GridBagConstraints();
 		gbc_lblScoreboard.weightx = 1.0;
 		gbc_lblScoreboard.weighty = 0.05;
@@ -101,8 +101,11 @@ public class GameStatusPanel extends GamePanel {
 		}
 
 		JTable table = new JTable(rowData, columnNames);
-		table.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		table.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		table.setBackground(Color.ORANGE);
+		table.setShowGrid(false);
+		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
 
 		// This makes the score column smaller to leave more space for answer
 		TableColumn column = null;
@@ -119,10 +122,9 @@ public class GameStatusPanel extends GamePanel {
 
 		JScrollPane scrollPane = new JScrollPane(table);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.weighty = 2.0;
 		gbc_scrollPane.weightx = 1.0;
-		gbc_scrollPane.insets = new Insets(0, 60, 5, 60);
+		gbc_scrollPane.insets = new Insets(0, 60, 15, 60);
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 3;
 		add(scrollPane, gbc_scrollPane);
