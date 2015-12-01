@@ -118,7 +118,7 @@ public class AnswerEntryPanel extends GamePanel {
 
 			}
 		};
-		answerField.setHorizontalAlignment(SwingConstants.LEFT);
+		answerField.setHorizontalAlignment(SwingConstants.CENTER);
 		answerField.setFont(southPark);
 		answerField.setOpaque(false);
 		answerField.setPreferredSize(new Dimension(600, 100));
