@@ -1,12 +1,17 @@
 package trivia.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,6 +23,8 @@ import trivia.Game;
 @SuppressWarnings("serial")
 public class AnswerEntryPanel extends GamePanel {
 	private JTextField answerField;
+	private static Font customFont;
+	private static Font customFont2;
 	/*private JLabel question;
 	private int oneX = 7;
 	private int oneY = 7;
@@ -57,6 +64,32 @@ public class AnswerEntryPanel extends GamePanel {
 		question.setForeground(Color.RED);
 		super.add(question);*/
 
+		
+		// create the font
+		try {
+			// create the font to use. Specify the size!
+			customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")).deriveFont(20f);
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			// register the font
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		}
+		try {
+			// create the font to use. Specify the size!
+			customFont2 = Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")).deriveFont(34f);
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			// register the font
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		}
+		
+		
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		setLayout(gbl_contentPane);
 
@@ -92,34 +125,35 @@ public class AnswerEntryPanel extends GamePanel {
 		} else {
 
 		}*/
-
+		JLabel playerLabel = new JLabel(game.getPlayer(game.getCurrentPlayer()).getName() + " enter your answer.");
+		playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		playerLabel.setFont(customFont2);
+		GridBagConstraints gbc_playerLabel = new GridBagConstraints();
+		gbc_playerLabel.fill = GridBagConstraints.VERTICAL;
+		gbc_playerLabel.insets = new Insets(0, 0, 5, 0);
+		gbc_playerLabel.gridx = 0;
+		gbc_playerLabel.gridy = 1;
+		gbc_playerLabel.gridheight = 1;
+		gbc_playerLabel.gridwidth = 1;
+		add(playerLabel, gbc_playerLabel);
 		JLabel currentQuestionLabel = new JLabel("Question");
 		currentQuestionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		currentQuestionLabel.setMaximumSize(new Dimension(600, 400));
 		if (game.getCurrentQuestion() != null && !game.getCurrentQuestion().equals("")) {
 			currentQuestionLabel.setText("<html>" + game.getCurrentQuestion().getText() + "</html>");
 		}
-		currentQuestionLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		currentQuestionLabel.setFont(customFont);
+		currentQuestionLabel.setForeground(Color.WHITE);
 		GridBagConstraints gbc_currentQuestionLabel = new GridBagConstraints();
 		gbc_currentQuestionLabel.fill = GridBagConstraints.BOTH;
 		gbc_currentQuestionLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_currentQuestionLabel.gridx = 0;
-		gbc_currentQuestionLabel.gridy = 1;
+		gbc_currentQuestionLabel.gridy = 2;
 		gbc_currentQuestionLabel.gridheight = 1;
 		gbc_currentQuestionLabel.gridwidth = 1;
 		add(currentQuestionLabel, gbc_currentQuestionLabel);
 
-		JLabel playerLabel = new JLabel(game.getPlayer(game.getCurrentPlayer()).getName() + " enter your answer.");
-		playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		GridBagConstraints gbc_playerLabel = new GridBagConstraints();
-		gbc_playerLabel.fill = GridBagConstraints.VERTICAL;
-		gbc_playerLabel.insets = new Insets(0, 0, 5, 0);
-		gbc_playerLabel.gridx = 0;
-		gbc_playerLabel.gridy = 2;
-		gbc_playerLabel.gridheight = 1;
-		gbc_playerLabel.gridwidth = 1;
-		add(playerLabel, gbc_playerLabel);
+	
 
 		answerField = new JTextField();
 		answerField.setHorizontalAlignment(SwingConstants.LEFT);
@@ -133,6 +167,8 @@ public class AnswerEntryPanel extends GamePanel {
 		add(answerField, gbc_answerField);
 		answerField.requestFocus();
 		answerField.setColumns(10);
+		answerField.setFont(customFont);
+		
 
 		answerField.addActionListener(new ActionListener() {
 			@Override
@@ -152,9 +188,10 @@ public class AnswerEntryPanel extends GamePanel {
 		GridBagConstraints gbc_btnNextPlayer = new GridBagConstraints();
 		gbc_btnNextPlayer.anchor = GridBagConstraints.NORTH;
 		gbc_btnNextPlayer.gridx = 0;
-		gbc_btnNextPlayer.gridy = 4;
+		gbc_btnNextPlayer.gridy = 5;
 		gbc_btnNextPlayer.gridheight = 1;
 		gbc_btnNextPlayer.gridwidth = 1;
+		btnNextPlayer.setFont(customFont);
 		add(btnNextPlayer, gbc_btnNextPlayer);
 
 		/*Thread animationThread = new Thread() {

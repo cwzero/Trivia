@@ -73,7 +73,6 @@ public class QuestionSelectPanel extends GamePanel {
 		}
 
 		// create the font
-
 		try {
 			// create the font to use. Specify the size!
 			customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")).deriveFont(20f);
