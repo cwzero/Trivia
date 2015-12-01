@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 import trivia.Game;
 
@@ -153,13 +154,15 @@ public class AnswerEntryPanel extends GamePanel {
 		gbc_currentQuestionLabel.gridwidth = 1;
 		add(currentQuestionLabel, gbc_currentQuestionLabel);
 
-	
-
-		answerField = new JTextField();
+		answerField = new JTextField() {
+			@Override
+			public void setBorder(Border border) {
+				
+			}
+		};
 		answerField.setHorizontalAlignment(SwingConstants.LEFT);
 		answerField.setFont(southPark);
 		answerField.setOpaque(false);
-		answerField.setColumns(10);
 		GridBagConstraints gbc_answerField = new GridBagConstraints();
 		gbc_answerField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_answerField.insets = new Insets(0, 0, 5, 0);
@@ -175,7 +178,6 @@ public class AnswerEntryPanel extends GamePanel {
 			public void actionPerformed(ActionEvent e) {
 				AnswerEntryPanel.this.nextPlayerButton_Click();
 			}
-
 		});
 
 		JButton btnNextPlayer = new JButton("Next Player");

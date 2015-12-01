@@ -4,6 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 import trivia.Game;
 
@@ -91,7 +92,12 @@ public class PlayerJoinPanel extends GamePanel {
 		playerLabel.setForeground(Color.WHITE);
 		playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-		playerNameField = new JTextField();
+		playerNameField = new JTextField() {
+			@Override
+			public void setBorder(Border border) {
+				
+			}
+		};
 		playerNameField.setText(gameFrame.getGame().getPlayer(currentPlayer).getName());
 		playerNameField.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
@@ -124,10 +130,9 @@ public class PlayerJoinPanel extends GamePanel {
 
 		playerNameField.setBounds(playerLabel.getX(), playerLabel.getY() + 150, 750, 80);
 		playerNameField.setFont(southPark);
-		playerNameField.setHorizontalAlignment(SwingConstants.CENTER);
+		playerNameField.setHorizontalAlignment(SwingConstants.LEFT);
 		playerNameField.setOpaque(false);
 		this.add(playerNameField);
-		playerNameField.setColumns(10);
 		playerNameField.requestFocus();
 
 		/*

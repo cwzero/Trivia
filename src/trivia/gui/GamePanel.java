@@ -16,7 +16,6 @@ public abstract class GamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	protected GameFrame gameFrame;
 	protected Font southPark;
-	protected Font bradyBunch;
 	
 	public GamePanel() {
 		try {
@@ -25,10 +24,6 @@ public abstract class GamePanel extends JPanel {
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			// register the font
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")));
-			// create the font to use. Specify the size!
-			southPark = Font.createFont(Font.TRUETYPE_FONT, new File("src/images/BradBunR.ttf")).deriveFont(25f);
-			// register the font
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/images/BradBunR.ttf")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (FontFormatException e) {
