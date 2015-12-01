@@ -53,6 +53,7 @@ public class PlayerJoinPanel extends GamePanel {
 			gameFrame.getGame().setCurrentPlayer(currentPlayer - 1);
 			new PlayerJoinPanel(gameFrame);
 		} else {
+			gameFrame.getGame().setCurrentPlayer(0);
 			gameFrame.getGame().reset();
 			new MainMenuPanel(gameFrame);
 		}

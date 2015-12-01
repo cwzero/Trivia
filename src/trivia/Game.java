@@ -60,6 +60,7 @@ public class Game {
 	}
 
 	public void reset() {
+		currentPlayer = 0;
 		players = new ArrayList<Player>();
 	}
 

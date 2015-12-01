@@ -59,7 +59,9 @@ public class SetupSummaryPanel extends GamePanel {
 
 	private void buttonBack_click() {
 		// Eventually this should go back to edit setup
-		new MainMenuPanel(gameFrame);
+		gameFrame.getGame().setCurrentPlayer(0);
+		gameFrame.getGame().reset();
+		new GameSetupPanel(gameFrame);
 	}
 
 	@Override
