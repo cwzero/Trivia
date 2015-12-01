@@ -1,8 +1,8 @@
 package trivia.gui;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -11,7 +11,6 @@ import java.util.Random;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 
 import trivia.Player;
 
@@ -20,7 +19,7 @@ public class WinnerSelectPanel extends GamePanel {
 	protected int[] playerScore;
 	protected int increment = 20;
 	protected CountdownLabel lblCountdown;
-	
+
 	public WinnerSelectPanel() {
 		createGui();
 	}
@@ -58,59 +57,53 @@ public class WinnerSelectPanel extends GamePanel {
 
 	@Override
 	protected void createGui() {
-		this.setLayout(new GridLayout(0, 1, 0, 0));
-		this.setBorder(new EmptyBorder(25, 25, 25, 25));
+		this.setLayout(new GridBagLayout());
 
-		lblCountdown = new CountdownLabel(15) {
-
-			@Override
-			public void event(int time) {
-				if (time == 5) {
-					this.setForeground(Color.red);
-					this.setFont(new Font("Tahoma", Font.BOLD, 20));
-				}
-				if (time == 4) {
-					this.setForeground(Color.red);
-					this.setFont(new Font("Tahoma", Font.BOLD, 30));
-				}
-				if (time == 3) {
-					this.setForeground(Color.red);
-					this.setFont(new Font("Tahoma", Font.BOLD, 40));
-				}
-				if (time == 2) {
-					this.setForeground(Color.red);
-					this.setFont(new Font("Tahoma", Font.BOLD, 50));
-				}
-				if (time == 1) {
-					this.setForeground(Color.red);
-					this.setFont(new Font("Tahoma", Font.BOLD, 60));
-				}
-				if (time == 0) {
-					this.setForeground(Color.red);
-					this.setFont(new Font("Tahoma", Font.BOLD, 70));
-					Random random = new Random();
-					int generated = random.nextInt(gameFrame.getGame().getPlayerCount());
-					while (generated == gameFrame.getGame().getCurrentLeader()) {
-						generated = random.nextInt(gameFrame.getGame().getPlayerCount());
-					}
-					selectWinner(generated);
-				}
-			}
-		};
-
-		add(lblCountdown);
-		lblCountdown.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCountdown.setHorizontalAlignment(SwingConstants.CENTER);
-
+		/*
+		 * lblCountdown = new CountdownLabel(15) {
+		 * 
+		 * @Override public void event(int time) { if (time == 5) {
+		 * this.setForeground(Color.red); this.setFont(new Font("Tahoma",
+		 * Font.BOLD, 20)); } if (time == 4) { this.setForeground(Color.red);
+		 * this.setFont(new Font("Tahoma", Font.BOLD, 30)); } if (time == 3) {
+		 * this.setForeground(Color.red); this.setFont(new Font("Tahoma",
+		 * Font.BOLD, 40)); } if (time == 2) { this.setForeground(Color.red);
+		 * this.setFont(new Font("Tahoma", Font.BOLD, 50)); } if (time == 1) {
+		 * this.setForeground(Color.red); this.setFont(new Font("Tahoma",
+		 * Font.BOLD, 60)); } if (time == 0) { this.setForeground(Color.red);
+		 * this.setFont(new Font("Tahoma", Font.BOLD, 70)); Random random = new
+		 * Random(); int generated =
+		 * random.nextInt(gameFrame.getGame().getPlayerCount()); while
+		 * (generated == gameFrame.getGame().getCurrentLeader()) { generated =
+		 * random.nextInt(gameFrame.getGame().getPlayerCount()); }
+		 * selectWinner(generated); } } };
+		 * 
+		 * add(lblCountdown); lblCountdown.setFont(new Font("Tahoma", Font.BOLD,
+		 * 14)); lblCountdown.setHorizontalAlignment(SwingConstants.CENTER);
+		 */
+		
 		JLabel lblNewLabel = new JLabel("Select one answer for the question:");
+		lblNewLabel.setFont(southPark);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(lblNewLabel);
+		lblNewLabel.setPreferredSize(new Dimension(600, 100));
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.gridheight = 1;
+		gbc_lblNewLabel.gridwidth = 1;
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 0;
+		this.add(lblNewLabel, gbc_lblNewLabel);
 
 		JLabel lblSelectedQuestion = new JLabel("New label");
-		lblSelectedQuestion.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblSelectedQuestion.setPreferredSize(new Dimension(600, 100));
+		lblSelectedQuestion.setFont(southPark);
 		lblSelectedQuestion.setHorizontalAlignment(SwingConstants.CENTER);
-		this.add(lblSelectedQuestion);
-		lblSelectedQuestion.setText(gameFrame.getGame().getCurrentQuestion().getText());
+		GridBagConstraints gbc_lblSelectedQuestion = new GridBagConstraints();
+		gbc_lblSelectedQuestion.gridwidth = 1;
+		gbc_lblSelectedQuestion.gridheight = 1;
+		gbc_lblSelectedQuestion.gridx = 0;
+		gbc_lblSelectedQuestion.gridy = 1;
+		this.add(lblSelectedQuestion, gbc_lblSelectedQuestion);
+		lblSelectedQuestion.setText("<html>" + gameFrame.getGame().getCurrentQuestion().getText() + "</html>");
 
 		List<PlayerButton> buttons = new ArrayList<PlayerButton>();
 		for (Player player : gameFrame.getGame().getPlayers()) {
@@ -119,17 +112,28 @@ public class WinnerSelectPanel extends GamePanel {
 
 		buttons = shuffle(buttons);
 
+		int gridy = 2;
 		for (PlayerButton button : buttons) {
 			button.setHorizontalAlignment(SwingConstants.CENTER);
-			if (gameFrame.getGame().getCurrentLeader() != gameFrame.getGame().getPlayers().indexOf(button.getPlayer()))
-			{
+			button.setFont(southPark);
+			button.setContentAreaFilled(false);
+			button.setOpaque(false);
+			button.setBorderPainted(false);
+			if (gameFrame.getGame().getCurrentLeader() != gameFrame.getGame().getPlayers()
+					.indexOf(button.getPlayer())) {
 				button.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						lblCountdown.stop();
+						//lblCountdown.stop();
 					}
 				});
-				this.add(button);
+				button.setPreferredSize(new Dimension(600, 100));
+				GridBagConstraints gbc_button = new GridBagConstraints();
+				gbc_button.gridheight = 1;
+				gbc_button.gridwidth = 1;
+				gbc_button.gridx = 0;
+				gbc_button.gridy = gridy++;
+				this.add(button, gbc_button);
 			}
 		}
 	}

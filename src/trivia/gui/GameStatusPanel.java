@@ -1,5 +1,6 @@
 package trivia.gui;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -54,6 +55,7 @@ public class GameStatusPanel extends GamePanel {
 		setLayout(gbl_contentPane);
 
 		JLabel lblGameStatus = new JLabel("Game Status");
+		lblGameStatus.setPreferredSize(new Dimension(600, 100));
 		lblGameStatus.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGameStatus.setFont(southPark);
 		GridBagConstraints gbc_lblGameStatus = new GridBagConstraints();
@@ -67,6 +69,7 @@ public class GameStatusPanel extends GamePanel {
 		// This create the label for the Scoreboard
 
 		JLabel lblScoreboard = new JLabel("Scoreboard");
+		lblScoreboard.setPreferredSize(new Dimension(600, 100));
 		lblScoreboard.setFont(southPark);
 		GridBagConstraints gbc_lblScoreboard = new GridBagConstraints();
 		gbc_lblScoreboard.weightx = 1.0;
@@ -83,7 +86,7 @@ public class GameStatusPanel extends GamePanel {
 		String scores = "";
 		String answers = "";
 		if (!gameFrame.getGame().isOver()) {
-			scores = "At the end of round " + gameFrame.getGame().getCurrentRound() + " ";
+			scores = "At the end of round " + gameFrame.getGame().getCurrentRound() + ", ";
 		}
 		for (int playerIndex = 0; playerIndex < gameFrame.getGame().getPlayerCount(); playerIndex++) {
 			Player player = gameFrame.getGame().getPlayer(playerIndex);
@@ -122,8 +125,9 @@ public class GameStatusPanel extends GamePanel {
 		gbc_scoreLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_scoreLabel.gridx = 0;
 		gbc_scoreLabel.gridy = 3;
-		JLabel scoreLabel = new JLabel(scores);
+		JLabel scoreLabel = new JLabel("<html>" + scores + "</html>");
 		scoreLabel.setFont(southPark);
+		scoreLabel.setPreferredSize(new Dimension(600, 100));
 		add(scoreLabel, gbc_scoreLabel);
 
 		GridBagConstraints gbc_answerLabel = new GridBagConstraints();
@@ -133,8 +137,9 @@ public class GameStatusPanel extends GamePanel {
 		gbc_answerLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_answerLabel.gridx = 0;
 		gbc_answerLabel.gridy = 4;
-		JLabel answerLabel = new JLabel(answers);
+		JLabel answerLabel = new JLabel("<html>" + answers + "</html>");
 		answerLabel.setFont(southPark);
+		answerLabel.setPreferredSize(new Dimension(600, 100));
 		add(answerLabel, gbc_answerLabel);
 
 		/*
