@@ -7,6 +7,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.io.IOException;
 
@@ -120,6 +122,34 @@ public class AnswerEntryPanel extends GamePanel {
 
 			}
 		};
+		answerField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+
+			}
+
+			public void keyTyped(KeyEvent e) {
+				try {
+					Game.playSound(click, 100);
+
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+
+					nextPlayerButton_Click();
+					try {
+						Game.playSound(pop, 100);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 		answerField.setHorizontalAlignment(SwingConstants.CENTER);
 		answerField.setFont(southParkBig);
 		answerField.setOpaque(false);

@@ -115,7 +115,7 @@ public class SetupSummaryPanel extends GamePanel {
 		playerLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		playerLabel.setFont(customFont2);
 
-		playerLabel.setForeground(Color.WHITE);
+		playerLabel.setForeground(Color.BLACK);
 		playerLabel.setBounds(((gameFrame.getWidth() / 2) - 400), (gameFrame.getHeight() / 2) - 100, 700, 100);
 
 		this.add(playerLabel);
@@ -123,7 +123,7 @@ public class SetupSummaryPanel extends GamePanel {
 				" Are you sure you want to play a game of " + gameFrame.getGame().getRoundCount() + " rounds?");
 		secondline.setHorizontalAlignment(SwingConstants.LEFT);
 		secondline.setFont(customFont);
-		secondline.setForeground(Color.WHITE);
+		secondline.setForeground(Color.BLACK);
 		secondline.setBounds(playerLabel.getX() - 50, playerLabel.getY() + 50, 1000, 100);
 		this.add(secondline);
 
