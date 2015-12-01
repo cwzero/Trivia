@@ -7,7 +7,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -139,11 +141,25 @@ public class AnswerEntryPanel extends GamePanel {
 			}
 		});
 
-		JButton btnNextPlayer = new JButton("Next Player");
+		JButton btnNextPlayer = new JButton();
+		ImageIcon continueIcon = new ImageIcon("src/images/continue1.png");
+		ImageIcon continueHover = new ImageIcon("src/images/continuegif.gif");
+		btnNextPlayer.setIcon(continueIcon);
 		btnNextPlayer.setFont(southPark);
 		btnNextPlayer.setOpaque(false);
 		btnNextPlayer.setContentAreaFilled(false);
 		btnNextPlayer.setBorderPainted(false);
+		btnNextPlayer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				btnNextPlayer.setIcon(continueHover);
+			}
+
+			@Override
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				btnNextPlayer.setIcon(continueIcon);
+			}
+		});
 		btnNextPlayer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

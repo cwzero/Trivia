@@ -21,6 +21,7 @@ import trivia.Player;
 @SuppressWarnings("serial")
 public class GameStatusPanel extends GamePanel {
 	File pop = new File("pop.au");
+
 	public GameStatusPanel() {
 		createGui();
 	}
@@ -194,11 +195,16 @@ public class GameStatusPanel extends GamePanel {
 		// This button starts new game " Not valid yet"
 		// right now, smaller image as startIcon gives it an effect that pushes
 		// exitbutton and logo away from startgame
-		
+
 		Icon startIcon = new ImageIcon("src/images/start1.png");
 		Icon hoverStart = new ImageIcon("src/images/startgif.gif");
+		Icon nextIcon = new ImageIcon("src/images/nextround1.png");
+		Icon hoverNext = new ImageIcon("src/images/nextroundgif.gif");
 
 		JButton newGameButton = new JButton(startIcon);
+		if (!gameFrame.getGame().isOver()) {
+			newGameButton.setIcon(nextIcon);
+		}
 		newGameButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -216,12 +222,20 @@ public class GameStatusPanel extends GamePanel {
 		newGameButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			@Override
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				newGameButton.setIcon(hoverStart);
+				if (gameFrame.getGame().isOver()) {
+					newGameButton.setIcon(hoverStart);
+				} else {
+					newGameButton.setIcon(hoverNext);
+				}
 			}
 
 			@Override
 			public void mouseExited(java.awt.event.MouseEvent evt) {
-				newGameButton.setIcon(startIcon);
+				if (gameFrame.getGame().isOver()) {
+					newGameButton.setIcon(startIcon);
+				} else {
+					newGameButton.setIcon(nextIcon);
+				}
 			}
 		});
 		newGameButton.setOpaque(false);
@@ -234,7 +248,7 @@ public class GameStatusPanel extends GamePanel {
 		gbc_newGameButton.gridy = 5;
 		// newGameButton.setIcon(icon);
 		add(newGameButton, gbc_newGameButton);
-		
+
 		if (gameFrame.getGame().isOver()) {
 			Player gameWinner = gameFrame.getGame().getGameWinner();
 			if (gameWinner == null) {
@@ -244,7 +258,7 @@ public class GameStatusPanel extends GamePanel {
 			}
 		} else {
 			lblGameStatus.setText(gameFrame.getGame().getRoundWinner().getName() + " has won the round.");
-			//newGameButton.setText("Next round");
+			// newGameButton.setText("Next round");
 		}
 	}
 }
