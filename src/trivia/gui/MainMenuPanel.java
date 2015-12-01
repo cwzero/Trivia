@@ -94,7 +94,7 @@ public class MainMenuPanel extends GamePanel {
 
 		// right now, smaller image as startIcon gives it an effect that pushes
 		// exitbutton and logo away from startgame
-		Icon startIcon = new ImageIcon("src/images/staticstart.png");
+		Icon startIcon = new ImageIcon("src/images/start1.png");
 		Icon hoverStart = new ImageIcon("src/images/startgif.gif");
 
 		JButton newGameButton = new JButton(startIcon);

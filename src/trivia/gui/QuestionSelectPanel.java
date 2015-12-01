@@ -10,10 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
-import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
@@ -21,8 +18,6 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class QuestionSelectPanel extends GamePanel {
-	private static Font customFont;
-	private static Font customFont2;
 	private Question[] questions = new Question[3];
 	private JButton btnQuestion1;
 	private JButton btnQuestion2;
@@ -72,29 +67,6 @@ public class QuestionSelectPanel extends GamePanel {
 
 		}
 
-		// create the font
-		try {
-			// create the font to use. Specify the size!
-			customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")).deriveFont(20f);
-			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			// register the font
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")));
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (FontFormatException e) {
-			e.printStackTrace();
-		}
-		try {
-			// create the font to use. Specify the size!
-			customFont2 = Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")).deriveFont(34f);
-			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			// register the font
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")));
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (FontFormatException e) {
-			e.printStackTrace();
-		}
 		// called the new method openfile
 		// returns an array into questions
 		questions = gameFrame.getGame().getQuestionPool(3);
@@ -108,7 +80,7 @@ public class QuestionSelectPanel extends GamePanel {
 		// added set font to size 12 to make sure question fits on buttons
 
 		btnQuestion1 = new JButton(questions[0].getText());
-		btnQuestion1.setFont(customFont);
+		btnQuestion1.setFont(southPark);
 
 		btnQuestion1.setOpaque(false);
 		btnQuestion1.setContentAreaFilled(false);
@@ -158,7 +130,7 @@ public class QuestionSelectPanel extends GamePanel {
 		this.add(btnQuestion1);
 
 		btnQuestion2 = new JButton(questions[1].getText());
-		btnQuestion2.setFont(customFont);
+		btnQuestion2.setFont(southPark);
 		btnQuestion2.setOpaque(false);
 		btnQuestion2.setContentAreaFilled(false);
 		btnQuestion2.setBorderPainted(false);
@@ -203,7 +175,7 @@ public class QuestionSelectPanel extends GamePanel {
 		this.add(btnQuestion2);
 
 		btnQuestion3 = new JButton(questions[2].getText());
-		btnQuestion3.setFont(customFont);
+		btnQuestion3.setFont(southPark);
 		btnQuestion3.setOpaque(false);
 		btnQuestion3.setContentAreaFilled(false);
 		btnQuestion3.setBorderPainted(false);
@@ -250,9 +222,8 @@ public class QuestionSelectPanel extends GamePanel {
 		JLabel lblPlayerPleaseSelect = new JLabel(
 				gameFrame.getGame().getPlayer(gameFrame.getGame().getCurrentLeader()).getName()
 						+ ", please select question:");
-		lblPlayerPleaseSelect.setFont(customFont2);
+		lblPlayerPleaseSelect.setFont(southPark);
 		lblPlayerPleaseSelect.setBounds(((gameFrame.getWidth() / 2) - 320), (gameFrame.getHeight() / 2) - 200, 800, 75);
-	
 		lblPlayerPleaseSelect.setForeground(Color.LIGHT_GRAY);
 
 		this.add(lblPlayerPleaseSelect);
