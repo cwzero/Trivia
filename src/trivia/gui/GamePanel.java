@@ -15,13 +15,22 @@ import javax.swing.border.EmptyBorder;
 public abstract class GamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	protected GameFrame gameFrame;
-	protected Font southPark;
+	protected Font southPark, southParkBig, southParkMed;
 	
 	public GamePanel() {
 		try {
 			// create the font to use. Specify the size!
 			southPark = Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")).deriveFont(25f);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			// register the font
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")));
+			southParkBig = Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")).deriveFont(60f);
+			ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			// register the font
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")));
+			
+			southParkMed = Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")).deriveFont(36f);
+			ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			// register the font
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/images/south park.ttf")));
 		} catch (IOException e) {

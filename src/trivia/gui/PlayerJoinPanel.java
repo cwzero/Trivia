@@ -129,8 +129,8 @@ public class PlayerJoinPanel extends GamePanel {
 		});
 
 		playerNameField.setBounds(playerLabel.getX(), playerLabel.getY() + 150, 750, 80);
-		playerNameField.setFont(southPark);
-		playerNameField.setHorizontalAlignment(SwingConstants.LEFT);
+		playerNameField.setFont(southParkBig);
+		playerNameField.setHorizontalAlignment(SwingConstants.CENTER);
 		playerNameField.setOpaque(false);
 		this.add(playerNameField);
 		playerNameField.requestFocus();
