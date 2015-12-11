@@ -114,7 +114,13 @@ public class AnswerEntryPanel extends GamePanel {
 		gbc_currentQuestionLabel.gridy = 1;
 		gbc_currentQuestionLabel.gridheight = 1;
 		gbc_currentQuestionLabel.gridwidth = 1;
+		currentQuestionLabel.setPreferredSize(new Dimension(600, 100));
+		currentQuestionLabel.setMinimumSize(new Dimension(600, 100));
+		currentQuestionLabel.setSize(new Dimension(600, 100));
 		add(currentQuestionLabel, gbc_currentQuestionLabel);
+		currentQuestionLabel.setPreferredSize(new Dimension(600, 100));
+		currentQuestionLabel.setMinimumSize(new Dimension(600, 100));
+		currentQuestionLabel.setSize(new Dimension(600, 100));
 
 		answerField = new JTextField() {
 			@Override
