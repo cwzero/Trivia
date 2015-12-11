@@ -30,7 +30,7 @@ public class AnswerEntryPanel extends GamePanel {
 	// private CountdownLabel countDown;
 
 	public AnswerEntryPanel() {
-		createGui();
+		super();
 	}
 
 	public AnswerEntryPanel(GameFrame gameFrame) {
