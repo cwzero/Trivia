@@ -222,7 +222,7 @@ public class AnswerEntryPanel extends GamePanel {
 		 * 
 		 * animationThread.start();
 		 */
-		gameFrame.pack();
+		gameFrame.repaint();
 		gameFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		gameFrame.setVisible(true);
 	}
