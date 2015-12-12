@@ -152,8 +152,11 @@ public class MainMenuPanel extends GamePanel {
 		Icon exitIcon = new ImageIcon("src/images/exit1.png");
 		Icon hoverExit = new ImageIcon("src/images/exitgif.gif");
 		
+		Icon settings = new ImageIcon("src/images/settings.png");
+		Icon login = new ImageIcon("src/images/login.png");
 		
-		JButton loginButton = new JButton();
+		
+		JButton loginButton = new JButton(login);
 		loginButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -186,7 +189,7 @@ public class MainMenuPanel extends GamePanel {
 		loginButton.setOpaque(false);
 		loginButton.setContentAreaFilled(false);
 		loginButton.setBorderPainted(false);
-		loginButton.setText("Login");
+		//loginButton.setText("Login");
 		
 		GridBagConstraints gbc_loginButton = new GridBagConstraints();
 		gbc_loginButton.fill = GridBagConstraints.BOTH;
@@ -201,7 +204,7 @@ public class MainMenuPanel extends GamePanel {
 				
 		
 		
-		JButton settingsButton = new JButton();
+		JButton settingsButton = new JButton(settings);
 		settingsButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -234,7 +237,7 @@ public class MainMenuPanel extends GamePanel {
 		settingsButton.setOpaque(false);
 		settingsButton.setContentAreaFilled(false);
 		settingsButton.setBorderPainted(false);
-		settingsButton.setText("Settings");
+		//settingsButton.setText("Settings");
 		
 		GridBagConstraints gbc_settingsButton = new GridBagConstraints();
 		gbc_settingsButton.fill = GridBagConstraints.BOTH;
