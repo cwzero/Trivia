@@ -14,6 +14,7 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -30,7 +31,7 @@ public class AnswerEntryPanel extends GamePanel {
 	// private CountdownLabel countDown;
 
 	public AnswerEntryPanel() {
-		createGui();
+		super();
 	}
 
 	public AnswerEntryPanel(GameFrame gameFrame) {
@@ -102,7 +103,6 @@ public class AnswerEntryPanel extends GamePanel {
 		add(playerLabel, gbc_playerLabel);
 		JLabel currentQuestionLabel = new JLabel("Question");
 		currentQuestionLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		currentQuestionLabel.setPreferredSize(new Dimension(600, 100));
 		if (game.getCurrentQuestion() != null && !game.getCurrentQuestion().equals("")) {
 			currentQuestionLabel.setText("<html>" + game.getCurrentQuestion().getText() + "</html>");
 		}
@@ -115,6 +115,9 @@ public class AnswerEntryPanel extends GamePanel {
 		gbc_currentQuestionLabel.gridheight = 1;
 		gbc_currentQuestionLabel.gridwidth = 1;
 		add(currentQuestionLabel, gbc_currentQuestionLabel);
+		currentQuestionLabel.setPreferredSize(new Dimension(600, 100));
+		currentQuestionLabel.setMinimumSize(new Dimension(600, 100));
+		currentQuestionLabel.setSize(new Dimension(600, 100));
 
 		answerField = new JTextField() {
 			@Override
@@ -163,7 +166,7 @@ public class AnswerEntryPanel extends GamePanel {
 		gbc_answerField.gridheight = 1;
 		gbc_answerField.gridwidth = 1;
 		add(answerField, gbc_answerField);
-		answerField.requestFocus();
+		answerField.requestFocusInWindow();
 
 		answerField.addActionListener(new ActionListener() {
 			@Override
@@ -219,6 +222,9 @@ public class AnswerEntryPanel extends GamePanel {
 		 * 
 		 * animationThread.start();
 		 */
+		gameFrame.repaint();
+		gameFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		gameFrame.setVisible(true);
 	}
 
 	public void nextPlayerButton_Click() {

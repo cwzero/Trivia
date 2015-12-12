@@ -196,8 +196,8 @@ public class GameStatusPanel extends GamePanel {
 		// right now, smaller image as startIcon gives it an effect that pushes
 		// exitbutton and logo away from startgame
 
-		Icon startIcon = new ImageIcon("src/images/start1.png");
-		Icon hoverStart = new ImageIcon("src/images/startgif.gif");
+		Icon startIcon = new ImageIcon("src/images/newgame1.png");
+		Icon hoverStart = new ImageIcon("src/images/newgamehgif.gif");
 		Icon nextIcon = new ImageIcon("src/images/nextround1.png");
 		Icon hoverNext = new ImageIcon("src/images/nextroundgif.gif");
 
