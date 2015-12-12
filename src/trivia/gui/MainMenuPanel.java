@@ -45,6 +45,16 @@ public class MainMenuPanel extends GamePanel {
 		// Here we will close the main menu, then show a new game setup frame
 		new GameSetupPanel(gameFrame);
 	}
+	
+	public void settingsButtonClick() {
+		
+		new QuestionSubmit(gameFrame);
+	}
+	
+	public void loginButtonClick() {
+		
+		new LoginPanel(gameFrame);
+	}
 
 	public void quitButtonClick() {
 		System.exit(0);
@@ -141,6 +151,102 @@ public class MainMenuPanel extends GamePanel {
 
 		Icon exitIcon = new ImageIcon("src/images/exit1.png");
 		Icon hoverExit = new ImageIcon("src/images/exitgif.gif");
+		
+		
+		JButton loginButton = new JButton();
+		loginButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainMenuPanel.this.loginButtonClick();
+				try {
+					Game.playSound(pop, 100);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+			
+		});
+		// mouse over and exit
+		loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
+					@Override
+					public void mouseEntered(java.awt.event.MouseEvent evt) {
+						//settingsButton.setIcon();
+
+					}
+
+					@Override
+					public void mouseExited(java.awt.event.MouseEvent evt) {
+						//settingsButton.setIcon();
+					}
+				});
+		
+		loginButton.setOpaque(false);
+		loginButton.setContentAreaFilled(false);
+		loginButton.setBorderPainted(false);
+		loginButton.setText("Login");
+		
+		GridBagConstraints gbc_loginButton = new GridBagConstraints();
+		gbc_loginButton.fill = GridBagConstraints.BOTH;
+		gbc_loginButton.gridheight = 1;
+		gbc_loginButton.gridwidth = 1;
+		gbc_loginButton.gridx = 1;
+		gbc_loginButton.gridy = 2;
+		gbc_loginButton.weightx = 0;
+		gbc_loginButton.weighty = 0;
+		add(loginButton, gbc_loginButton);
+		
+				
+		
+		
+		JButton settingsButton = new JButton();
+		settingsButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainMenuPanel.this.settingsButtonClick();
+				try {
+					Game.playSound(pop, 100);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+			
+		});
+		// mouse over and exit
+		settingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+					@Override
+					public void mouseEntered(java.awt.event.MouseEvent evt) {
+						//settingsButton.setIcon();
+
+					}
+
+					@Override
+					public void mouseExited(java.awt.event.MouseEvent evt) {
+						//settingsButton.setIcon();
+					}
+				});
+		
+		settingsButton.setOpaque(false);
+		settingsButton.setContentAreaFilled(false);
+		settingsButton.setBorderPainted(false);
+		settingsButton.setText("Settings");
+		
+		GridBagConstraints gbc_settingsButton = new GridBagConstraints();
+		gbc_settingsButton.fill = GridBagConstraints.BOTH;
+		gbc_settingsButton.gridheight = 1;
+		gbc_settingsButton.gridwidth = 1;
+		gbc_settingsButton.gridx = 1;
+		gbc_settingsButton.gridy = 3;
+		gbc_settingsButton.weightx = 0;
+		gbc_settingsButton.weighty = 0;
+		add(settingsButton, gbc_settingsButton);
+		
+		
 
 		JButton quitButton = new JButton(exitIcon);
 		quitButton.addActionListener(new ActionListener() {
@@ -180,7 +286,7 @@ public class MainMenuPanel extends GamePanel {
 		gbc_quitButton.gridheight = 1;
 		gbc_quitButton.gridwidth = 1;
 		gbc_quitButton.gridx = 1;
-		gbc_quitButton.gridy = 2;
+		gbc_quitButton.gridy = 4;
 		gbc_quitButton.weightx = 0;
 		gbc_quitButton.weighty = 0;
 		add(quitButton, gbc_quitButton);
