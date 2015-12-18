@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 public class LoginPanel extends GamePanel {
 	private static final long serialVersionUID = 1L;
@@ -33,6 +34,7 @@ public class LoginPanel extends GamePanel {
 		gameFrame.setVisible(true);
 	}
 
+	@SuppressWarnings("serial")
 	@Override
 	protected void createGui() {
 		gameFrame.setTitle("Log In");
@@ -49,9 +51,9 @@ public class LoginPanel extends GamePanel {
 		gbc_usernameLabel.weighty = 0;
 
 		JLabel usernameLabel = new JLabel("Username:");
-		usernameLabel.setPreferredSize(new Dimension(600, 100));
+		usernameLabel.setPreferredSize(new Dimension(200, 80));
 		usernameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		usernameLabel.setFont(southParkBig);
+		usernameLabel.setFont(southPark);
 		add(usernameLabel, gbc_usernameLabel);
 
 		GridBagConstraints gbc_usernameField = new GridBagConstraints();
@@ -63,11 +65,16 @@ public class LoginPanel extends GamePanel {
 		gbc_usernameField.weightx = 0;
 		gbc_usernameField.weighty = 0;
 
-		usernameField = new JTextField("Username");
+		usernameField = new JTextField("Username") {
+
+			@Override
+			public void setBorder(Border border) {
+			}
+		};
 		usernameField.setHorizontalAlignment(SwingConstants.CENTER);
 		usernameField.setFont(southPark);
 		usernameField.setOpaque(false);
-		usernameField.setPreferredSize(new Dimension(400, 100));
+		usernameField.setPreferredSize(new Dimension(350, 80));
 		usernameField.setForeground(Color.WHITE);
 		add(usernameField, gbc_usernameField);
 
@@ -81,9 +88,9 @@ public class LoginPanel extends GamePanel {
 		gbc_passwordLabel.weighty = 0;
 
 		JLabel passwordLabel = new JLabel("Password:");
-		passwordLabel.setPreferredSize(new Dimension(400, 100));
+		passwordLabel.setPreferredSize(new Dimension(200, 80));
 		passwordLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		passwordLabel.setFont(southParkBig);
+		passwordLabel.setFont(southPark);
 		add(passwordLabel, gbc_passwordLabel);
 
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
@@ -95,12 +102,16 @@ public class LoginPanel extends GamePanel {
 		gbc_passwordField.weightx = 0;
 		gbc_passwordField.weighty = 0;
 
-		passwordField = new JPasswordField();
+		passwordField = new JPasswordField("Password123") {
+			@Override
+			public void setBorder(Border border) {
+			}
+		};
 
 		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
 		passwordField.setFont(southPark);
 		passwordField.setOpaque(false);
-		passwordField.setPreferredSize(new Dimension(600, 100));
+		passwordField.setPreferredSize(new Dimension(350, 80));
 		passwordField.setForeground(Color.WHITE);
 		add(passwordField, gbc_passwordField);
 
