@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class QuestionSubmit extends GamePanel {
@@ -41,6 +42,7 @@ public class QuestionSubmit extends GamePanel {
 		setLayout(gridBagLayout);
 		
 		questionLabel = new JLabel();
+		questionLabel.setFont(new Font("Tahoma", Font.BOLD, 21));
 		questionLabel.setText("Enter Question");
 		GridBagConstraints gbc_questionLabel = new GridBagConstraints();
 		gbc_questionLabel.fill = GridBagConstraints.BOTH;
@@ -65,6 +67,7 @@ public class QuestionSubmit extends GamePanel {
 		add(questionField, gbc_questionField);
 		
 		answerLabel = new JLabel();
+		answerLabel.setFont(new Font("Tahoma", Font.BOLD, 21));
 		answerLabel.setText("Enter Answer");
 		GridBagConstraints gbc_answerLabel = new GridBagConstraints();
 		gbc_answerLabel.fill = GridBagConstraints.BOTH;
