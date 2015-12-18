@@ -37,7 +37,7 @@ public class QuestionSubmit extends GamePanel {
 		gameFrame.setTitle("Question Submit");
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 1.0 };
+		gridBagLayout.columnWeights = new double[] { 0.0, 0.0 };
 		setLayout(gridBagLayout);
 		
 		questionLabel = new JLabel();
@@ -55,9 +55,9 @@ public class QuestionSubmit extends GamePanel {
 		
 		questionField = new JTextField();
 		GridBagConstraints gbc_questionField = new GridBagConstraints();
+		gbc_questionField.gridwidth = 2;
 		gbc_questionField.fill = GridBagConstraints.BOTH;
 		gbc_questionField.gridheight = 1;
-		gbc_questionField.gridwidth = 1;
 		gbc_questionField.gridx = 0;
 		gbc_questionField.gridy = 1;
 		gbc_questionField.weightx = 0;
@@ -80,7 +80,7 @@ public class QuestionSubmit extends GamePanel {
 		GridBagConstraints gbc_answerField = new GridBagConstraints();
 		gbc_answerField.fill = GridBagConstraints.BOTH;
 		gbc_answerField.gridheight = 1;
-		gbc_answerField.gridwidth = 1;
+		gbc_answerField.gridwidth = 2;
 		gbc_answerField.gridx = 0;
 		gbc_answerField.gridy = 3;
 		gbc_questionField.weightx = 0;
@@ -91,7 +91,6 @@ public class QuestionSubmit extends GamePanel {
 		gbc_backButton.gridx = 0;
 		gbc_backButton.gridy = 4;
 		gbc_backButton.gridwidth = 1;
-		gbc_backButton.gridheight = 1;
 		gbc_backButton.fill = GridBagConstraints.BOTH;
 		gbc_backButton.weightx = 0;
 		gbc_backButton.weighty = 0;
