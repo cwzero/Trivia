@@ -59,8 +59,8 @@ public class QuestionSelectPanel extends GamePanel {
 		this.setLayout(null);
 
 		try {
-			Game.playSound(music, (120000));
-
+			Game.stopSounds();
+			Game.playSoundLoop(music);
 		} catch (IOException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();

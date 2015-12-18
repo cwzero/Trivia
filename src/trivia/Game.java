@@ -45,6 +45,8 @@ public class Game {
 
 	// The game's players //
 	private List<Player> players = null;
+	
+	private static List<InputStream> audio = new ArrayList<InputStream>();
 
 	// The winner of the round //
 	private int roundWinner = -1;
@@ -250,7 +252,7 @@ public class Game {
 			return null;
 	}
 
-	public static void playSoundLoop(File soundFile, long length) throws IOException {
+	public static ContinuousAudioDataStream playSoundLoop(File soundFile, long length) throws IOException {
 		InputStream is = new FileInputStream(soundFile);
 		AudioStream as = new AudioStream(is);
 		AudioData data = as.getData();
@@ -275,9 +277,39 @@ public class Game {
 			}
 		};
 		audioThread.start();
+		return cas;
 	}
 
-	public static void playSound(File soundFile, long length) throws IOException {
+	public static ContinuousAudioDataStream playSoundLoop(File soundFile) throws IOException {
+		InputStream is = new FileInputStream(soundFile);
+		AudioStream as = new AudioStream(is);
+		AudioData data = as.getData();
+		ContinuousAudioDataStream cas = new ContinuousAudioDataStream(data);
+		Thread audioThread = new Thread() {
+			@Override
+			public void run() {
+				AudioPlayer.player.start(cas);
+			}
+		};
+		audioThread.start();
+		audio.add(cas);
+		return cas;
+	}
+	
+	public static void stopSounds() {
+		for (InputStream in: audio) {
+			AudioPlayer.player.stop(in);
+			try {
+				in.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+
+	public static AudioDataStream playSound(File soundFile, long length) throws IOException {
 		InputStream is = new FileInputStream(soundFile);
 		AudioStream as = new AudioStream(is);
 		AudioData data = as.getData();
@@ -302,6 +334,7 @@ public class Game {
 			}
 		};
 		audioThread.start();
+		return cas;
 	}
 	
 	public static int getRandomNumberInRange(int min, int max) {
