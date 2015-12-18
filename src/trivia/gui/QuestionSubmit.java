@@ -2,6 +2,8 @@ package trivia.gui;
 
 import java.awt.GridBagLayout;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -9,6 +11,8 @@ import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class QuestionSubmit extends GamePanel {
@@ -92,8 +96,9 @@ public class QuestionSubmit extends GamePanel {
 		gbc_backButton.weightx = 0;
 		gbc_backButton.weighty = 0;
 
-		JButton backButton = new JButton("Back");
-		backButton.setFont(southPark);
+		Icon backIcon = new ImageIcon("src/images/back1.png");
+		Icon backHover = new ImageIcon("src/images/backgif.gif");
+		JButton backButton = new JButton(backIcon);
 		backButton.setOpaque(false);
 		backButton.setContentAreaFilled(false);
 		backButton.setBorderPainted(false);
@@ -101,6 +106,17 @@ public class QuestionSubmit extends GamePanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				QuestionSubmit.this.backButton_Click();
+			}
+		});
+		backButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				backButton.setIcon(backHover);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				backButton.setIcon(backIcon);
 			}
 		});
 		add(backButton, gbc_backButton);
