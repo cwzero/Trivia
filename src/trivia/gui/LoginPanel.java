@@ -6,7 +6,11 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -47,7 +51,7 @@ public class LoginPanel extends GamePanel {
 		JLabel usernameLabel = new JLabel("Username:");
 		usernameLabel.setPreferredSize(new Dimension(600, 100));
 		usernameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		usernameLabel.setFont(southPark);
+		usernameLabel.setFont(southParkBig);
 		add(usernameLabel, gbc_usernameLabel);
 
 		GridBagConstraints gbc_usernameField = new GridBagConstraints();
@@ -61,9 +65,9 @@ public class LoginPanel extends GamePanel {
 
 		usernameField = new JTextField("Username");
 		usernameField.setHorizontalAlignment(SwingConstants.CENTER);
-		usernameField.setFont(southParkBig);
+		usernameField.setFont(southPark);
 		usernameField.setOpaque(false);
-		usernameField.setPreferredSize(new Dimension(600, 100));
+		usernameField.setPreferredSize(new Dimension(400, 100));
 		usernameField.setForeground(Color.WHITE);
 		add(usernameField, gbc_usernameField);
 
@@ -77,9 +81,9 @@ public class LoginPanel extends GamePanel {
 		gbc_passwordLabel.weighty = 0;
 
 		JLabel passwordLabel = new JLabel("Password:");
-		passwordLabel.setPreferredSize(new Dimension(600, 100));
+		passwordLabel.setPreferredSize(new Dimension(400, 100));
 		passwordLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		passwordLabel.setFont(southPark);
+		passwordLabel.setFont(southParkBig);
 		add(passwordLabel, gbc_passwordLabel);
 
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
@@ -94,7 +98,7 @@ public class LoginPanel extends GamePanel {
 		passwordField = new JPasswordField();
 
 		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
-		passwordField.setFont(southParkBig);
+		passwordField.setFont(southPark);
 		passwordField.setOpaque(false);
 		passwordField.setPreferredSize(new Dimension(600, 100));
 		passwordField.setForeground(Color.WHITE);
@@ -109,8 +113,9 @@ public class LoginPanel extends GamePanel {
 		gbc_loginButton.weightx = 0;
 		gbc_loginButton.weighty = 0;
 
-		JButton loginButton = new JButton("Log In");
-		loginButton.setFont(southPark);
+		Icon loginIcon = new ImageIcon("src/images/login1.png");
+		Icon loginHover = new ImageIcon("src/images/logingif.gif");
+		JButton loginButton = new JButton(loginIcon);
 		loginButton.setOpaque(false);
 		loginButton.setContentAreaFilled(false);
 		loginButton.setBorderPainted(false);
@@ -120,7 +125,18 @@ public class LoginPanel extends GamePanel {
 				LoginPanel.this.loginButton_Click();
 			}
 		});
+		loginButton.setIcon(loginIcon);
+		loginButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				loginButton.setIcon(loginHover);
+			}
 
+			@Override
+			public void mouseExited(MouseEvent e) {
+				loginButton.setIcon(loginIcon);
+			}
+		});
 		add(loginButton, gbc_loginButton);
 
 		GridBagConstraints gbc_backButton = new GridBagConstraints();
@@ -132,8 +148,9 @@ public class LoginPanel extends GamePanel {
 		gbc_backButton.weightx = 0;
 		gbc_backButton.weighty = 0;
 
-		JButton backButton = new JButton("Back");
-		backButton.setFont(southPark);
+		Icon backIcon = new ImageIcon("src/images/back1.png");
+		Icon backHover = new ImageIcon("src/images/backgif.gif");
+		JButton backButton = new JButton(backIcon);
 		backButton.setOpaque(false);
 		backButton.setContentAreaFilled(false);
 		backButton.setBorderPainted(false);
@@ -141,6 +158,18 @@ public class LoginPanel extends GamePanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				LoginPanel.this.backButton_Click();
+			}
+		});
+		backButton.setIcon(backIcon);
+		backButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				backButton.setIcon(backHover);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				backButton.setIcon(backIcon);
 			}
 		});
 		add(backButton, gbc_backButton);

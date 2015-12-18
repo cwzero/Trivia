@@ -157,8 +157,10 @@ public class MainMenuPanel extends GamePanel {
 		Icon exitIcon = new ImageIcon("src/images/exit1.png");
 		Icon hoverExit = new ImageIcon("src/images/exitgif.gif");
 
-		Icon settings = new ImageIcon("src/images/settings.png");
-		Icon login = new ImageIcon("src/images/login.png");
+		Icon settings = new ImageIcon("src/images/settings1.png");
+		Icon hoverSettings = new ImageIcon("src/images/settingsgif.gif");
+		Icon login = new ImageIcon("src/images/login1.png");
+		Icon hoverLogin = new ImageIcon("src/images/logingif.gif");
 
 		JButton loginButton = new JButton(login);
 		loginButton.addActionListener(new ActionListener() {
@@ -181,12 +183,13 @@ public class MainMenuPanel extends GamePanel {
 			@Override
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
 				// settingsButton.setIcon();
-
+				loginButton.setIcon(hoverLogin);
 			}
 
 			@Override
 			public void mouseExited(java.awt.event.MouseEvent evt) {
 				// settingsButton.setIcon();
+				loginButton.setIcon(login);
 			}
 		});
 
@@ -225,13 +228,13 @@ public class MainMenuPanel extends GamePanel {
 		settingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
 			@Override
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				// settingsButton.setIcon();
+				settingsButton.setIcon(hoverSettings);
 
 			}
 
 			@Override
 			public void mouseExited(java.awt.event.MouseEvent evt) {
-				// settingsButton.setIcon();
+				settingsButton.setIcon(settings);
 			}
 		});
 
