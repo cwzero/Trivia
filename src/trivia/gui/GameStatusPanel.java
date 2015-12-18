@@ -197,7 +197,7 @@ public class GameStatusPanel extends GamePanel {
 		// exitbutton and logo away from startgame
 
 		Icon startIcon = new ImageIcon("src/images/newgame1.png");
-		Icon hoverStart = new ImageIcon("src/images/newgamehgif.gif");
+		Icon hoverStart = new ImageIcon("src/images/newgamegif.gif");
 		Icon nextIcon = new ImageIcon("src/images/nextround1.png");
 		Icon hoverNext = new ImageIcon("src/images/nextroundgif.gif");
 
