@@ -33,6 +33,14 @@ public class MainMenuPanel extends GamePanel {
 				e2.printStackTrace();
 			}
 			initialized = true;
+		} else {
+			Game.stopSounds();
+			try {
+				Game.playSoundLoop(music);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
