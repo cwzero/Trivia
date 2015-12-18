@@ -116,7 +116,7 @@ public class LoginPanel extends GamePanel {
 		add(passwordField, gbc_passwordField);
 
 		GridBagConstraints gbc_loginButton = new GridBagConstraints();
-		gbc_loginButton.gridx = 1;
+		gbc_loginButton.gridx = 0;
 		gbc_loginButton.gridy = 2;
 		gbc_loginButton.gridwidth = 1;
 		gbc_loginButton.gridheight = 1;
@@ -184,6 +184,37 @@ public class LoginPanel extends GamePanel {
 			}
 		});
 		add(backButton, gbc_backButton);
+		
+		ImageIcon registerIcon = new ImageIcon("src/images/singup1.png");
+		ImageIcon registerHover = new ImageIcon("src/images/singupgif.gif");
+		
+		GridBagConstraints gbc_registerButton = new GridBagConstraints();
+		gbc_registerButton.gridx = 1;
+		gbc_registerButton.gridy = 2;
+		gbc_registerButton.gridwidth = 1;
+		gbc_registerButton.gridheight = 1;
+		gbc_registerButton.fill = GridBagConstraints.BOTH;
+		gbc_registerButton.weightx = 0;
+		gbc_registerButton.weighty = 0;
+		
+		JButton registerButton = new JButton(registerIcon);
+		registerButton.setOpaque(false);
+		registerButton.setContentAreaFilled(false);
+		registerButton.setBorderPainted(false);
+		registerButton.setEnabled(false);
+		
+		registerButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				registerButton.setIcon(registerHover);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				registerButton.setIcon(registerIcon);
+			}
+		});
+		add(registerButton, gbc_registerButton);
 	}
 
 	public void loginButton_Click() {
