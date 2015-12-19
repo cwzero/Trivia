@@ -201,7 +201,15 @@ public class LoginPanel extends GamePanel {
 		registerButton.setOpaque(false);
 		registerButton.setContentAreaFilled(false);
 		registerButton.setBorderPainted(false);
-		registerButton.setEnabled(false);
+		registerButton.addActionListener(new ActionListener() {
+			
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LoginPanel.this.registerButton_Click();
+				
+			}
+		});
 		
 		registerButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -215,6 +223,11 @@ public class LoginPanel extends GamePanel {
 			}
 		});
 		add(registerButton, gbc_registerButton);
+	}
+
+	protected void registerButton_Click() {
+		new SignUpPanel(gameFrame);
+		
 	}
 
 	public void loginButton_Click() {

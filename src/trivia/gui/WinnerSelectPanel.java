@@ -58,29 +58,47 @@ public class WinnerSelectPanel extends GamePanel {
 	protected void createGui() {
 		this.setLayout(new GridBagLayout());
 
-		/*
-		 * lblCountdown = new CountdownLabel(15) {
-		 * 
-		 * @Override public void event(int time) { if (time == 5) {
-		 * this.setForeground(Color.red); this.setFont(new Font("Tahoma",
-		 * Font.BOLD, 20)); } if (time == 4) { this.setForeground(Color.red);
-		 * this.setFont(new Font("Tahoma", Font.BOLD, 30)); } if (time == 3) {
-		 * this.setForeground(Color.red); this.setFont(new Font("Tahoma",
-		 * Font.BOLD, 40)); } if (time == 2) { this.setForeground(Color.red);
-		 * this.setFont(new Font("Tahoma", Font.BOLD, 50)); } if (time == 1) {
-		 * this.setForeground(Color.red); this.setFont(new Font("Tahoma",
-		 * Font.BOLD, 60)); } if (time == 0) { this.setForeground(Color.red);
-		 * this.setFont(new Font("Tahoma", Font.BOLD, 70)); Random random = new
-		 * Random(); int generated =
-		 * random.nextInt(gameFrame.getGame().getPlayerCount()); while
-		 * (generated == gameFrame.getGame().getCurrentLeader()) { generated =
-		 * random.nextInt(gameFrame.getGame().getPlayerCount()); }
-		 * selectWinner(generated); } } };
-		 * 
-		 * add(lblCountdown); lblCountdown.setFont(new Font("Tahoma", Font.BOLD,
-		 * 14)); lblCountdown.setHorizontalAlignment(SwingConstants.CENTER);
-		 */
-		
+/*		lblCountdown = new CountdownLabel(15) {
+
+			@Override
+			public void event(int time) {
+				if (time == 5) {
+					this.setForeground(Color.red);
+					this.setFont(new Font("Tahoma", Font.BOLD, 20));
+				}
+				if (time == 4) {
+					this.setForeground(Color.red);
+					this.setFont(new Font("Tahoma", Font.BOLD, 30));
+				}
+				if (time == 3) {
+					this.setForeground(Color.red);
+					this.setFont(new Font("Tahoma", Font.BOLD, 40));
+				}
+				if (time == 2) {
+					this.setForeground(Color.red);
+					this.setFont(new Font("Tahoma", Font.BOLD, 50));
+				}
+				if (time == 1) {
+					this.setForeground(Color.red);
+					this.setFont(new Font("Tahoma", Font.BOLD, 60));
+				}
+				if (time == 0) {
+					this.setForeground(Color.red);
+					this.setFont(new Font("Tahoma", Font.BOLD, 70));
+					Random random = new Random();
+					int generated = random.nextInt(gameFrame.getGame().getPlayerCount());
+					while (generated == gameFrame.getGame().getCurrentLeader()) {
+						generated = random.nextInt(gameFrame.getGame().getPlayerCount());
+					}
+					selectWinner(generated);
+				}
+			}
+		};
+
+		add(lblCountdown);
+		lblCountdown.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCountdown.setHorizontalAlignment(SwingConstants.CENTER);
+*/
 		JLabel lblNewLabel = new JLabel("Select one answer for the question:");
 		lblNewLabel.setFont(southPark);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -145,7 +163,7 @@ public class WinnerSelectPanel extends GamePanel {
 				button.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						//lblCountdown.stop();
+						// lblCountdown.stop();
 						try {
 							Game.playSound(pop, 100);
 						} catch (IOException e1) {
